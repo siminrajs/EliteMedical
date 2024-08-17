@@ -1,0 +1,103 @@
+﻿@using EliteHospital.Core
+@{ Layout = "";
+    //EliteHospitalEntities db = new EliteHospitalEntities();
+    //string keyword = ViewBag.keyword;
+    //List<tbl_PatientMaster> user = db.tbl_PatientMaster.ToList();
+    //user = db.Database.SqlQuery<tbl_PatientMaster>("EXEC SP_viewuserlist @name= '" + keyword + "' ").ToList();
+}
+
+
+
+
+<div class="card-body px-0 pt-0 pb-2 main-table">
+    <div class="table-responsive p-0">
+        <table class="table align-items-center mb-0">
+            <thead>
+                <tr>
+                    <th class=" text-secondary text-xxs font-weight-bolder ">SL.NO</th>
+                    <th class=" text-secondary text-xxs font-weight-bolder ">Services</th>
+                    <th class=" text-secondary text-xxs font-weight-bolder ">Services(Arabic)</th>
+                    <th class="text-center text-secondary text-xxs font-weight-bolder ">Redeemable Points</th>
+                    <th class="text-center text-secondary text-xxs font-weight-bolder">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in (List<EliteHospital.Core.tbl_ServiceMaster>)ViewData["ServiceList"])
+            {
+                <tr>
+
+                    <td>
+                        <div class="d-flex px-2 py-1">
+                            <div class="d-flex flex-column justify-content-center">
+                                <h6 class="mb-0 text-sm">@item.SM_Id</h6>
+
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="d-flex px-2 py-1">
+                            <div class="d-flex flex-column justify-content-center">
+                                <h6 class="mb-0 text-sm">@item.SM_Name</h6>
+
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="d-flex px-2 py-1">
+                            <div class="d-flex flex-column justify-content-center">
+                                <h6 class="mb-0 text-sm">@item.SM_Name_Arabic</h6>
+
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="d-flex px-2 py-1">
+                            <div class="d-flex flex-column justify-content-center">
+                                <h6 class="mb-0 text-sm">@item.SM_Points</h6>
+
+                            </div>
+                        </div>
+                    </td>
+
+
+
+                    <td class="align-middle">
+                        @Html.ActionLink("Edit", "AddNewServices", "Service", new { Id = @item.SM_Id }, new { @class = "banneredit text-secondary font-weight-bold text-xs link-tab" })
+                        <a onclick="return confirm('Are you sure want to delete this Service?')" href="/admin/Service/DeleteService?id=@item.SM_Id" class="banneredit text-secondary font-weight-bold text-xs link-tab">Delete</a>
+                    </td>
+                </tr>
+}
+
+
+
+
+            </tbody>
+        </table>
+       
+
+    </div>
+</div>
+<style>
+    .page-item .page-link, .page-item span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #8392AB;
+        padding: 15px !important;
+        margin: 0 0 0 44px;
+        height: 10px;
+        width: 47px;
+        font-size: 0.875rem;
+    }
+
+    .page-item.active .page-link {
+        z-index: 3;
+        color: #fff;
+        background-color: #9f0d1d;
+        border-color: #9f0d1d;
+    }
+</style>
+<script>
+
+    
+</script>

@@ -1,0 +1,34 @@
+﻿@{ ViewBag.Title = "MediaPartialView";
+    Layout = null;
+
+     }
+
+
+<section>
+    <div class="tab-content">
+        <div id="home" class="tab-pane fade show active">
+            <div class="demo-gallery">
+                <ul class="lightgallery">
+                    @foreach (var item in (List<EliteHospital.Core.tbl_MediaImagesList>)ViewData["ImageList"])
+                    {
+                        //var Id = @item.Media_Image;
+                        //if (item.Image != null)
+                        //{
+                        //    var src = @item.Media_Image;
+                        //    imgSrc = String.Format("data:image/gif;src,{0}", src);
+                        //}
+                        <li data-responsive="@item.Media_Image" class="@item.Id" data-src="@item.Media_Image" data-sub-html=" " data-pinterest-text="Pin it" data-tweet-text="share on twitter ">
+                            <a href="#" class="imagelist">
+                                <img class="img-responsive" src="@item.Media_Image">
+                                <div class="demo-gallery-poster">
+                                    <img src="~/Content/MainSite/images/zoom.png">
+                                </div>
+                            </a>
+                        </li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

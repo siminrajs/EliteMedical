@@ -1,0 +1,63 @@
+﻿@model EliteHospital.Web.Areas.Admin.ViewModel.ConfigPasswordsViewModel
+@{
+    ViewBag.Title = "EditCovidBanner";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+        $("#menuContactus").addClass("active");
+
+        $('#Address').jqte();
+        $('#WorkingHours').jqte();
+        $('#Location').jqte();
+    });
+</script>
+
+<style>
+    .jqte_editor {
+        background: grey;
+    }
+</style>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0 header-table form-header">
+                <h6>Config Values Edit</h6>
+                @Html.ActionLink("View All", "Index", "ConfigPasswords", null, new { })
+            </div>
+            <div class="card-body px-0 pt-0 pb-2 main-form">
+                @using (Html.BeginForm("EditConfigpassvalues", "ConfigPasswords", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="first">Config Value Name</label>
+                                @Html.HiddenFor(p => p.ID)
+                                @Html.TextBoxFor(p => p.ConfigPasswordName , new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(p => p.ConfigPasswordName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="last">Config Values</label>
+                                @Html.TextBoxFor(p => p.ConfigPassValues, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(p => p.ConfigPassValues, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="row">
+                        <div class="col-md-12 btn-save-outer">
+                            <button type="submit" class="btn-save">Save</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

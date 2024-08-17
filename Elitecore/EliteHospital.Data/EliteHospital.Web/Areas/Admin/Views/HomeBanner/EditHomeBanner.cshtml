@@ -1,0 +1,82 @@
+﻿@model EliteHospital.Web.Areas.Admin.ViewModel.HomeBannerViewModel
+@{
+    ViewBag.Title = "EditHomeBanner";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+        $("#menuHomeBanner").addClass("active");
+
+        $('#Title').jqte();
+        $('#Description').jqte();
+
+        $("#homebannerimage").change(function () {
+            $("#homebannerfilename").val($(this).val());
+        });
+    });
+</script>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0 header-table form-header">
+                <h6>Banners Edit</h6>
+                @Html.ActionLink("View All", "Index", "HomeBanner", null, new { })
+            </div>
+            <div class="card-body px-0 pt-0 pb-2 main-form">
+                @using (Html.BeginForm("EditHomeBanner", "HomeBanner", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="first">Home Banner Title</label>
+                                @Html.HiddenFor(p => p.Id)
+                                @Html.TextBoxFor(p => p.Title, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(p => p.Title, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="first">Description</label>
+                                @Html.TextBoxFor(p => p.Description, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(p => p.Description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email">Home Banner Image <span style="padding-left: 10px; font-size: 11px;">(please keep size width:1352px and height:691px)</span></label>
+                                <label for="file" class="input input-file">
+                                    <div class="button">
+                                        @Html.TextBox("homebannerimage", "", new { @class = "form-control", type = "file", id = "homebannerimage", accept = "image/png, image/gif, image/jpeg" })
+                                        Browse
+                                    </div>
+                                    @Html.TextBoxFor(p => p.ImagePath, new { id = "homebannerfilename", @class = "form-control", placeholder = "Include some files" })
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="first">Explore URL</label>
+                                @Html.TextBoxFor(p => p.ExploreUrl, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(p => p.ExploreUrl, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 btn-save-outer">
+                            <button type="submit" class="btn-save">Save</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

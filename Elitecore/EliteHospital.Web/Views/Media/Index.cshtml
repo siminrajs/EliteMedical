@@ -1,0 +1,113 @@
+﻿
+@{ ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    //int id = Convert.ToInt32(ViewBag.Id);
+    }
+
+<script>
+    $(document).ready(() => {
+        $(".lightgallery").lightGallery({
+            pager: true
+        });
+    });
+
+
+</script>
+
+
+
+
+<section class="hm-specialization mdScn">
+    <div class="dept-otr" data-aos="fade-up" data-aos-delay="300">
+        <div class="row">
+            <div class="col-md-12">
+
+                <nav>
+                    <div class="nav nav-tabs dept-tabs my-media-filter" id="nav-tab" role="tablist">
+                        <div class="owl_1 owl-carousel owl-theme">
+
+                            @{ foreach (var item in (List<EliteHospital.Core.tbl_Media>)ViewData["CovidBannerList"])
+                                {
+                    <a Id=@item.Id id="nav-home-tab" data-toggle="tab" href="#@item.Id" role="tab" class="imagelist nav-link active" aria-controls="nav-home" aria-selected="true" data-aos="fade-up" data-aos-delay="300">
+                        <div class="tab-icon_bx" name="id" Id="Id" value="@item.Category">
+                            <p>@item.Category</p>
+                        </div>
+                    </a> } }
+
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="form-group" id="usercontainer">
+
+    </div>
+    <div class="tab-content" id="showdiv">
+        <div id="home" class="tab-pane fade show active">
+            <div class="demo-gallery">
+                <ul class="lightgallery my-media-gallery">
+
+
+
+                    @foreach (var item in (List<EliteHospital.Core.tbl_MediaImagesList>)ViewData["ImageList"])
+                    {
+                        var imgSrc = "";
+        <li data-responsive="@item.Media_Image" class="@item.MediaId" data-src="@item.Media_Image" data-sub-html=" " data-pinterest-text="Pin it" data-tweet-text="share on twitter ">
+            <a href="#" class="imagelist">
+                <img class="img-responsive" src="@item.Media_Image">
+                <div class="demo-gallery-poster">
+                    <img src="~/Content/MainSite/images/zoom.png">
+                </div>
+            </a>
+        </li>}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+@*<script type="text/javascript">
+        $(document).ready(function () {
+            $("body").off("click", ".imagelist");
+            $("body").on("click", ".imagelist", function () {
+                var Id = parseInt(this.id);
+                var x = document.getElementById("showdiv");
+                    x.style.display = "none";
+               $("#usercontainer").html('');
+               $("#usercontainer").load("/Media/MediaPartialView?Id=" + Id);
+            });
+        });
+
+
+    </script>*@
+
+
+<style>
+
+
+
+    .my-media-gallery .hide {
+        display: none;
+        transition: all 0.1s;
+    }
+</style>
+
+<script>
+
+    $('.my-media-filter a').click(function (e) {
+        e.preventDefault();
+        var a = $(this).attr('href');
+        a = a.substr(1);
+        $('.my-media-gallery li').each(function () {
+            if (!$(this).hasClass(a) && a != 'all')
+                $(this).addClass('hide');
+            else
+                $(this).removeClass('hide');
+        });
+
+    });
+
+</script>

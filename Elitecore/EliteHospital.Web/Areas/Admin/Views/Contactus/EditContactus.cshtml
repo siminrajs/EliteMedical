@@ -1,0 +1,116 @@
+﻿@model EliteHospital.Web.Areas.Admin.ViewModel.ContactusViewModel
+@{
+    ViewBag.Title = "EditCovidBanner";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+        $("#menuContactus").addClass("active");
+
+        $('#Address').jqte();
+        $('#WorkingHours').jqte();
+        $('#Location').jqte();
+    });
+</script>
+
+<style>
+    .jqte_editor {
+        background: grey;
+    }
+</style>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0 header-table form-header">
+                <h6>Contact Us Edit</h6>
+                @Html.ActionLink("View All", "Index", "Contactus", null, new { })
+            </div>
+            <div class="card-body px-0 pt-0 pb-2 main-form">
+                @using (Html.BeginForm("EditContactus", "Contactus", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="first">Address</label>
+                                @Html.HiddenFor(p => p.Id)
+                                @Html.TextBoxFor(p => p.Address, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(p => p.Address, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="last">Email</label>
+                                @Html.TextBoxFor(p => p.Email, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(p => p.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="first">Phone</label>
+                                @Html.TextBoxFor(p => p.Phone, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(p => p.Phone, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="first">Working Hours</label>
+                                @Html.TextBoxFor(p => p.WorkingHours, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(p => p.WorkingHours, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="first">Location</label>
+                                @Html.TextBoxFor(p => p.Location, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="company">Working Hours Mobile</label>
+                                @Html.TextAreaFor(p => p.WorkingHoursMob, new { @class = "form-control", @cols = 30, @rows = 10 })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="company">Address Mobile</label>
+                                @Html.TextAreaFor(p => p.AddressMob, new { @class = "form-control", @cols = 30, @rows = 10 })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="company">Working Hours Arabic Mobile</label>
+                                @Html.TextAreaFor(p => p.WorkingHoursArabicMob, new { @class = "form-control", @cols = 30, @rows = 10 })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="company">Address Arabic Mobile</label>
+                                @Html.TextAreaFor(p => p.AddressArabicMob, new { @class = "form-control", @cols = 30, @rows = 10 })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 btn-save-outer">
+                            <button type="submit" class="btn-save">Save</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

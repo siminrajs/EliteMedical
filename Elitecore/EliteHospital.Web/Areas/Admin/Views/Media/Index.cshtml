@@ -1,0 +1,125 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0 header-table">
+                <h6>Media List</h6>
+                <a href='@Url.Action("EditMedia", "Media", new { })' class="btn-bkapmnt">Add New</a>
+                <a href='@Url.Action("AddCategory", "Media", new { })' class="btn-bkapmnt">Add Category</a>
+            </div>
+            <div class="card-body px-0 pt-0 pb-2 main-table">
+                <div class="table-responsive p-0">
+                    <table class="table align-items-center mb-0">
+                        <thead>
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder ">SL.NO</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder ">TITLE</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder ">TITLE(Arabic)</th>
+                                @*<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">IMAGES</th>*@
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">EDIT</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">DELETE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in (List<EliteHospital.Core.tbl_Media>)ViewData["CovidBannerList"])
+                            {
+                            <tr>
+                                <td>
+                                    <div class="d-flex px-2 py-1">
+                                        <p class="text-xs font-weight-bold mb-0">@( ((Int32) 1) + ((List<EliteHospital.Core.tbl_Media>)ViewData["CovidBannerList"]).IndexOf(item) )</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex px-2 py-1">
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <h6 class="mb-0 text-sm">@item.Category</h6>
+
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex px-2 py-1">
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <h6 class="mb-0 text-sm">@item.Category_Arabic</h6>
+
+                                        </div>
+                                    </div>
+                                </td>
+                                @*<td class="align-middle text-center text-sm">
+                                    <div>
+                                        @{ var imgSrc = "";
+                                            if (item.Image != null)
+                                            {
+                                                var base64 = Convert.ToBase64String(item.Image);
+                                                imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                            } }
+                                        @if (item.Image != null)
+                                        {
+                                            <img src="@imgSrc" class="avatar avatar-sm me-3" alt="user1">}
+                                        else
+                                        {
+
+                                        }
+                                    </div>
+                                </td>*@
+
+                                <td class="align-middle">
+                                    @Html.ActionLink("Edit", "EditMedia", "Media", new { CovidBannerId = @item.Id }, new { @class = "banneredit text-secondary font-weight-bold text-xs link-tab" })
+                                <td class="align-middle">
+                                    @Html.ActionLink("Delete", "DeleteMedia", "Media", new { CovidBannerId = @item.Id }, new { @class = "bannerdelete text-secondary font-weight-bold text-xs link-tab" })
+                                </td>
+                            </tr>}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade edit-pop" id="exampleModal" editid="" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                Do you want to edit?
+            </div>
+            <div class="modal-footer">
+                <button id="editBanner" type="button" class="btn btn-secondary">Yes</button>
+                @*@Html.ActionLink("Yes", "EditBanner", "Banner", null, new { @class = "btn btn-secondary" })*@
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade edit-pop" id="exampleModal2" deleteid="" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                Do you want to Delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary">Yes</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">$(document).ready(function () {
+        debugger;
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+    $("#menuMedia").addClass("active");
+
+        $("#pageHeader").text("Media");
+    $("#pageHeader1").text("Media");
+    });</script>
+
+

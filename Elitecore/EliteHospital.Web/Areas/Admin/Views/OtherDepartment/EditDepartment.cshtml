@@ -1,0 +1,171 @@
+﻿@model EliteHospital.Web.Areas.Admin.ViewModel.DepartmentViewModel
+@{ ViewBag.Title = "EditDepartment";
+                Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+                bool create = ViewBag.Createdepart; }
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+
+        $('#Description').jqte();
+        $('#LongDescription').jqte();
+        $('#DescriptionArabic').jqte();
+        if ( '@Model.FromMob' == 'True') {
+            $("#menuDepartmentsMob").addClass("active");
+        }
+        else {
+            $("#menuDepartments").addClass("active");
+        }
+
+        $("#departmentimage").change(function () {
+            $("#DepartmentImagePath").val($(this).val());
+        });
+
+        $("#departmentimageicon").change(function () {
+            $("#DepartmentIconImagePath").val($(this).val());
+        });
+
+        $("#departmentimagemob").change(function () {
+            if ($(this).get(0).files[0].size > 102400) {
+                alert("Mobile image size should be less than 100kb");
+                $("#departmentimagemob").val('');
+            }
+            else {
+                /*$("#DepartmentImagePath").val($(this).val());*/
+                $("#DepartmentImageMobPath").val($(this).val());
+            }
+        });
+    });
+</script>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0 header-table form-header">
+                @*<h6>Departments Edit</h6>*@
+                @if (Model.FromMob == false)
+                {
+    <h6>Departments Edit</h6> }
+                else
+                {
+    <h6>Departments Edit (Mobile)</h6>}
+                @*<a href="department.html">View All</a>*@
+                @*@Html.ActionLink("View All", "Index", "Department", null, new { FromMob = ViewBag.FromMob })*@
+                <a href='@Url.Action("Index", "OtherDepartment", new { FromMob = ViewBag.FromMob })' class="btn-bkapmnt">View All</a>
+            </div>
+            <div class="card-body px-0 pt-0 pb-2 main-form">
+                @using (Html.BeginForm("EditDepartment", "OtherDepartment", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="first">Name</label>
+                               
+                @Html.TextBoxFor(p => p.DepartmentName, new { @class = "form-control" }) @*@Html.DropDownListFor(m => m.DepartmentName, new SelectList(ViewData["DepartmentList"] as List<EliteHospital.Web.Areas.Admin.ViewModel.DropdownViewModel>, "Name", "Name"), new { })*@
+                                    @Html.ValidationMessageFor(p => p.DepartmentName, "", new { @class = "text-danger" })
+                                                        @Html.HiddenFor(p => p.FromMob) 
+                                                  
+                                                   
+                            </div>
+                        </div>
+                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="company">Description</label>
+                                                @Html.TextAreaFor(p => p.Description, new { @class = "form-control", @cols = 30, @rows = 10 })
+                                                @Html.ValidationMessageFor(p => p.Description, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label for="company">Long Description</label>
+                                                                @Html.TextAreaFor(p => p.LongDescription, new { @class = "form-control", @cols = 30, @rows = 10 })
+                                                                @Html.ValidationMessageFor(p => p.LongDescription, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="last">Name(Arabic)</label>
+                                                                                @Html.TextBoxFor(p => p.DepartmentNameArabic, new { @class = "form-control" })
+                                                                                @Html.ValidationMessageFor(p => p.DepartmentNameArabic, "", new { @class = "text-danger" })
+                                                                            </div>
+                                                                        </div>
+                                                                        @if (Model.FromMob == false)
+                                                                        {
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="email">Department Image (800x500 px)</label>
+                                                                <label for="file" class="input input-file">
+                                                                    <div class="button">
+                                                                        @Html.TextBox("departmentimage", "", new { @class = "form-control", type = "file", accept = "image/png, image/gif, image/jpeg" })
+                                                                        Browse
+                                                                    </div>
+                                                                    @Html.TextBoxFor(p => p.DepartmentImagePath, new { @class = "form-control", @type = "search", placeholder = "Include some files" })
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label for="email">Department Icon</label>
+                                                                                    <label for="file" class="input input-file">
+                                                                                        <div class="button">
+                                                                                            @Html.TextBox("departmentimageicon", "", new { @class = "form-control", type = "file", accept = "image/png, image/gif, image/jpeg" })
+                                                                                            Browse
+                                                                                        </div>
+                                                                                        @Html.TextBoxFor(p => p.DepartmentIconImagePath, new { @class = "form-control", @type = "search", placeholder = "Include some files" })
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div> }
+                                                                                            else
+                                                                                            {
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label for="email">Department Image Mobile (1000x640 px)</label>
+                                                                                    <label for="file" class="input input-file">
+                                                                                        <div class="button">
+                                                                                            @Html.TextBox("departmentimage", "", new { @class = "form-control", type = "file", accept = "image/png, image/gif, image/jpeg" })
+                                                                                            Browse
+                                                                                        </div>
+                                                                                        @Html.TextBoxFor(p => p.DepartmentImagePath, new { @class = "form-control", @type = "search", placeholder = "Include some files" })
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>}
+                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-6">
+                                                                                            <div class="form-group">
+                                                                                                <label for="company">Description(Arabic)</label>
+                                                                                                @Html.TextAreaFor(p => p.DescriptionArabic, new { @class = "form-control", @cols = 30, @rows = 10 })
+                                                                                                @Html.ValidationMessageFor(p => p.DescriptionArabic, "", new { @class = "text-danger" })
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-md-6">
+                                                                                            <div class="form-group">
+                                                                                                <label for="first">Status</label>
+                                                                                                <br />
+                                                                                                @Html.DropDownListFor(m => m.Status, new SelectList(ViewData["StatusList"] as List<EliteHospital.Web.Areas.Admin.ViewModel.DropdownViewModel>, "Status", "Name"), new { })
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div> @*<div class="row">
+                                                                                                            <div class="col-md-6">
+                                                                                                                <div class="form-group">
+                                                                                                                    <label for="company">Position</label>
+                                                                                                                    @Html.TextBoxFor(p => p.OrderNo, new { @class = "form-control" })
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>*@
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-md-12 btn-save-outer">
+                                                                                                            <button type="submit" class="btn-save">Save</button>
+                                                                                                        </div>
+                                                                                                    </div>}
+            </div>
+        </div>
+    </div>
+</div>

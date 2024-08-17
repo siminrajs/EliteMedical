@@ -1,0 +1,981 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EliteHospitalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AboutUS">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShortDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="OurVision" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="OurMission" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LongDescription" Type="nvarchar(max)" />
+          <Property Name="Image" Type="image" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Banner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BannerTitle" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="BannerTitleArabic" Type="nvarchar" MaxLength="50" />
+          <Property Name="BannerSubTitle" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="BannerSubTitleArabic" Type="nvarchar" MaxLength="50" />
+          <Property Name="BannerImage" Type="image" />
+          <Property Name="BannerImagePath" Type="varchar" MaxLength="150" />
+          <Property Name="BannerImageMobile" Type="image" />
+          <Property Name="BannerImageMobilePath" Type="varchar" MaxLength="150" />
+          <Property Name="DepartmentName" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Careers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vacancy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PositionDescription" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContactUs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="WorkingHours" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Location" Type="nvarchar(max)" />
+          <Property Name="AddressMob" Type="nvarchar(max)" />
+          <Property Name="WorkingHoursMob" Type="nvarchar(max)" />
+          <Property Name="AddressArabicMob" Type="nvarchar(max)" />
+          <Property Name="WorkingHoursArabicMob" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CovidBanner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Image" Type="image" Nullable="false" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="DailyOffers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image" Type="image" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="150" />
+          <Property Name="ImageMob" Type="image" />
+          <Property Name="ImageMobPath" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentName" />
+          </Key>
+          <Property Name="DepartmentName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DepartmentNameArabic" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="DescriptionArabic" Type="nvarchar" MaxLength="250" />
+          <Property Name="LongDescription" Type="nvarchar(max)" />
+          <Property Name="DepartmentImage" Type="image" />
+          <Property Name="DepartmentImagePath" Type="varchar" MaxLength="150" />
+          <Property Name="DepartmentImageMob" Type="image" />
+          <Property Name="DepartmentImageMobPath" Type="varchar" MaxLength="150" />
+          <Property Name="Status" Type="char" MaxLength="1" />
+          <Property Name="OrderNo" Type="int" />
+          <Property Name="DepartmentIconImage" Type="image" />
+          <Property Name="DepartmentIconImagePath" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DoctorId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DoctorName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DoctorNameArabic" Type="nvarchar" MaxLength="100" />
+          <Property Name="DoctorImage" Type="image" />
+          <Property Name="DoctorImagePath" Type="varchar" MaxLength="100" />
+          <Property Name="DoctorImageMob" Type="image" />
+          <Property Name="DoctorImageMobPath" Type="varchar" MaxLength="100" />
+          <Property Name="OrderNo" Type="int" />
+          <Property Name="Status" Type="char" MaxLength="1" />
+          <Property Name="Position" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ShortDescription" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Image" Type="image" Nullable="false" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'db_EliteHospital.dbo.EventImages' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EventImages">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="EventId" />
+            <PropertyRef Name="Image" />
+            <PropertyRef Name="ImagePath" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="EventId" Type="int" Nullable="false" />
+          <Property Name="Image" Type="image" Nullable="false" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HomeBanner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Image" Type="image" Nullable="false" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ExploreUrl" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Insurance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image" Type="image" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="150" />
+          <Property Name="ImageMob" Type="image" />
+          <Property Name="ImageMobPath" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="OnlineConsultation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Image" Type="image" />
+          <Property Name="Path" Type="varchar" MaxLength="100" />
+          <Property Name="Url" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="PatientVerification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MobileNo" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="VerificationCode" Type="int" />
+          <Property Name="ExpiringOnUTC" Type="datetime" />
+          <Property Name="RetryAttempts" Type="int" Nullable="false" />
+          <Property Name="CreatedOnUTC" Type="datetime" Nullable="false" />
+          <Property Name="LastVerifiedOnUTC" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SpecialOffer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image" Type="image" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="150" />
+          <Property Name="ImageMob" Type="image" />
+          <Property Name="ImageMobPath" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="tbl_CommonParameter">
+          <Key>
+            <PropertyRef Name="CP_Id" />
+          </Key>
+          <Property Name="CP_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CP_Param" Type="nvarchar(max)" />
+          <Property Name="CP_Value" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_PatientMaster">
+          <Key>
+            <PropertyRef Name="PM_Id" />
+          </Key>
+          <Property Name="PM_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PM_FistName" Type="nvarchar(max)" />
+          <Property Name="PM_LastName" Type="nvarchar(max)" />
+          <Property Name="PM_DOB" Type="datetime" />
+          <Property Name="PM_Genter" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PM_Email" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="PM_Mobile" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PM_QID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PM_CreatedDate" Type="datetime" />
+          <Property Name="PM_LastUpdatedDate" Type="datetime" />
+          <Property Name="PM_Price" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="PM_VerificationCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="PM_ServiceId" Type="nvarchar" MaxLength="50" />
+          <Property Name="PM_Promocode" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_ServiceMaster">
+          <Key>
+            <PropertyRef Name="SM_Id" />
+          </Key>
+          <Property Name="SM_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SM_Name" Type="nvarchar(max)" />
+          <Property Name="SM_Points" Type="nvarchar(max)" />
+          <Property Name="SM_CreatedDate" Type="datetime" />
+          <Property Name="SM_LastUpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_TransactionHistory">
+          <Key>
+            <PropertyRef Name="TH_Id" />
+          </Key>
+          <Property Name="TH_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TH_PM_Id" Type="int" />
+          <Property Name="TH_PurchasedAmount" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="TH_LoyaltyPoints" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="TH_QtrAmount" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="TH_AddedDate" Type="datetime" />
+          <Property Name="TH_RedeemPoints" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="TH_RedeemedDate" Type="datetime" />
+          <Property Name="TH_Narrations" Type="nvarchar(max)" />
+          <Property Name="TH_Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="TH_BalancePoints" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="TH_ServiceId" Type="nvarchar" MaxLength="50" />
+          <Property Name="TH_Promocode" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VideoUrls">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OnlineConsultationId" Type="int" Nullable="false" />
+          <Property Name="VideoUrls" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <Association Name="FK_Banner_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Banner" Type="Self.Banner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentName" />
+            </Principal>
+            <Dependent Role="Banner">
+              <PropertyRef Name="DepartmentName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventImages_Event">
+          <End Role="Event" Type="Self.Event" Multiplicity="1" />
+          <End Role="EventImages" Type="Self.EventImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EventImages">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoUrls_OnlineConsultation">
+          <End Role="OnlineConsultation" Type="Self.OnlineConsultation" Multiplicity="1" />
+          <End Role="VideoUrls" Type="Self.VideoUrls" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineConsultation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoUrls">
+              <PropertyRef Name="OnlineConsultationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EliteHospitalModelStoreContainer">
+          <EntitySet Name="AboutUS" EntityType="Self.AboutUS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Banner" EntityType="Self.Banner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Careers" EntityType="Self.Careers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactUs" EntityType="Self.ContactUs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CovidBanner" EntityType="Self.CovidBanner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DailyOffers" EntityType="Self.DailyOffers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HomeBanner" EntityType="Self.HomeBanner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Insurance" EntityType="Self.Insurance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OnlineConsultation" EntityType="Self.OnlineConsultation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientVerification" EntityType="Self.PatientVerification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpecialOffer" EntityType="Self.SpecialOffer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_CommonParameter" EntityType="Self.tbl_CommonParameter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_PatientMaster" EntityType="Self.tbl_PatientMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ServiceMaster" EntityType="Self.tbl_ServiceMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_TransactionHistory" EntityType="Self.tbl_TransactionHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoUrls" EntityType="Self.VideoUrls" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventImages" EntityType="Self.EventImages" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EventImages].[Id] AS [Id], 
+    [EventImages].[EventId] AS [EventId], 
+    [EventImages].[Image] AS [Image], 
+    [EventImages].[ImagePath] AS [ImagePath]
+    FROM [dbo].[EventImages] AS [EventImages]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Banner_Department" Association="Self.FK_Banner_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Banner" EntitySet="Banner" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventImages_Event" Association="Self.FK_EventImages_Event">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="EventImages" EntitySet="EventImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoUrls_OnlineConsultation" Association="Self.FK_VideoUrls_OnlineConsultation">
+            <End Role="OnlineConsultation" EntitySet="OnlineConsultation" />
+            <End Role="VideoUrls" EntitySet="VideoUrls" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EliteHospitalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="EliteHospitalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PatientVerifications" EntityType="EliteHospitalModel.PatientVerification" />
+          <EntitySet Name="Users" EntityType="EliteHospitalModel.User" />
+          <EntitySet Name="CovidBanners" EntityType="EliteHospitalModel.CovidBanner" />
+          <EntitySet Name="Careers" EntityType="EliteHospitalModel.Career" />
+          <EntitySet Name="Banners" EntityType="EliteHospitalModel.Banner" />
+          <EntitySet Name="HomeBanners" EntityType="EliteHospitalModel.HomeBanner" />
+          <EntitySet Name="AboutUS" EntityType="EliteHospitalModel.AboutU" />
+          <EntitySet Name="DailyOffers" EntityType="EliteHospitalModel.DailyOffer" />
+          <EntitySet Name="Insurances" EntityType="EliteHospitalModel.Insurance" />
+          <EntitySet Name="SpecialOffers" EntityType="EliteHospitalModel.SpecialOffer" />
+          <EntitySet Name="OnlineConsultations" EntityType="EliteHospitalModel.OnlineConsultation" />
+          <EntitySet Name="VideoUrls" EntityType="EliteHospitalModel.VideoUrl" />
+          <AssociationSet Name="FK_VideoUrls_OnlineConsultation" Association="EliteHospitalModel.FK_VideoUrls_OnlineConsultation">
+            <End Role="OnlineConsultation" EntitySet="OnlineConsultations" />
+            <End Role="VideoUrl" EntitySet="VideoUrls" />
+          </AssociationSet>
+          <EntitySet Name="Doctors" EntityType="EliteHospitalModel.Doctor" />
+          <EntitySet Name="ContactUs" EntityType="EliteHospitalModel.ContactU" />
+          <EntitySet Name="Departments" EntityType="EliteHospitalModel.Department" />
+          <AssociationSet Name="FK_Banner_Department" Association="EliteHospitalModel.FK_Banner_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Banner" EntitySet="Banners" />
+          </AssociationSet>
+          <EntitySet Name="Events" EntityType="EliteHospitalModel.Event" />
+          <EntitySet Name="EventImages" EntityType="EliteHospitalModel.EventImage" />
+          <AssociationSet Name="FK_EventImages_Event" Association="EliteHospitalModel.FK_EventImages_Event">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="EventImage" EntitySet="EventImages" />
+          </AssociationSet>
+          <EntitySet Name="tbl_CommonParameter" EntityType="EliteHospitalModel.tbl_CommonParameter" />
+          <EntitySet Name="tbl_PatientMaster" EntityType="EliteHospitalModel.tbl_PatientMaster" />
+          <EntitySet Name="tbl_ServiceMaster" EntityType="EliteHospitalModel.tbl_ServiceMaster" />
+          <EntitySet Name="tbl_TransactionHistory" EntityType="EliteHospitalModel.tbl_TransactionHistory" />
+        </EntityContainer>
+        <EntityType Name="PatientVerification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MobileNo" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="VerificationCode" Type="Int32" />
+          <Property Name="ExpiringOnUTC" Type="DateTime" Precision="3" />
+          <Property Name="RetryAttempts" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOnUTC" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastVerifiedOnUTC" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CovidBanner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Career">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vacancy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PositionDescription" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Banner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BannerTitle" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BannerTitleArabic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BannerSubTitle" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BannerSubTitleArabic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BannerImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="BannerImagePath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="BannerImageMobile" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="BannerImageMobilePath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Department" Relationship="EliteHospitalModel.FK_Banner_Department" FromRole="Banner" ToRole="Department" />
+        </EntityType>
+        <EntityType Name="HomeBanner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ExploreUrl" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AboutU">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShortDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OurVision" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OurMission" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LongDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DailyOffer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ImageMob" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ImageMobPath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Insurance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ImageMob" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ImageMobPath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SpecialOffer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ImageMob" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ImageMobPath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="OnlineConsultation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Path" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="VideoUrls" Relationship="EliteHospitalModel.FK_VideoUrls_OnlineConsultation" FromRole="OnlineConsultation" ToRole="VideoUrl" />
+        </EntityType>
+        <EntityType Name="VideoUrl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OnlineConsultationId" Type="Int32" Nullable="false" />
+          <Property Name="VideoUrls" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="OnlineConsultation" Relationship="EliteHospitalModel.FK_VideoUrls_OnlineConsultation" FromRole="VideoUrl" ToRole="OnlineConsultation" />
+        </EntityType>
+        <Association Name="FK_VideoUrls_OnlineConsultation">
+          <End Type="EliteHospitalModel.OnlineConsultation" Role="OnlineConsultation" Multiplicity="1" />
+          <End Type="EliteHospitalModel.VideoUrl" Role="VideoUrl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineConsultation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoUrl">
+              <PropertyRef Name="OnlineConsultationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DoctorId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DoctorName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DoctorNameArabic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DoctorImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DoctorImagePath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DoctorImageMob" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DoctorImageMobPath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OrderNo" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ContactU">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WorkingHours" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddressMob" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WorkingHoursMob" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddressArabicMob" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WorkingHoursArabicMob" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentName" />
+          </Key>
+          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentNameArabic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DescriptionArabic" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="LongDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DepartmentImagePath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentImageMob" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DepartmentImageMobPath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="OrderNo" Type="Int32" />
+          <Property Name="DepartmentIconImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DepartmentIconImagePath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Banners" Relationship="EliteHospitalModel.FK_Banner_Department" FromRole="Department" ToRole="Banner" />
+        </EntityType>
+        <Association Name="FK_Banner_Department">
+          <End Type="EliteHospitalModel.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="EliteHospitalModel.Banner" Role="Banner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentName" />
+            </Principal>
+            <Dependent Role="Banner">
+              <PropertyRef Name="DepartmentName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ShortDescription" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="EventImages" Relationship="EliteHospitalModel.FK_EventImages_Event" FromRole="Event" ToRole="EventImage" />
+          <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EventImage">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="EventId" />
+            <PropertyRef Name="Image" />
+            <PropertyRef Name="ImagePath" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="EventId" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Event" Relationship="EliteHospitalModel.FK_EventImages_Event" FromRole="EventImage" ToRole="Event" />
+          <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_EventImages_Event">
+          <End Type="EliteHospitalModel.Event" Role="Event" Multiplicity="1" />
+          <End Type="EliteHospitalModel.EventImage" Role="EventImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EventImage">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tbl_CommonParameter">
+          <Key>
+            <PropertyRef Name="CP_Id" />
+          </Key>
+          <Property Name="CP_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CP_Param" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CP_Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_PatientMaster">
+          <Key>
+            <PropertyRef Name="PM_Id" />
+          </Key>
+          <Property Name="PM_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PM_FistName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PM_LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PM_DOB" Type="DateTime" Precision="3" />
+          <Property Name="PM_Genter" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PM_Email" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PM_Mobile" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PM_QID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PM_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="PM_LastUpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="PM_Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PM_VerificationCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PM_ServiceId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PM_Promocode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_ServiceMaster">
+          <Key>
+            <PropertyRef Name="SM_Id" />
+          </Key>
+          <Property Name="SM_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SM_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SM_Points" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SM_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="SM_LastUpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_TransactionHistory">
+          <Key>
+            <PropertyRef Name="TH_Id" />
+          </Key>
+          <Property Name="TH_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TH_PM_Id" Type="Int32" />
+          <Property Name="TH_PurchasedAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TH_LoyaltyPoints" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TH_QtrAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TH_AddedDate" Type="DateTime" Precision="3" />
+          <Property Name="TH_RedeemPoints" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TH_RedeemedDate" Type="DateTime" Precision="3" />
+          <Property Name="TH_Narrations" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TH_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TH_BalancePoints" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TH_ServiceId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TH_Promocode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EliteHospitalModelStoreContainer" CdmEntityContainer="EliteHospitalEntities">
+          <EntitySetMapping Name="PatientVerifications">
+            <EntityTypeMapping TypeName="EliteHospitalModel.PatientVerification">
+              <MappingFragment StoreEntitySet="PatientVerification">
+                <ScalarProperty Name="LastVerifiedOnUTC" ColumnName="LastVerifiedOnUTC" />
+                <ScalarProperty Name="CreatedOnUTC" ColumnName="CreatedOnUTC" />
+                <ScalarProperty Name="RetryAttempts" ColumnName="RetryAttempts" />
+                <ScalarProperty Name="ExpiringOnUTC" ColumnName="ExpiringOnUTC" />
+                <ScalarProperty Name="VerificationCode" ColumnName="VerificationCode" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="EliteHospitalModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CovidBanners">
+            <EntityTypeMapping TypeName="EliteHospitalModel.CovidBanner">
+              <MappingFragment StoreEntitySet="CovidBanner">
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Careers">
+            <EntityTypeMapping TypeName="EliteHospitalModel.Career">
+              <MappingFragment StoreEntitySet="Careers">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PositionDescription" ColumnName="PositionDescription" />
+                <ScalarProperty Name="Vacancy" ColumnName="Vacancy" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Banners">
+            <EntityTypeMapping TypeName="EliteHospitalModel.Banner">
+              <MappingFragment StoreEntitySet="Banner">
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="BannerImageMobilePath" ColumnName="BannerImageMobilePath" />
+                <ScalarProperty Name="BannerImageMobile" ColumnName="BannerImageMobile" />
+                <ScalarProperty Name="BannerImagePath" ColumnName="BannerImagePath" />
+                <ScalarProperty Name="BannerImage" ColumnName="BannerImage" />
+                <ScalarProperty Name="BannerSubTitleArabic" ColumnName="BannerSubTitleArabic" />
+                <ScalarProperty Name="BannerSubTitle" ColumnName="BannerSubTitle" />
+                <ScalarProperty Name="BannerTitleArabic" ColumnName="BannerTitleArabic" />
+                <ScalarProperty Name="BannerTitle" ColumnName="BannerTitle" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HomeBanners">
+            <EntityTypeMapping TypeName="EliteHospitalModel.HomeBanner">
+              <MappingFragment StoreEntitySet="HomeBanner">
+                <ScalarProperty Name="ExploreUrl" ColumnName="ExploreUrl" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AboutUS">
+            <EntityTypeMapping TypeName="EliteHospitalModel.AboutU">
+              <MappingFragment StoreEntitySet="AboutUS">
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="LongDescription" ColumnName="LongDescription" />
+                <ScalarProperty Name="OurMission" ColumnName="OurMission" />
+                <ScalarProperty Name="OurVision" ColumnName="OurVision" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DailyOffers">
+            <EntityTypeMapping TypeName="EliteHospitalModel.DailyOffer">
+              <MappingFragment StoreEntitySet="DailyOffers">
+                <ScalarProperty Name="ImageMobPath" ColumnName="ImageMobPath" />
+                <ScalarProperty Name="ImageMob" ColumnName="ImageMob" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Insurances">
+            <EntityTypeMapping TypeName="EliteHospitalModel.Insurance">
+              <MappingFragment StoreEntitySet="Insurance">
+                <ScalarProperty Name="ImageMobPath" ColumnName="ImageMobPath" />
+                <ScalarProperty Name="ImageMob" ColumnName="ImageMob" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpecialOffers">
+            <EntityTypeMapping TypeName="EliteHospitalModel.SpecialOffer">
+              <MappingFragment StoreEntitySet="SpecialOffer">
+                <ScalarProperty Name="ImageMobPath" ColumnName="ImageMobPath" />
+                <ScalarProperty Name="ImageMob" ColumnName="ImageMob" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OnlineConsultations">
+            <EntityTypeMapping TypeName="EliteHospitalModel.OnlineConsultation">
+              <MappingFragment StoreEntitySet="OnlineConsultation">
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoUrls">
+            <EntityTypeMapping TypeName="EliteHospitalModel.VideoUrl">
+              <MappingFragment StoreEntitySet="VideoUrls">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="VideoUrls" ColumnName="VideoUrls" />
+                <ScalarProperty Name="OnlineConsultationId" ColumnName="OnlineConsultationId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doctors">
+            <EntityTypeMapping TypeName="EliteHospitalModel.Doctor">
+              <MappingFragment StoreEntitySet="Doctor">
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="DoctorImageMobPath" ColumnName="DoctorImageMobPath" />
+                <ScalarProperty Name="DoctorImageMob" ColumnName="DoctorImageMob" />
+                <ScalarProperty Name="DoctorImagePath" ColumnName="DoctorImagePath" />
+                <ScalarProperty Name="DoctorImage" ColumnName="DoctorImage" />
+                <ScalarProperty Name="DoctorNameArabic" ColumnName="DoctorNameArabic" />
+                <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+                <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactUs">
+            <EntityTypeMapping TypeName="EliteHospitalModel.ContactU">
+              <MappingFragment StoreEntitySet="ContactUs">
+                <ScalarProperty Name="WorkingHoursArabicMob" ColumnName="WorkingHoursArabicMob" />
+                <ScalarProperty Name="AddressArabicMob" ColumnName="AddressArabicMob" />
+                <ScalarProperty Name="WorkingHoursMob" ColumnName="WorkingHoursMob" />
+                <ScalarProperty Name="AddressMob" ColumnName="AddressMob" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="WorkingHours" ColumnName="WorkingHours" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="EliteHospitalModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="DepartmentIconImagePath" ColumnName="DepartmentIconImagePath" />
+                <ScalarProperty Name="DepartmentIconImage" ColumnName="DepartmentIconImage" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DepartmentImageMobPath" ColumnName="DepartmentImageMobPath" />
+                <ScalarProperty Name="DepartmentImageMob" ColumnName="DepartmentImageMob" />
+                <ScalarProperty Name="DepartmentImagePath" ColumnName="DepartmentImagePath" />
+                <ScalarProperty Name="DepartmentImage" ColumnName="DepartmentImage" />
+                <ScalarProperty Name="LongDescription" ColumnName="LongDescription" />
+                <ScalarProperty Name="DescriptionArabic" ColumnName="DescriptionArabic" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DepartmentNameArabic" ColumnName="DepartmentNameArabic" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="EliteHospitalModel.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventImages">
+            <EntityTypeMapping TypeName="EliteHospitalModel.EventImage">
+              <MappingFragment StoreEntitySet="EventImages">
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CommonParameter">
+            <EntityTypeMapping TypeName="EliteHospitalModel.tbl_CommonParameter">
+              <MappingFragment StoreEntitySet="tbl_CommonParameter">
+                <ScalarProperty Name="CP_Value" ColumnName="CP_Value" />
+                <ScalarProperty Name="CP_Param" ColumnName="CP_Param" />
+                <ScalarProperty Name="CP_Id" ColumnName="CP_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_PatientMaster">
+            <EntityTypeMapping TypeName="EliteHospitalModel.tbl_PatientMaster">
+              <MappingFragment StoreEntitySet="tbl_PatientMaster">
+                <ScalarProperty Name="PM_Promocode" ColumnName="PM_Promocode" />
+                <ScalarProperty Name="PM_ServiceId" ColumnName="PM_ServiceId" />
+                <ScalarProperty Name="PM_VerificationCode" ColumnName="PM_VerificationCode" />
+                <ScalarProperty Name="PM_Price" ColumnName="PM_Price" />
+                <ScalarProperty Name="PM_LastUpdatedDate" ColumnName="PM_LastUpdatedDate" />
+                <ScalarProperty Name="PM_CreatedDate" ColumnName="PM_CreatedDate" />
+                <ScalarProperty Name="PM_QID" ColumnName="PM_QID" />
+                <ScalarProperty Name="PM_Mobile" ColumnName="PM_Mobile" />
+                <ScalarProperty Name="PM_Email" ColumnName="PM_Email" />
+                <ScalarProperty Name="PM_Genter" ColumnName="PM_Genter" />
+                <ScalarProperty Name="PM_DOB" ColumnName="PM_DOB" />
+                <ScalarProperty Name="PM_LastName" ColumnName="PM_LastName" />
+                <ScalarProperty Name="PM_FistName" ColumnName="PM_FistName" />
+                <ScalarProperty Name="PM_Id" ColumnName="PM_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ServiceMaster">
+            <EntityTypeMapping TypeName="EliteHospitalModel.tbl_ServiceMaster">
+              <MappingFragment StoreEntitySet="tbl_ServiceMaster">
+                <ScalarProperty Name="SM_LastUpdatedDate" ColumnName="SM_LastUpdatedDate" />
+                <ScalarProperty Name="SM_CreatedDate" ColumnName="SM_CreatedDate" />
+                <ScalarProperty Name="SM_Points" ColumnName="SM_Points" />
+                <ScalarProperty Name="SM_Name" ColumnName="SM_Name" />
+                <ScalarProperty Name="SM_Id" ColumnName="SM_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_TransactionHistory">
+            <EntityTypeMapping TypeName="EliteHospitalModel.tbl_TransactionHistory">
+              <MappingFragment StoreEntitySet="tbl_TransactionHistory">
+                <ScalarProperty Name="TH_Promocode" ColumnName="TH_Promocode" />
+                <ScalarProperty Name="TH_ServiceId" ColumnName="TH_ServiceId" />
+                <ScalarProperty Name="TH_BalancePoints" ColumnName="TH_BalancePoints" />
+                <ScalarProperty Name="TH_Status" ColumnName="TH_Status" />
+                <ScalarProperty Name="TH_Narrations" ColumnName="TH_Narrations" />
+                <ScalarProperty Name="TH_RedeemedDate" ColumnName="TH_RedeemedDate" />
+                <ScalarProperty Name="TH_RedeemPoints" ColumnName="TH_RedeemPoints" />
+                <ScalarProperty Name="TH_AddedDate" ColumnName="TH_AddedDate" />
+                <ScalarProperty Name="TH_QtrAmount" ColumnName="TH_QtrAmount" />
+                <ScalarProperty Name="TH_LoyaltyPoints" ColumnName="TH_LoyaltyPoints" />
+                <ScalarProperty Name="TH_PurchasedAmount" ColumnName="TH_PurchasedAmount" />
+                <ScalarProperty Name="TH_PM_Id" ColumnName="TH_PM_Id" />
+                <ScalarProperty Name="TH_Id" ColumnName="TH_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

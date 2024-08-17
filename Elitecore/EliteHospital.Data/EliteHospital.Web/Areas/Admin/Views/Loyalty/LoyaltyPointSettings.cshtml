@@ -1,0 +1,175 @@
+﻿@model EliteHospital.Web.Areas.Admin.ViewModel.CommonParameter
+
+@{
+    ViewBag.Title = "AddNewServices";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    decimal RedeemMiniPoint = Convert.ToDecimal(ViewBag.RedeemMiniPoint);
+    decimal RedeemLoyaltyPoint = Convert.ToDecimal(ViewBag.RedeemLoyaltyPoint);
+    decimal AddLoyaltyPoint = Convert.ToDecimal(ViewBag.AddLoyaltyPoint);
+
+
+}
+
+
+<style>
+    .msg-card {
+        width: 100%;
+        background-color: #fff;
+        padding: 25px 40px;
+        border-radius: 20px;
+        box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
+    }
+
+    .input-heading {
+        color: #FFFFFF;
+        font-weight: 400;
+        font-size: 1vw;
+        background-color: #d2061c;
+        border: none;
+        width: 30%;
+    }
+
+    .heading-msg {
+        color: #9e0c1c;
+        padding: 0;
+        font-family: "poppins", sans;
+        margin-bottom: 3px;
+    }
+    .msg-points {
+        color: #989292;
+        font-size: 13px;
+        font-weight: 300;
+        padding: 0;
+        font-family: "poppins", sans;
+    }
+    .submit-btn {
+        color: #fff;
+        border: none;
+        padding: 10px 15px;
+        width: 40%;
+        margin-bottom: 7px;
+        border-radius: 5px;
+        font-size: 1vw;
+        background-color: #c40c20;
+        font-family: "poppins", sans;
+        font-weight: 400;
+        margin-top: 15px;
+        letter-spacing: 1.5px;
+    }
+    #MiniRedeemPoint, #Redeemloyaltypoint, #LoyaltyPoint {
+        color: #989292;
+        font-family: "poppins", sans;
+    }
+    .redeem-span {
+        z-index: 10;
+        font-size: 14px;
+        position: absolute;
+        margin-left: 390px;
+        margin-top: 1%;
+    }
+    .add-span {
+        z-index: 10;
+        font-size: 14px;
+        position: absolute;
+        margin-left: 5px;
+        margin-top: .9%;
+        padding: 0 10px 0 0;
+        border: none;
+        border-right: 1px solid #989292;
+    }
+    #LoyaltyPoint{
+        text-indent:80px;
+    }
+    .point-span {
+        z-index: 10;
+        font-size: 14px;
+        position: absolute;
+        margin-left: 125px;
+        margin-top: .9%;
+        padding: 0 10px 0 0;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-6 p-2">
+            <div class="msg-card">
+                <div class="row">
+                    <h6 class="heading-msg">Loyalty Points Redemption</h6>
+                    <h6 class="msg-points">Set redeemable price for 1 point </h6>
+                    <span class="input-style p-0">
+                        <span class="redeem-span">QAR</span>
+                        <input name="Redeemloyaltypoint" value="@RedeemLoyaltyPoint" onkeypress="myfunction(event);" id="Redeemloyaltypoint" class="form-control" type="text">
+                    </span>
+                    <button type="submit" onclick="Redeemloyaltypoint()" class="submit-btn">SAVE CHANGES</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 p-2">
+            <div class="msg-card">
+                <div class="row">
+                    <h6 class="heading-msg">Adding Loyality points</h6>
+                    <h6 class="msg-points">Set points For 100 QAR purchased amount</h6>
+                    <span class="input-style p-0">
+                        <span class="add-span">100 QAR = </span>
+                        <span class="point-span">Point</span>
+                        <input name="LoyaltyPoint" value="@AddLoyaltyPoint" onkeypress="myfunction(event);" id="LoyaltyPoint" class="form-control" type="text">
+                    </span>
+                    @*<input name="LoyaltyPoint" value="@AddLoyaltyPoint" onkeypress="myfunction(event);" id="LoyaltyPoint" class="form-control" type="text">*@
+                    <button type="submit" onclick="Addloyaltypoint()" class="submit-btn">SAVE CHANGES</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 p-2">
+            <div class="msg-card">
+                <div class="row">
+                    <h6 class="heading-msg">Set minimum points to redeem</h6>
+                    <h6 class="msg-points">Add A Minimum Points Limit To Redeem Vouchers </h6>
+                    <input name="MiniRedeemPoint" value="@RedeemMiniPoint" onkeypress="myfunction(event);" id="MiniRedeemPoint" class="form-control" type="text">
+                    <button type="submit" onclick="RedeemMiniPoint()" class="submit-btn">SAVE CHANGES</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function myfunction(e) {
+        var p = new RegExp(/^[0-9]+([.][0-9]+)?$/);
+        return e.charCode === 0 || p.test(String.fromCharCode(e.charCode));
+    }
+    function Redeemloyaltypoint() {
+        var type = "RedeemLoyaltyPoint";
+        var Redeemloyaltypoint = parseFloat($("#Redeemloyaltypoint").val());
+        $.get("/admin/Loyalty/AddLoyaltyPointSettings", { type: type, point: Redeemloyaltypoint }, function (data) {
+            if (data == 'Saved Successfully') {
+                alert("Saved Successfully");
+            }
+        });
+    }
+    function Addloyaltypoint() {
+        var type = "AddLoyaltyPoint";
+        var Addloyaltypoint = parseFloat($("#LoyaltyPoint").val());
+        $.get("/admin/Loyalty/AddLoyaltyPointSettings", { type: type, point: Addloyaltypoint }, function (data) {
+            if (data == 'Saved Successfully') {
+                alert("Saved Successfully");
+            }
+        });
+    }
+    function RedeemMiniPoint() {
+        var type = "RedeemMiniPoint";
+        var MiniRedeemPoint = parseFloat($("#MiniRedeemPoint").val());
+        $.get("/admin/Loyalty/AddLoyaltyPointSettings", { type: type, point: MiniRedeemPoint }, function (data) {
+            if (data == 'Saved Successfully') {
+                alert("Saved Successfully");
+            }
+        });
+    }
+
+</script>

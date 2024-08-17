@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0 header-table">
+                <h6>Online Consultation List</h6>
+                @*<a href='@Url.Action("EditOnlineConsultation", "OnlineConsultation", new { })' class="btn-bkapmnt">Add New</a>*@
+            </div>
+            <div class="card-body px-0 pt-0 pb-2 main-table">
+                <div class="table-responsive p-0">
+                    <table class="table align-items-center mb-0">
+                        <thead>
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder ">SL.NO</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder ">TITLE</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">DESCRIPTION</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">LOGO</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">EDIT</th>
+                                @*<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">DELETE</th>*@
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in (List<EliteHospital.Core.OnlineConsultation>)ViewData["OnlineConsultationList"])
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+                                            <p class="text-xs font-weight-bold mb-0">@( ((Int32) 1) + ((List<EliteHospital.Core.OnlineConsultation>)ViewData["OnlineConsultationList"]).IndexOf(item) )</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-sm">@item.Title</h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-sm">@item.Description</h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle text-center text-sm">
+                                        <div>
+                                            @{
+                                                var imgSrc = "";
+                                                if (item.Image != null)
+                                                {
+                                                    var base64 = Convert.ToBase64String(item.Image);
+                                                    imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                                }
+                                            }
+                                            @if (item.Image != null)
+                                            {
+                                                <img src="@imgSrc" class="avatar avatar-sm me-3" alt="user1">
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                        </div>
+                                    </td>
+                                    <td class="align-middle">
+                                        @Html.ActionLink("Edit", "EditOnlineConsultation", "OnlineConsultation", new { Id = @item.Id }, new { @class = "text-secondary font-weight-bold text-xs link-tab" })
+                                    </td>
+                                    @*<td class="align-middle">
+                                        @Html.ActionLink("Delete", "DeleteOnlineConsultation", "OnlineConsultation", new { Id = @item.Id }, new { @class = "text-secondary font-weight-bold text-xs link-tab" })
+                                    </td>*@
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        debugger;
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+        $("#menuOnlineConsultation").addClass("active");
+
+        $("#pageHeader").text("Online Consultation");
+        $("#pageHeader1").text("Online Consultation");
+    });
+</script>
+

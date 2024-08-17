@@ -1,0 +1,610 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string departmentname = ViewBag.Dept;
+}
+
+<section class="inr-cnct inr-hd">
+    <div class="cus-container">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="cnt_inr">
+                    <h3>
+                        Doctors
+                        <span>
+                            Find Your Doctor
+                        </span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="find-drs">
+    <div class="cus-container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="dr-serch-bx">
+                    <h4><span>Find your</span> <br>Doctor</h4>                
+                        <form id="form" name="searchdoctorslist" action="/Doctor/Index" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                @if (@departmentname != null)
+                                {
+                                <select name="deptmntname" id="deptmntname" class="form-control">
+                                    <option selected value="">@departmentname</option>                               
+                                    @{ foreach (var item in (List<EliteHospital.Core.Department>)ViewData["DepartmentList"])
+                                        {                             
+                                <option value="@item.DepartmentName">@item.DepartmentName</option> } }
+                                </select> 
+                                }
+                                else
+                                    {
+                                  <select name="deptmntname" id="deptmntname" class="form-control">
+                                  <option selected value="">Department</option>
+                                 @{ foreach (var item in (List<EliteHospital.Core.Department>)ViewData["DepartmentList"])
+                                   {
+                                    <option value="@item.DepartmentName">@item.DepartmentName</option> } }
+                                   </select>
+                                    }
+
+                                @*<select class="form-control">
+            <option selected>Department</option>
+            @foreach (var item in (List<EliteHospital.Core.Department>)ViewData["DepartmentList"])
+            {
+        <option >@item.DepartmentName</option>
+            }
+        </select>*@
+                            </div>
+                        <div class="form-group">
+                            <select class="form-control" disabled>
+                                <option selected>Select Doctor</option>
+                                <option>Doctor 1</option>
+                                <option>Doctor 2</option>
+                                <option>Doctor 3</option>
+                            </select>
+                        </div>
+
+                        <button type="submit"   class="btn btn-primary">SEARCH</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-9 dr-lizt">
+                <div class="row">
+
+                    @foreach (var item in (List<EliteHospital.Data.APIRequestResponseModels.Response.Doctor>)ViewData["DoctorsList"])
+                    {
+                        var imgSrc = "";
+                        if (item.Photo != null)
+                        {
+                            var base64 = Convert.ToBase64String(item.Photo);
+                            imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                        }
+                        <div class="col-md-4">
+                            <div class="dr-list">
+                                @if (item.Photo != null)
+                                {
+                                    <img src="@imgSrc" alt="">
+                                }
+                                else
+                                {
+                                    <img src="~/Content/MainSite/images/doctor-avatar-icon.png" alt="">
+                                }
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>
+                                            @item.DoctorName
+                                        </h5>
+                                        <p>@item.DepartmentName Department</p>
+                                        <small>
+                                            @item.Speciaity
+                                        </small>
+                                        <div class="bk-apmt">
+                                            <a class="bk-cpt bookappointment" href="#">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    }
+                    @*<div class="col-md-4" id="Gynaecology">
+                            <div class="dr-list">
+                                <img src="images/doctors-hm/osama.jpg" alt="">
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>
+                                            Dr. Osama Salha
+                                        </h5>
+                                        <p>Obstetrics & Gynaecology Department</p>
+                                        <small>
+                                            Consultant Obstetrician, Gynecologist & IVF
+                                        </small>
+                                        <div class="bk-apmt">
+
+                                            <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>*@
+
+                    @*<div class="col-md-4">
+                            <div class="dr-list">
+                                <img src="images/doctors-hm/nidal.jpg" alt="">
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>Dr. Nidal Zreiki</h5>
+                                        <p>Obstetrics & Gynaecology Department</p>
+                                        <small>
+                                            Consultant Obstetrician, Gynecologist & Infertility
+                                        </small>
+                                        <div class="bk-apmt">
+
+                                            <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dr-list">
+                                <img src="images/doctors-hm/asmaa.jpg" alt="">
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>
+                                            Dr. Asmaa Mihdawi
+                                        </h5>
+                                        <p>Obstetrics & Gynaecology Department</p>
+                                        <small>
+                                            Consultant Obstetrician & Gynecologist
+                                        </small>
+                                        <div class="bk-apmt">
+
+                                            <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="dr-list">
+                                <img src="images/doctors-hm/deniz.jpg" alt="">
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>Dr. Deniz Ulusoy</h5>
+                                        <p>Obstetrics & Gynaecology Department</p>
+                                        <small>Consultant Obstetrician & Gynecologist</small>
+                                        <div class="bk-apmt">
+
+                                            <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="dr-list">
+                                <img src="images/doctors-hm/yamen.jpg" alt="">
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>Dr. Yamen Joumaa </h5>
+                                        <p>IVF Unit Department</p>
+                                        <small>
+                                            Anaesthesiologist
+                                        </small>
+                                        <div class="bk-apmt">
+
+                                            <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dr-list">
+                                <img src="images/doctors-hm/heba.jpg" alt="">
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>
+                                            Dr.Heba Al Shaikh
+                                        </h5>
+                                        <p>IVF Unit Department</p>
+                                        <small>Embryologist </small>
+                                        <div class="bk-apmt">
+
+                                            <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4" id="paediatrics">
+                            <div class="dr-list">
+                                <img src="images/doctors-hm/nesrin.jpg" alt="">
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>Dr. Nesrin El Khatib</h5>
+                                        <p>Paediatric Department</p>
+                                        <small>
+                                            Paediatric Consultant
+                                        </small>
+                                        <div class="bk-apmt">
+
+                                            <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dr-list">
+                                <img src="images/doctors-hm/latifa.jpg" alt="">
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>
+                                            Dr. Latifa El Hinnawi
+                                        </h5>
+                                        <p>Paediatric Department</p>
+                                        <small>
+                                            Paediatric Specialist
+                                        </small>
+                                        <div class="bk-apmt">
+
+                                            <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4" id="dental">
+                            <div class="dr-list">
+                                <img src="images/doctors-hm/fawzi.jpg" alt="">
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>
+                                            Dr. Fawzi Al Qatami
+                                        </h5>
+                                        <p>Dental Department</p>
+                                        <small>
+                                            Orthodontics
+                                        </small>
+                                        <div class="bk-apmt">
+
+                                            <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dr-list">
+                                <img src="images/doctors-hm/sawsan.jpg" alt="">
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>
+                                            Dr. Sawsan Nasreddine
+                                        </h5>
+                                        <p>Dental Department</p>
+                                        <small>
+                                            Pedodontist
+                                        </small>
+                                        <div class="bk-apmt">
+
+                                            <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dr-list">
+                                <img src="images/doctors-hm/abdulaziz.jpg" alt="">
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>
+                                            Dr. Abdulaziz Almousawi
+
+                                        </h5>
+                                        <p>Dental Department</p>
+                                        <small>
+                                            Oral & Maxillofacial Surgeon
+                                        </small>
+                                        <div class="bk-apmt">
+
+                                            <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dr-list">
+                                <img src="images/doctors-hm/madhu.jpg" alt="">
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>
+                                            Dr. Madhu Verma
+                                        </h5>
+                                        <p>Dental Department</p>
+                                        <small>
+                                            Maxillofacial Specialist
+                                        </small>
+                                        <div class="bk-apmt">
+
+                                            <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dr-list">
+                                <img src="images/doctors-hm/besty.jpg" alt="">
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>
+                                            Dr. Betsy Kallingal
+                                        </h5>
+                                        <p>Dental Department</p>
+                                        <small>General Dentist </small>
+                                        <div class="bk-apmt">
+
+                                            <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dr-list">
+                                <img src="images/doctors-hm/sunitha.jpg" alt="">
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>
+                                            Dr. Sunita Jagannathachary
+                                        </h5>
+                                        <p>Dental Department</p>
+                                        <small>Periodontist</small>
+                                        <div class="bk-apmt">
+
+                                            <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" id="dermatology">
+                            <div class="dr-list">
+                                <img src="images/doctors-hm/maisam.jpg" alt="">
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>Dr. Maisam Ramadan</h5>
+                                        <p>Dermatology Department</p>
+                                        <small>
+                                            Dermatologist
+                                        </small>
+                                        <div class="bk-apmt">
+
+                                            <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" id="plastic-surgery">
+                            <div class="dr-list">
+                                <img src="images/doctors-hm/basher.jpg" alt="">
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>
+                                            Dr. Bashar Naddah
+                                        </h5>
+                                        <p>Plastic Surgery Department</p>
+                                        <small>Plastic Surgeon </small>
+                                        <div class="bk-apmt">
+
+                                            <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dr-list">
+                                <img src="images/doctors-hm/bulent.jpg" alt="">
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>
+                                            Dr. Bulent Demir
+                                        </h5>
+                                        <p>Plastic Surgery Department</p>
+                                        <small>Plastic Surgeon </small>
+                                        <div class="bk-apmt">
+
+                                            <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dr-list">
+                                <img src="images/doctors-hm/omer.jpg" alt="">
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>
+                                            Prof. Dr. Ömer Refik Özerdem
+                                        </h5>
+                                        <p>Plastic Surgery Department</p>
+                                        <small>Plastic Surgeon-Double Board Certified </small>
+
+                                        <div class="bk-apmt">
+
+                                            <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dr-list">
+                                <img src="images/doctors-hm/muslim.jpg" alt="">
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>Dr. Muslim Gaynanov</h5>
+                                        <p>General Surgery Department</p>
+                                        <small>Specialist General Surgeon</small>
+                                        <div class="bk-apmt">
+
+                                            <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-4">
+                            <div class="dr-list">
+                                <img src="images/doctors-hm/ahmed.jpg" alt="">
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>
+                                            Dr. Ahmed Mardini
+                                        </h5>
+                                        <p>E.N.T Department</p>
+                                        <small>
+                                            E.N.T Specialist
+                                        </small>
+                                        <div class="bk-apmt">
+
+                                            <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="dr-list">
+                                <img src="images/doctors-hm/sami.jpg" alt="">
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>Dr. Sami Engin</h5>
+                                        <p>Orthopaedic Department</p>
+                                        <small>Consultant Orthopaedic Surgeon</small>
+                                        <div class="bk-apmt">
+
+                                            <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4" id="nutrition">
+                            <div class="dr-list">
+                                <img src="images/doctors-hm/aya.jpg" alt="">
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>
+                                            Dr.Aya Noureddine
+                                        </h5>
+                                        <p>
+                                            Nutrition & Slimming Unit Department
+                                        </p>
+                                        <small>Clinical Dietitian & Nutritionist</small>
+                                        <div class="bk-apmt">
+
+                                            <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dr-list">
+                                <img src="images/doctors-hm/rasha.jpg" alt="">
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>
+                                            Dr. Rasha Salama
+                                        </h5>
+                                        <p>Laboratory Department</p>
+                                        <small>Clinical Pathologist</small>
+                                        <div class="bk-apmt">
+
+                                            <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dr-list">
+                                <img src="images/doctors-hm/abeer.jpg" alt="">
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>
+                                            Dr. Abeer Ghanem
+                                        </h5>
+                                        <p>Laboratory Department</p>
+                                        <small>Clinical Pathologist</small>
+                                        <div class="bk-apmt">
+
+                                            <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="dr-list">
+                                <img src="images/doctors-hm/rajeeth.jpg" alt="">
+                                <div class="dr-dtls-wraper">
+                                    <div class="pro-dtls">
+                                        <h5>
+                                            Dr. Rajeeth Badur
+                                        </h5>
+                                        <p>Anaesthesiology Department</p>
+                                        <small>
+                                            Anaesthesiologist
+                                        </small>
+                                        <div class="bk-apmt">
+
+                                            <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    $(".bookappointment").click(function () {
+            document.location = '@Url.Action("Index","Account")';
+    });
+</script>
+

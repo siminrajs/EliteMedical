@@ -1,0 +1,295 @@
+﻿@{ ViewBag.Title = "Index";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<section class="banner-sec">
+    <div class="owl-carousel banner">
+        @foreach (var item in (List<EliteHospital.Core.Banner>)ViewData["BannerList"])
+        {
+            //var imgSrc = "";
+            //if (item.BannerImage != null)
+            //{
+            //    var base64 = Convert.ToBase64String(item.BannerImage);
+            //    imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            //}
+<div class="slide-items">
+    <div class="bnr-caption" data-aos="fade-left">
+
+        <h3>@Html.Raw(item.BannerTitle)</h3>
+        <p>@Html.Raw(item.BannerSubTitle)</p>
+        @if (!string.IsNullOrEmpty(item.DepartmentName))
+        {
+<a href="@Url.Action("Departmentdtls", "Department", new { dept = item.DepartmentName })">EXPLORE MORE</a> }
+                else
+                {
+<a href="#">EXPLORE MORE</a>}
+        @*<a href="@Url.Action("Departmentdtls", "Department", new { dept = item.DepartmentName })">EXPLORE MORE</a>*@
+    </div>
+    @if (item.Banner_Image != null)
+    {
+<img src="@item.Banner_Image" alt=""> }
+                else
+                {
+<img src="#" alt="">                }
+</div>}
+    </div>
+    <div class="bnr-fnd-dr">
+        <div class="dpt-nav dpt-bnr owl-carousel">
+            <div class="dpt-nme"><a href="@Url.Action("Index", "Department", "")">All</a></div>
+            @foreach (var item in (List<EliteHospital.Core.Department>)ViewData["DepartmentList"])
+            {
+<div class="dpt-nme"><a href="@Url.Action("Departmentdtls", "Department", new { dept = item.DepartmentName })">@item.DepartmentName</a></div>            }
+        </div>
+        <a href="@Url.Action("Index", "Doctor", "")" class="btn fnd_btn">Find <br>DOCTORS</a>
+    </div>
+</section>
+
+
+<section class="hm-dpt-splz">
+    <div class="cus-container">
+        <div class="row" data-aos="fade-up">
+            <div class="col-md-12">
+                <h2>
+                    Departments
+                    <span>Our Specialization</span>
+                </h2>
+            </div>
+        </div>
+    </div>
+    <div class="container dept-splz" data-aos="fade-up" data-aos-delay="300">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="owl-carousel hm-dpt-slider">
+                    @foreach (var item in (List<EliteHospital.Core.Department>)ViewData["DepartmentList"])
+                    {
+                        //var imgSrc = "";
+                        //if (item.DepartmentIconImage != null)
+                        //{
+                        //    var base64 = Convert.ToBase64String(item.DepartmentIconImage);
+                        //    imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                        //}
+        <div class="tab-icon_wraper">
+            <div class="tab-icon_bx">
+                @if (item.Department_Icon != null && item.Department_Icon.Length > 0)
+                {
+<img src="@item.Department_Icon" alt=""> }
+                else
+                {
+<img src="#" alt="">}
+            </div>
+            <h4>@item.DepartmentName</h4>
+            <p>@Html.Raw(item.Description)</p>
+            <a href="@Url.Action("Departmentdtls", "Department", new { dept = item.DepartmentName })">READ MORE</a>
+        </div>}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="hm-drs-slidr">
+    <div class="container">
+        <div class="row" data-aos="fade-up">
+            <div class="col-md-8">
+                <h2>
+                    Our doctors
+                    <span>Our doctors</span>
+                </h2>
+            </div>
+            <div class="col-md-4">
+                <a class="dr-slct" href="@Url.Action("Index", "Doctor", "")">View All Doctors</a>
+            </div>
+        </div>
+    </div>
+    <div class="container dept-splz">
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <div class="wrap">
+                    <div class="slider">
+                        @foreach (var item in (List<EliteHospital.Core.Doctor>)ViewData["DoctorListFromServer"])
+                        {
+                            //var imgSrc = "";
+                            //if (item.Doctor_Image != null)
+                            //{
+                            //    var base64 = Convert.ToBase64String(item.Photo);
+                            //    imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                            //}
+                            <div class="item">
+                                @if (item.Doctor_Image != null)
+                                {
+                                    <img style="max-width: 100%; max-height: 100%;" src="@item.Doctor_Image" alt="">}
+                                else
+                                {
+
+                                }
+                                @*<img src="~/Content/MainSite/images/doctors-hm/osama.jpg" alt="">*@
+                                @*<div class="bk-apmt">
+                    <a class="bk-cpt bookappointment" href="#">Book An Appointment</a>
+                </div>*@
+                                @if (item.DoctorBioStatus == "ACTIVE")
+                                {
+                                    <div class="bk-apmt">
+                                        <a class="bk-cpt bookappointment" href="#">Book An Appointment</a>
+                                    </div>}
+                                <div class="drtr-name">
+                                    <p>@item.DoctorName</p>
+                                    <small>
+                                        @item.DepartmentName
+                                    </small>
+                                    <div class="bk-apmtv">
+                                        <a class="viewdoc-btn" href="/Doctor/ViewDoctorBio?DoctorId=@item.DoctorId&Doctorname=@item.DoctorName&Departmet=@item.DepartmentName&speciality=@item.Position">View Doctor Bio</a>
+                                    </div>
+                                </div>
+                            </div>}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section class="hm-abt-updte">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-3 abt_bx0" data-aos="fade-up" data-aos-delay="300">
+                <img src="~/Content/MainSite/images/abt-2.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="col-md-6 col-lg-3 abt_bx1" data-aos="fade-up" data-aos-delay="300">
+                <img src="~/Content/MainSite/images/abt-1.jpg" class="img-fluid" alt="">
+
+            </div>
+            <div class="col-md-12 col-lg-6 abt_bx2" data-aos="fade-up" data-aos-delay="350">
+                <h3>
+                    EMC
+                    <span>
+                        About Us
+                    </span>
+                </h3>
+                <h4>ELITE <br> MEDICAL CENTER</h4>
+                <p>
+                    @Html.Raw(ViewBag.ShortDescription)
+                </p>
+                @*<p>We offer high quality medical services in a caring, convenient and accessible manner that set community standards and exceeds patient’s expectations.</p>
+                    <p>
+                        We aim to improve the well-being of those we serve through exceptional clinical care and commitment to patient education. We offer high quality medical services in a caring, convenient and accessible manner that set community standards
+                        and exceeds patient’s expectations.
+                    </p>*@
+                <a href="@Url.Action("Index", "About", "")">READ MORE</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="bk-apointment">
+    <div class="bk-lft">
+        <div class="mn-ttl" data-aos="fade-up" data-aos-delay="300">
+            <h3>
+                Book an <br><small>Appointment</small>
+                <span>Appointment</span>
+            </h3>
+        </div>
+        <form id="doctorlist" action="coming-soon.html">
+            <div class="bk-fileds" data-aos="fade-up" data-aos-delay="350">
+                <div class="form-group">
+                    <select id="doctordropdown" class="form-control">
+                        <option selected>Choose Your Doctor</option>
+                        @foreach (var item in (List<EliteHospital.Core.Doctor>)ViewData["DoctorListFromServer"])
+                        {
+                            <option id="@item.DoctorId">@item.DoctorName</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            @foreach (var item in (List<EliteHospital.Core.Doctor>)ViewData["DoctorListFromServer"])
+            {
+               
+                <div class="doctordetails">
+                    <div id="@item.DoctorId" style="display: none;" class="media dr-lst-bk" data-aos="fade-up" data-aos-delay="400">
+                        <img src="@item.Doctor_Image" style="max-width: 155px;" class="mr-3" alt="...">
+                        <div class="media-body pl-2">
+                            <h5 class="mt-0">@item.DoctorName</h5>
+                            <small>@item.DepartmentName</small>
+                        </div>
+                    </div>
+                </div>      }
+            @*<div class="media dr-lst-bk" data-aos="fade-up" data-aos-delay="400">
+            <img src="~/Content/MainSite/images/doctors-hm/osama.jpg" style="max-width: 155px;" class="mr-3" alt="...">
+            <div class="media-body pl-2">
+                <h5 class="mt-0">@ViewBag.DoctorFirst.DoctorName</h5>
+                <small>@ViewBag.DoctorFirst.Speciaity</small>
+            </div>
+        </div>*@
+            @*@Html.ActionLink("Book An Appointment", "Index", "Account", null, new { })*@
+            @*<button type="submit" class="fd-btn">Book An Appointment</button>*@
+            <button type="button" class="fd-btn bookappointment">Book An Appointment</button>
+        </form>
+    </div>
+    <div class="bk-rgt" data-aos="fade-up" data-aos-delay="300">
+        <img src="~/Content/MainSite/images/bk-apmnt.jpg" class="img-fluid" alt="Book an Appointment">
+    </div>
+</section>
+<section class="hm-clients" data-aos="fade-up" data-aos-delay="300">
+    <div class="cus-container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="owl-carousel hm-client-slider">
+                    @foreach (var item in (List<EliteHospital.Core.Insurance>)ViewData["Insurances"])
+                    {
+                        var imgSrc = "";
+                        if (item.Image != null)
+                        {
+                            var base64 = Convert.ToBase64String(item.Image);
+                            imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+        <div> <img src="@imgSrc" alt=""> </div>}
+                    }
+
+                    @*<div> <img src="~/Content/MainSite/images/client-1.png" alt=""> </div>
+                        <div> <img src="~/Content/MainSite/images/client-2.png" alt=""> </div>
+                        <div> <img src="~/Content/MainSite/images/client-3.png" alt=""> </div>
+                        <div> <img src="~/Content/MainSite/images/client-4.png" alt=""> </div>
+                        <div> <img src="~/Content/MainSite/images/client-5.png" alt=""> </div>
+                        <div> <img src="~/Content/MainSite/images/client-6.png" alt=""> </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        @*var doctors = JSON.parse('@Html.Raw(Json.Encode(ViewData["DoctorsList"]))');*@
+        $("#doctordropdown").change(function () {
+            $(".dr-lst-bk").css("display", "none");
+            var selected = $("#doctordropdown option:selected").attr("id");
+            var doctordetails = $(".doctordetails").find("#" + selected);
+            doctordetails.css("display", "flex");
+        });
+    });
+</script>
+<style>
+    .viewdoc-btn {
+        font-size: 12px;
+        color: #fff;
+        font-weight: 700;
+        border-radius: 100px;
+        padding: 12px 18px !important;
+        width: 100%;
+        text-align: center;
+        float: left;
+        border: 1px solid #fff;
+    }
+
+    .hm-drs-slidr .bk-apmtv {
+        margin-top: 5px;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        max-width: 187px;
+        width: 100%;
+        z-index: 9;
+    }
+</style>
+

@@ -1,0 +1,72 @@
+﻿@model EliteHospital.Core.ConfigPasswords
+@{
+    ViewBag.Title = "Edit Config Password";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="inr-cnct" data-aos="fade-up">
+    <div class="cus-container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="cnt_inr">
+                    <h3>
+                        Config Passwords
+                        <span>Edit Config Password</span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="row ctnDtg" data-aos="fade-up">
+            <div class="col-md-3">
+                <div class="icSc">
+                    <img src="~/Content/MainSite/images/location_icon.svg" alt="location">
+                </div>
+                <div class="ttL">Config Name</div>
+                <div class="dtls">
+                    @Html.Raw(Model.ConfigPasswordName)
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="icSc">
+                    <img src="~/Content/MainSite/images/phone_icon.svg" alt="phone">
+                </div>
+                <div class="ttL">Password Values</div>
+                <div class="dtls">
+                    @using (Html.BeginForm("Save", "ConfigPasswords", FormMethod.Post))
+                    {
+                        @Html.HiddenFor(model => model.ID)
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ConfigPassValues)
+                            @Html.TextAreaFor(model => model.ConfigPassValues, new { @class = "form-control", rows = 5 })
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mapSec" data-aos="fade-up">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3606.8921682585246!2d51.489505514329636!3d25.307826733415226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e45db12f4b79e93%3A0x68bb468d25efa2cc!2sElite%20Medical%20Center!5e0!3m2!1sen!2sin!4v1604641502615!5m2!1sen!2sin"
+            width="1920" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+</section>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#configForm").validate({
+            rules: {
+                ConfigPassValues: "required"
+            },
+            messages: {
+                ConfigPassValues: "*Enter password values"
+            },
+            errorClass: "error",
+            validClass: "valid_class",
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+    });
+</script>

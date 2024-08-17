@@ -1,0 +1,11 @@
+﻿@model EliteHospital.Data.APIRequestResponseModels.Response.AppointmentDtlsResponse
+
+<div class="succ-wrap">
+    <div class="suc_img"><img src="~/Content/Site/Booking/images/sucsess.png" class="img-fluid" alt=""></div>
+        <h3>Thanks for booking!</h3>
+        <p>
+            You booked an appointment with <br>
+            @Model.BookingInfoString 
+        </p>
+        <a class="btn btn-primary" href='@Url.Action("AppointmentDetails", "Appointments", new { Id = Model.AppointmentId })'>View My Appoinment</a>
+</div>

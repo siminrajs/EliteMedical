@@ -1,0 +1,159 @@
+﻿
+@{ ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    string name = ViewBag.Name;
+    decimal purchaseamount = ViewBag.PurchasedAmount;
+}
+<style>
+    .user-headline {
+        margin-right: 50px;
+    }
+    .search-bar {
+        display: block;
+        width: 29%;
+        padding: 0.3rem 0.75rem;
+        font-size: 0.8rem;
+        font-weight: 400;
+        line-height: 1.4rem;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #d2d6da;
+        appearance: none;
+        border-radius: 0.5rem;
+        transition: box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+    .setting-btn {
+        float: right;
+        margin: 10px 0;
+        background-image: linear-gradient(to right, #d3071d, #f62d43);
+        border: none;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+        color: #fff;
+    }
+</style>
+
+<div class="row">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-6 mb-3" style="display:flex;align-items:center;">
+                <h6 style="margin:0px;">LOYALTY POINTS</h6>
+            </div>
+            <div class="col-6 mb-3">
+
+
+                @if (@name == null)
+                {
+
+            <button class="setting-btn"  onclick="location.href='@Url.Action("LoyaltyPointSettings", "Loyalty")'"><i class="fas fa-cog"></i> Loyalty points setting</button> }
+        else
+        {
+            <div class="msg-card">
+                <div class="row">
+                    <div class="col-3" style=" display: flex; align-items: center;">
+                        <img style="width:100%;" src="~/Images/green-tick.png" />
+                    </div>
+                    <div class="col-8">
+                        <h6 class="msg-points">Points added to @name </h6>
+                        <h6 class="msg-points-number"> @purchaseamount </h6>
+                        <h6 class="msg-points-qar">worth of QAR </h6>
+                    </div>
+                    <div class="col-1">
+                        <button class="close-btn" onclick="location.href='@Url.Action("Index", "Loyalty")'">&#x2715</button>
+                    </div>
+                </div>
+                
+            </div>
+                }
+            </div>
+
+                       
+        <div class="card mb-4">
+            <div class="card-header pb-0 header-table">
+                <h6 class="user-headline">Users</h6>
+                <input type="text" onkeypress="showuserlist(this)" class="form-control" style="width:100%;padding:6px;" id="keyword" name="keyword" placeholder="Search email" />
+            </div>
+            <div class="form-group" id="usercontainer">
+
+            </div>
+          
+        </div>
+    </div>
+</div>
+    </div>
+<style>
+    .msg-card {
+        width: 80%;
+        float: right;
+        background-color: #fff;
+        padding: 10px 30px;
+        border-radius: 20px;
+        box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
+    }
+    .msg-points {
+        font-size: 13px;
+        margin: 0;
+    }
+    .msg-points-number {
+        margin: 0;
+        font-size: 20px;
+    }
+    .msg-points-qar {
+        margin: 0;
+        font-size: 13px;
+        color: #ababab;
+        font-weight: 400;
+    }
+    .fa-times {
+        font-size: 12px;
+        color: #ababab;
+    }
+    .close-btn {
+        border: none;
+        background: #fff0;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+         $("#menuLoyaltyPoint").addClass("active");
+
+    $("#pageHeader").text("Loyalty Points");
+    $("#pageHeader1").text("Loyalty Points");
+
+
+        
+    
+
+    showuserlist($("#keyword"));
+});
+
+    function showuserlist(element) {
+        var keyword = encodeURI($(element).val());
+        $("#usercontainer").show(200);
+        if (keyword == null) {
+            userlist();
+        }
+        else {
+            userlist(keyword);
+        }
+    }
+
+    function userlist() {
+        $("#usercontainer").html('Loading...');
+        $("#usercontainer").load("/admin/Loyalty/viewuserlistpartial");
+    } 
+
+    function userlist(keyword) {
+        $("#usercontainer").html('Loading...');
+        $("#usercontainer").load("/admin/Loyalty/viewuserlistpartial?keyword=" + keyword);
+    }
+
+    
+
+    </script>
+

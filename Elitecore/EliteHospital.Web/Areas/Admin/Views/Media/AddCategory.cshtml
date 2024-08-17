@@ -1,0 +1,55 @@
+﻿@model EliteHospital.Web.Areas.Admin.ViewModel.MediaViewModel
+@{
+    ViewBag.Title = "AddCategory";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+        $("#menuMedia").addClass("active");
+
+    });</script>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0 header-table form-header">
+                <h6>Media Edit</h6>
+                @Html.ActionLink("View All", "Index", "Media", null, new { })
+            </div>
+            <div class="card-body px-0 pt-0 pb-2 main-form">
+                @using (Html.BeginForm("AddCategory", "Media", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="first">Category</label>
+                            @Html.HiddenFor(p => p.Id)
+                            @Html.TextBoxFor(p => p.Category, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(p => p.Category, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="first">Category(Arabic)</label>
+                            @Html.HiddenFor(p => p.Id)
+                            @Html.TextBoxFor(p => p.Category_Arabic, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(p => p.Category_Arabic, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                    <div class="row">
+                        <div class="col-md-12 btn-save-outer">
+                            <button type="submit" class="btn-save">Save</button>
+                        </div>
+                    </div>}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

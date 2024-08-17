@@ -1,0 +1,142 @@
+﻿@model EliteHospital.Web.Areas.Admin.ViewModel.BannerViewModel
+@{
+    ViewBag.Title = "EditBanner";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+
+        //font editing
+        $('#BannerTitle').jqte();
+        $('#BannerSubTitle').jqte();
+
+        if ( '@Model.FromMob' == 'True') {
+            $("#menuBannersMob").addClass("active");
+        }
+        else {
+            $("#menuBanners").addClass("active");
+        }
+
+        $("#bannerimage").change(function () {
+            $("#bannerfilename").val( $(this).val() );
+        });
+
+        $("#bannerimagemob").change(function () {
+            $("#bannerimagemobile").val($(this).val());
+        });
+    });
+</script>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0 header-table form-header">
+                <h6>Banners Edit</h6>
+                @Html.ActionLink("View All", "Index", "Banner", null, new { })
+            </div>
+            <div class="card-body px-0 pt-0 pb-2 main-form">
+                @using (Html.BeginForm("EditBanner", "Banner", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="first">Banner Title</label>
+                                @Html.HiddenFor(p => p.Id)
+                                @Html.HiddenFor(p => p.FromMob)
+                                @Html.TextBoxFor(p => p.BannerTitle, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(p => p.BannerTitle, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="company">Banner SubTitle</label>
+                                @Html.TextBoxFor(p => p.BannerSubTitle, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(p => p.BannerSubTitle, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    @*<div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="last">Banner Title(Arabic)</label>
+                        @Html.TextBoxFor(p => p.BannerTitleArabic, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(p => p.BannerTitleArabic, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="phone">Banner SubTitle(Arabic)</label>
+                        @Html.TextBoxFor(p => p.BannerSubTitleArabic, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(p => p.BannerSubTitleArabic, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>*@
+
+            <div class="row">
+                @if (Model.FromMob == false)
+                {
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="last">Banner Image</label>
+                            <input type="file" name="bannerimage" class="form-control" accept=".jpg, .png, .gif" />
+                        </div>
+                    </div>
+                    @*<div class="col-md-6">
+                <div class="form-group">
+                    <label for="email">Banner Image (1920x803 px)</label>
+                    <label for="file" class="input input-file">
+                        <div class="button">
+                            @Html.TextBox("bannerimage", "", new { @class = "form-control", type = "file", id = "bannerimage", accept = "image/png, image/gif, image/jpeg" })
+                            Browse
+                        </div>
+                        @Html.TextBoxFor(p => p.BannerImagePath, new { id = "bannerfilename", @class = "form-control", placeholder = "Include some files" })
+                    </label>
+                </div>
+            </div>*@
+                }
+                else
+                {
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="last">Banner Image</label>
+                            <input type="file" name="bannerimage" class="form-control" accept=".jpg, .png, .gif" />
+                        </div>
+                    </div>
+                    @*<div class="col-md-6">
+                <div class="form-group">
+                    <label for="email">Banner Image For Mobile (1080x498 px)</label>
+                    <label for="file" class="input input-file">
+                        <div class="button">
+                            @Html.TextBox("bannerimagemob", "", new { @class = "form-control", type = "file", id = "bannerimagemob", accept = "image/png, image/gif, image/jpeg" })
+                            Browse
+                        </div>
+                        @Html.TextBoxFor(p => p.BannerImageMobilePath, new { id = "bannerimagemobile", @class = "form-control", placeholder = "Include some files" })
+                    </label>
+                </div>
+            </div>*@
+                }
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="company">Department</label>
+                        @Html.DropDownListFor(m => m.DepartmentName, new SelectList(ViewData["DepartmentList"] as List<EliteHospital.Web.Areas.Admin.ViewModel.DropdownViewModel>, "Name", "Name"), new { })
+                    </div>
+                </div>
+            </div>
+
+                    <div class="row">
+                        <div class="col-md-12 btn-save-outer">
+                            <button type="submit" class="btn-save">Save</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

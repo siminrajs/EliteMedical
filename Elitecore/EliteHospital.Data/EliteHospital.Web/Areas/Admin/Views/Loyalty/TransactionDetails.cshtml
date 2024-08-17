@@ -1,0 +1,356 @@
+﻿@model EliteHospital.Web.Areas.Admin.ViewModel.LoyaltyViewModel
+@{ ViewBag.Title = "TransactionDetails";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    string name = ViewBag.name;
+    string Qid = ViewBag.Qid;
+    string mobile = ViewBag.mobile;
+    decimal? qtramt = Convert.ToDecimal(ViewBag.qtramt);
+    decimal? pointbalance = Convert.ToDecimal(ViewBag.BalancePoints);
+    int patientid = Convert.ToInt32(ViewBag.patientId);
+}
+
+<style>
+    .user-headline {
+        margin-right: 50px;
+    }
+
+    .search-bar {
+        display: block;
+        width: 29%;
+        padding: 0.3rem 0.75rem;
+        font-size: 0.8rem;
+        font-weight: 400;
+        line-height: 1.4rem;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #d2d6da;
+        appearance: none;
+        border-radius: 0.5rem;
+        transition: box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+
+    .header-table {
+        display: inline;
+    }
+
+    .profile-card {
+        padding: 25px;
+    }
+
+    .profile-name {
+        font-size: 1.6vw;
+        font-family: 'Poppins', sans-serif;
+        color: #000;
+    }
+
+    .profile-qid, .profile-mobile {
+        color: #a8a4a4;
+        font-size: 1.2vw;
+        margin-right: 25px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+    }
+
+    .add-btn {
+        background-color: #c40c20;
+        color: #fff;
+        padding: 10px 24px;
+        border-radius: 10px;
+        font-size: 1.2vw;
+        margin: 10px 25px 0 0;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        box-shadow: rgb(196 12 32 / 20%) 0px 8px 24px;
+    }
+
+    .redeem-btn {
+        border: 1px solid #c40c20;
+        background-color: #fff;
+        color: #c40c20;
+        padding: 10px 24px;
+        border-radius: 10px;
+        font-size: 1.2vw;
+        margin: 10px 25px 0 0;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+    }
+
+    .add-btn:hover {
+        color: #ffdede;
+        box-shadow: rgb(196 12 32 / 20%) 0px 8px 24px;
+    }
+
+    .redeem-btn:hover {
+        border: 1px solid #ff001c;
+        color: #ff001c;
+    }
+
+    .point-div {
+        background-color: #fff4c8;
+        border: 1px solid #f7d23c;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: left;
+        margin-right: 25px;
+    }
+
+    .qar-div {
+        background-color: #d8f1c3;
+        border: 1px solid #37670f;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: left;
+    }
+
+    .point-heading {
+        color: #d2791f;
+        font-size: 1vw;
+        font-weight: 500;
+        line-height: 1.2;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .qar-heading {
+        color: #37670f;
+        font-size: 1vw;
+        font-weight: 500;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .point-value {
+        color: #d2791f;
+        font-weight: 600;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .qar-value {
+        color: #37670f;
+        font-weight: 600;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .table-heading {
+        padding: 25px 30px;
+        font-weight: 500;
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        color: #000;
+    }
+</style>
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="card mb-4">
+            <div class="profile-card">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-12">
+                                <h6 class="profile-name">@name</h6>
+                            </div>
+                            <div class="col-12 d-flex">
+                                <h6 class="profile-qid">@Qid</h6>
+                                <h6 class="profile-mobile">@mobile</h6>
+                            </div>
+                            <div class="col-12 d-flex">
+                                <a href='@Url.Action("AddPoint", "Loyalty", new { PatientId = @patientid,Name= @name})' class="btn-bkapmnt add-btn">ADD POINTS</a>
+                                <a href='@Url.Action("RedeemPoint", "Loyalty", new { PatientId = @patientid,Name= @name })' class="btn-bkapmnt redeem-btn">REDEEM</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 " style="text-align:end;">
+                        <div class="row">
+                            <div class="col-5"></div>
+                            <div class="col-3 point-div">
+                                <p class="point-heading">Point Balance</p>
+                                <h6 class="point-value">@pointbalance</h6>
+                            </div>
+                            @*<div class="col-3 qar-div">
+                                <p class="qar-heading">QAR</p>
+                                <h6 class="qar-value">@qtramt</h6>
+                            </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-4">
+            <h6 class="table-heading">Transaction History</h6>
+            <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                    <thead>
+                        <tr>
+                            <th class=" text-secondary text-xxs font-weight-bolder ">Date</th>
+                            <th class=" text-secondary text-xxs font-weight-bolder ">QAR Spent</th>
+                            <th class="text-center text-secondary text-xxs font-weight-bolder ">Added Points</th>
+                            <th class="text-center text-secondary text-xxs font-weight-bolder">Redeemed Points</th>
+                            <th class="text-center text-secondary text-xxs font-weight-bolder">Service/Narration</th>
+                            <th class="text-center text-secondary text-xxs font-weight-bolder ">Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in (List<EliteHospital.Core.tbl_TransactionHistory>)ViewData["TransactionList"])
+                        {
+                            <tr>
+                                <td>
+                                    <div class="d-flex px-2 py-1">
+                                        @if (@item.TH_AddedDate != null)
+                                        {
+                                            DateTime strDate = Convert.ToDateTime(@item.TH_AddedDate);
+                                            String date = strDate.ToString("dd-MM-yyyy");
+                                            <h6 class="mb-0 text-sm">@date</h6>
+                                        }
+                                        else
+                                        {
+                                            DateTime strDate = Convert.ToDateTime(@item.TH_RedeemedDate);
+                                            String date = strDate.ToString("dd-MM-yyyy");
+                                            <h6 class="mb-0 text-sm">@date</h6>
+                                        }
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="d-flex px-2 py-1">
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <h6 class="mb-0 text-sm">@item.TH_PurchasedAmount</h6>
+
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex px-2 py-1">
+                                        <div class="d-flex flex-column justify-content-center">
+                                            @if (@item.TH_LoyaltyPoints > 0)
+                                            {
+                                                <h6 class="mb-0 text-sm">@item.TH_LoyaltyPoints Points</h6>
+                                            }
+                                            else
+                                            {
+                                                <h6 class="mb-0 text-sm"></h6>
+                                            }
+
+
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex px-2 py-1">
+                                        <div class="d-flex flex-column justify-content-center">
+                                            @if (@item.TH_RedeemPoints > 0)
+                                            {
+                                                <h6 class="mb-0 text-sm">@item.TH_RedeemPoints Points</h6>
+                                            }
+                                            else
+                                            {
+                                                <h6 class="mb-0 text-sm"></h6>
+                                            }
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex px-2 py-1">
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <h6 class="mb-0 text-sm">@item.TH_Narrations</h6>
+
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="d-flex px-2 py-1">
+                                        <div class="d-flex flex-column justify-content-center">
+                                            @if (@item.TH_RedeemPoints > 0)
+                                            {
+                                                if ((@item.TH_RedeemPoints > 0 && @item.TH_RedeemPoints != null))
+                                                {
+                                                    <h6 class="mb-0 text-sm" style="color:red;">- QAR @item.TH_RedeemPoints</h6>
+
+                                                }
+                                                @*else if (@item.TH_QtrAmount < 0 && @item.TH_QtrAmount != null)
+                                        {
+                                            <h6 class="mb-0 text-sm" style="color:red;">- QAR @item.TH_QtrAmount</h6>
+                                        }*@
+                                                else
+                                                {
+                                                    <h6 class="mb-0 text-sm"></h6>
+
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                                if ((@item.TH_QtrAmount > 0 && @item.TH_QtrAmount != null))
+                                                {
+                                                    <h6 class="mb-0 text-sm" style="color:forestgreen;">+ QAR @item.TH_QtrAmount</h6>
+
+                                                }
+                                                else if (@item.TH_QtrAmount < 0 && @item.TH_QtrAmount != null)
+                                                {
+                                                    <h6 class="mb-0 text-sm" style="color:red;">- QAR @item.TH_QtrAmount</h6>
+                                                }
+                                                else
+                                                {
+                                                    <h6 class="mb-0 text-sm"></h6>
+
+                                                }
+
+                                            }
+
+                                        </div>
+                                    </div>
+                                </td>
+
+
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <hr style=" margin: 0 0 20px 0;" />
+                @*<div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+                    <ul class="pagination">
+                        <li class="paginate_button page-item previous disabled" id="dataTable_previous"><a style="border-radius: 5px 0 0 5px !important" href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Prev</a></li>
+                        <li class="paginate_button page-item active"><a style="border-radius:0px !important" href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                        <li class="paginate_button page-item "><a style="border-radius: 0px !important" href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
+                        <li class="paginate_button page-item next" id="dataTable_next"><a style="color:#000!important; border-radius: 0 5px 5px 0 !important" href="#" aria-controls="dataTable" data-dt-idx="8" tabindex="0" class="page-link">Next</a></li>
+                    </ul>
+                </div>*@
+              
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .page-item .page-link, .page-item span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #8392AB;
+        padding: 15px !important;
+        margin: 0 0 0 44px;
+        height: 10px;
+        width: 47px;
+        font-size: 0.875rem;
+    }
+
+    .page-item.active .page-link {
+        z-index: 3;
+        color: #fff;
+        background-color: #9f0d1d;
+        border-color: #9f0d1d;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+        $("#menuLoyaltyPoint").addClass("active");
+
+        $("#pageHeader").text("Loyalty Points");
+        $("#pageHeader1").text("Loyalty Points");
+    });</script>
+
+

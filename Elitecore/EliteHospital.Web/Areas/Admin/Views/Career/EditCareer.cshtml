@@ -1,0 +1,60 @@
+﻿@model EliteHospital.Web.Areas.Admin.ViewModel.CareerViewModel
+@{
+    ViewBag.Title = "EditCovidBanner";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@*<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+        $("#menuCareer").addClass("active");
+    });
+</script>*@
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0 header-table form-header">
+                <h6>Banners Edit</h6>
+                @Html.ActionLink("View All", "Index", "Career", null, new { })
+            </div>
+            <div class="card-body px-0 pt-0 pb-2 main-form">
+                @using (Html.BeginForm("EditCareer", "Career", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="first">Vacancy</label>
+                                @Html.HiddenFor(p => p.Id)
+                                @Html.TextBoxFor(p => p.Vacancy, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(p => p.Vacancy, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="last">Position Description</label>
+                                @Html.TextBoxFor(p => p.PositionDescription, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(p => p.PositionDescription, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="first">Email</label>
+                                @Html.TextBoxFor(p => p.Email, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(p => p.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 btn-save-outer">
+                            <button type="submit" class="btn-save">Save</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

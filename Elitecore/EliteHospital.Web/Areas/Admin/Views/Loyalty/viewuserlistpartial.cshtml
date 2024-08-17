@@ -1,0 +1,181 @@
+﻿@using EliteHospital.Core
+@{ Layout = "";
+    EliteHospitalEntities db = new EliteHospitalEntities();
+    string keyword = ViewBag.keyword;
+    List<tbl_PatientMaster> user = db.tbl_PatientMaster.ToList();
+    user = db.Database.SqlQuery<tbl_PatientMaster>("EXEC SP_viewuserlist @name= '" + keyword + "' ").ToList();
+
+    int i = 2; }
+
+
+
+
+<div class="card-body px-0 pt-0 pb-2 main-table">
+    <div class="table-responsive p-0">
+        <table class="table align-items-center mb-0" id="tablepaging" id="tableData" class="table table-bordered table-striped">
+
+            <!--<table--> @*class="table align-items-center mb-0"*@ @*id="tablepaging"*@ <!--id="tableData" class="table table-bordered table-striped">-->
+            <thead>
+                <tr>
+                    <th class=" text-secondary text-xxs font-weight-bolder ">SL.NO</th>
+                    <th class=" text-secondary text-xxs font-weight-bolder ">Patient Name</th>
+                    <th class="text-center text-secondary text-xxs font-weight-bolder ">QID</th>
+                    <th class="text-center text-secondary text-xxs font-weight-bolder">Phone Number</th>
+                    <th class="text-center text-secondary text-xxs font-weight-bolder ">Points</th>
+                    <th class="text-center text-secondary text-xxs font-weight-bolder">Redemption Eligibility</th>
+                    <th class="text-center text-secondary text-xxs font-weight-bolder">Transaction Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in (List<EliteHospital.Core.tbl_PatientMaster>)user)
+                {
+    <tr>
+        <td>
+            <div class="d-flex px-2 py-1">
+                <p class="text-xs font-weight-bold mb-0">@( ((Int32)1) + ((List<EliteHospital.Core.tbl_PatientMaster>)user).IndexOf(item) )</p>
+            </div>
+        </td>
+
+        <td>
+            <div class="d-flex px-2 py-1">
+                <div class="d-flex flex-column justify-content-center">
+                    <h6 class="mb-0 text-sm">@item.PM_FistName</h6>
+
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="d-flex px-2 py-1">
+                <div class="d-flex flex-column justify-content-center">
+                    <h6 class="mb-0 text-sm">@item.PM_QID</h6>
+
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="d-flex px-2 py-1">
+                <div class="d-flex flex-column justify-content-center">
+                    <h6 class="mb-0 text-sm">@item.PM_Mobile</h6>
+
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="d-flex px-2 py-1">
+                <div class="d-flex flex-column justify-content-center">
+                    @if ((@item.PM_Price > 0))
+                    {<h6 class="mb-0 text-sm" style="color:forestgreen;">@item.PM_Price</h6> }
+                else
+                {
+<h6 class="mb-0 text-sm" style="color:red;">@item.PM_Price</h6>}
+
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="d-flex px-2 py-1">
+                <div class="d-flex flex-column justify-content-center">
+                    @if ((@item.PM_Price > 0))
+                    {<h6 class="mb-0 text-sm" style="color:forestgreen;">YES</h6> }
+                    else
+                    {
+    <h6 class="mb-0 text-sm" style="color:red;">NO</h6>}
+
+                </div>
+            </div>
+        </td>
+
+        <td class="align-middle">
+            @Html.ActionLink("View", "TransactionDetails", "Loyalty", new { Patientid = @item.PM_Id }, new { @class = "banneredit text-secondary font-weight-bold text-xs link-tab" })
+
+    </tr>}
+
+
+
+
+            </tbody>
+        </table>
+        <hr style=" margin: 0 0 20px 0;" />
+
+        <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+            <ul class="pagination">
+
+                <li class="paginate_button page-item previous disabled" id="dataTable_previous"><a style="border-radius: 5px 0 0 5px !important" href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Prev</a></li>
+                <li class="paginate_button page-item active"><a style="border-radius:0px !important" href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                <li class="paginate_button page-item "><a style="border-radius: 0px !important" href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">@i</a></li>
+                <li class="paginate_button page-item next" id="dataTable_next"><a style="color:#000!important; border-radius: 0 5px 5px 0 !important" href="#" aria-controls="dataTable" data-dt-idx="8" tabindex="0" class="page-link">Next</a></li>
+
+            </ul>
+        </div>
+
+    </div>
+</div>
+<style>
+    .page-item .page-link, .page-item span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #8392AB;
+        padding: 15px !important;
+        margin: 0 0 0 44px;
+        height: 10px;
+        width: 47px;
+        font-size: 0.875rem;
+    }
+
+    .page-item.active .page-link {
+        z-index: 3;
+        color: #fff;
+        background-color: #9f0d1d;
+        border-color: #9f0d1d;
+    }
+</style>
+<style>
+    .paging-nav {
+        text-align: right;
+        padding-top: 2px;
+    }
+
+        .paging-nav a {
+            margin: auto 1px;
+            text-decoration: none;
+            display: inline-block;
+            padding: 1px 7px;
+            background: #91b9e6;
+            color: white;
+            border-radius: 3px;
+        }
+
+        .paging-nav .selected-page {
+            background: #187ed5;
+            font-weight: bold;
+        }
+
+    .paging-nav,
+    #tableData {
+        width: 400px;
+        margin: 0 auto;
+        font-family: Arial, sans-serif;
+    }
+</style>
+
+
+<script>
+
+    $(document).ready(function () {
+        gridDataTableView("Grid Example.xls");
+    });
+
+    gridDataTableView = function (fname) {
+        debugger
+        $('#tablepaging').dataTable({
+            
+
+            "bFilter": true,
+            "bLengthChange": false, "bPaginate": true, "bInfo": true,
+            dom: 'Bfrtip',
+            "order": [[0, 'desc'], [1, 'desc']],
+            buttons: [{ extend: 'excelHtml5', text: 'Export to Excel', className: 'link_button', title: fname }]
+        });
+    }
+</script>

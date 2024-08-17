@@ -1,0 +1,11 @@
+
+.vs/EliteHospital/config/applicationhost.config
+.vs/EliteHospital/v16/TestStore/0/testlog.manifest
+.vs/EliteHospital/v16/TestStore/0/000.testlog
+bin
+obj
+packages
+.vs/EliteHospital/v16/.suo
+.vs/EliteHospital/DesignTimeBuild/.dtbcache.v2
+.vs
+/EliteHospital.Web/EliteHospital.Web.csproj.user

@@ -1,0 +1,21 @@
+=============================
+Server Login Details
+=============================
+Cloud Package: SSD Cloud 2
+Hostname: hwsrv-837527.hostwindsdns.com
+Main IP: 23.254.226.29
+Secondary IPs: 2a0d:7c40:3000:88::2
+Username: administrator
+Password: MTgWdgSW7R2TsXZ
+RDP Port: 3389
+
+
+http://23.254.226.29:8080
+
+http://23.254.226.29:83/API/PatientValidation/ValidatePatient
+{
+	MobileNo: "55425139",
+	QatarId:"E6337256L"
+}
+
+"AuthorizationToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IlNBTExFSEFUSSBCSU5URSBTQUxMRUggICAgICIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvdXNlcmRhdGEiOiJ7XCJQYXRJZFwiOjAsXCJGaXJzdE5hbWVcIjpcIlwiLFwiTGFzdE5hbWVcIjpcIlwiLFwiR2VuZGVyXCI6XCJcIixcIkRhdGVPZkJpcnRoXCI6XCIwMDAxLTAxLTAxVDAwOjAwOjAwXCIsXCJFbWFpbFwiOlwiXCIsXCJNb2JpbGVOb1wiOlwiNTU0MjUxMzlcIixcIlFhdGFySWRcIjpcIkU2MzM3MjU2TFwiLFwiUGFzc3dvcmRcIjpcIlwifSIsIlJldHVyblVybCI6IlBhdFJlZyIsIm5iZiI6MTYxNTE3NTk2NiwiZXhwIjoxNjIzODE1OTY2LCJpYXQiOjE2MTUxNzU5NjYsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTE3NjIvIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MTc2Mi8ifQ.t2AlhT-AUuDVYF60Q5zF4z7NE5i-UnwAonZyB9P3AMg"

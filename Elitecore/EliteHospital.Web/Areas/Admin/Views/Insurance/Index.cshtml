@@ -1,0 +1,168 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0 header-table">
+                @if (ViewBag.FromMob == true)
+                {
+                    <h6 id="type" fromMob="true">Insurance List (Mobile)</h6>
+                }
+                else
+                {
+                    <h6 id="type" fromMob="false">Insurance List</h6>
+                }
+                <a href='@Url.Action("EditInsurance", "Insurance", new { FromMob = ViewBag.FromMob })' class="btn-bkapmnt">Add New</a>
+            </div>
+            <div class="card-body px-0 pt-0 pb-2 main-table">
+                <div class="table-responsive p-0">
+                    <table id="tableInsurance" class="table align-items-center mb-0">
+                        <thead>
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder ">SL.NO</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">LOGO</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">LOGO Mobile</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">EDIT</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">DELETE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in (List<EliteHospital.Core.Insurance>)ViewData["InsuranceList"])
+                            {
+                            <tr>
+                                <td>
+                                    <div class="d-flex px-2 py-1">
+                                        <p class="text-xs font-weight-bold mb-0">@( ((Int32) 1) + ((List<EliteHospital.Core.Insurance>)ViewData["InsuranceList"]).IndexOf(item) )</p>
+                                    </div>
+                                </td>
+                                <td class="align-middle text-center text-sm">
+                                    <div>
+                                        @{
+                                            var imgSrc = "";
+                                            if (item.Image != null && item.Image.Length > 0)
+                                            {
+                                                var base64 = Convert.ToBase64String(item.Image);
+                                                imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                            }
+                                        }
+                                        @if (item.Image != null && item.Image.Length > 0)
+                                        {
+                                            <img src="@imgSrc" class="avatar avatar-sm me-3" alt="user1">
+                                        }
+                                    </div>
+                                </td>
+                                <td class="align-middle text-center text-sm">
+                                    <div>
+                                        @{
+                                            var imgSrcMob = "";
+                                            if (item.ImageMob != null && item.ImageMob.Length > 0)
+                                            {
+                                                var base64 = Convert.ToBase64String(item.ImageMob);
+                                                imgSrcMob = String.Format("data:image/gif;base64,{0}", base64);
+                                            }
+                                        }
+                                        @if (item.ImageMob != null && item.ImageMob.Length > 0)
+                                        {
+                                            <img src="@imgSrcMob" class="avatar avatar-sm me-3" alt="user1">
+                                        }
+                                    </div>
+                                </td>
+                                @*@if (ViewBag.FromMob == true)
+        {
+            <td class="align-middle text-center text-sm">
+                <div>
+                    @{
+                        var imgSrc = "";
+                        if (item.ImageMob != null && item.ImageMob.Length > 0)
+                        {
+                            var base64 = Convert.ToBase64String(item.ImageMob);
+                            imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                        }
+                    }
+                    @if (item.ImageMob != null && item.ImageMob.Length > 0)
+                    {
+                        <img src="@imgSrc" class="avatar avatar-sm me-3" alt="user1">
+                    }
+                </div>
+            </td>
+        }
+        else
+        {
+            {
+                <td class="align-middle text-center text-sm">
+                    <div>
+                        @{
+                            var imgSrc = "";
+                            if (item.Image != null && item.Image.Length > 0)
+                            {
+                                var base64 = Convert.ToBase64String(item.Image);
+                                imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                            }
+                        }
+                        @if (item.Image != null && item.Image.Length > 0)
+                        {
+                            <img src="@imgSrc" class="avatar avatar-sm me-3" alt="user1">
+                        }
+                    </div>
+                </td>
+            }
+        }*@
+
+                                <td class="align-middle">
+                                    @Html.ActionLink("Edit", "EditInsurance", "Insurance", new { Id = @item.Id, FromMob = ViewBag.FromMob }, new { @class = "banneredit text-secondary font-weight-bold text-xs link-tab" })
+                                <td class="align-middle">
+                                    @*@Html.ActionLink("Delete", "DeleteInsurance", "Insurance", new { Id = @item.Id, FromMob = ViewBag.FromMob }, new { @class = "bannerdelete text-secondary font-weight-bold text-xs link-tab" })*@
+                                    <a Id=@item.Id class="DeleteInsurance bannerdelete text-secondary font-weight-bold text-xs link-tab" href="#">Delete</a>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+        if ($("#type").attr("fromMob") == 'true') {
+            $("#menuInsuranceMob").addClass("active");
+        }
+        else {
+            $("#menuInsurance").addClass("active");
+        }
+
+        var deleteurl = '@Url.Action("DeleteInsurance", "Insurance")';
+        var listurl = '@Url.Action("Index", "Insurance")';
+        $("body").off("click", ".DeleteInsurance");
+        $("body").on("click", ".DeleteInsurance", function () {
+            if (confirm("Do you want to delete?")) {
+                var Id = parseInt(this.id);
+                var data = { Id: Id };
+                var row = $(this).closest("tr");
+                $.ajax({
+                    type: "POST",
+                    url: deleteurl,
+                    data: data,
+                    dataType: "json",
+                    success: function (response) {
+                        if (response.success) {
+                            row.remove();
+                        }
+                    }
+                });
+            }
+        });
+
+        $("#pageHeader").text("Insurance");
+        $("#pageHeader1").text("Insurance");
+
+    });
+</script>

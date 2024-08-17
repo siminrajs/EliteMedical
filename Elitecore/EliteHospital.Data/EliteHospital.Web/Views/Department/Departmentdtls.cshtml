@@ -1,0 +1,222 @@
+﻿@model EliteHospital.Core.Department
+@{
+    ViewBag.Title = "Departmentdtls";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".bookappointment").click(function () {
+            document.location = '@Url.Action("Index","Account")';
+        });
+    });
+</script>
+
+<section class="inr-cnct inr-hd">
+    <div class="cus-container">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class=" cnt_inr">
+                    <h3>
+                        Our Departments
+                        <span style="text-transform: capitalize;">
+                            @Model.DepartmentName.ToLower()
+                        </span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="evTdt-inr">
+    <div class="cus-container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="evtCt">
+                    <div class="ttL" style="text-transform: capitalize;">@Model.DepartmentName.ToLower()</div>
+                    @Html.Raw(Model.LongDescription)
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="prmIm">
+                    <div class="owl-carousel banner">
+                        <div class="slide-items">
+                            @*<img src="images/dept-1.jpg" alt="Event">*@
+                            @{var imgSrc = "";
+                                if (Model.DepartmentImage != null)
+                                {
+                                    var base64 = Convert.ToBase64String(Model.DepartmentImage);
+                                    imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                    <img src="@imgSrc" alt="Event">
+                                }
+                                else
+                                {
+                                    <img src="#" alt="Event">
+                                }
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="find-drs dpt-find-drs">
+    <div class="dptdr-hd" data-aos="fade-up" data-aos-delay="300">
+        Doctors
+        <div class="tb-main-hd">
+            <h4>Our Doctors</h4><span>@Model.DepartmentName</span>
+        </div>
+    </div>
+    <div class="cus-container">
+        <div class="row">
+
+            <div class="col-md-12 dr-lizt">
+                <div class="owl-carousel dpt-dr-slider">
+                    @foreach (var item in (List<EliteHospital.Data.APIRequestResponseModels.Response.Doctor>)ViewData["DeptDoctors"])
+                    {
+                        <div class="dr-list">
+                            @*<img src="images/doctors-hm/osama.jpg" alt="">*@
+                            @{var doctorimgSrc = "";
+                                if (item.Photo != null)
+                                {
+                                    var base64 = Convert.ToBase64String(item.Photo);
+                                    doctorimgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                    <img src="@doctorimgSrc" class="img-fluid" alt="">
+                                }
+                                else
+                                {
+                                    <img src="#" style="height: 150px; width: 150px;" class="img-fluid" alt="">
+                                }
+                            }
+                            <div class="dr-dtls-wraper">
+                                <div class="pro-dtls">
+                                    <h5>
+                                        @item.DoctorName
+                                    </h5>
+                                    <p>@item.DepartmentName Department</p>
+                                    <small>
+                                            @item.PositionRole
+                                        </small>
+                                    <div class="bk-apmt">
+                                        <a class="bk-cpt bookappointment" href="#">Book An Appointment</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    @*<div class="dr-list">
+                            <img src="images/doctors-hm/osama.jpg" alt="">
+                            <div class="dr-dtls-wraper">
+                                <div class="pro-dtls">
+                                    <h5>
+                                        Dr. Osama Salha
+                                    </h5>
+                                    <p>Obstetrics & Gynaecology Department</p>
+                                    <small>
+                                        Consultant Obstetrician, Gynecologist & IVF
+                                    </small>
+                                    <div class="bk-apmt">
+
+                                        <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dr-list">
+                            <img src="images/doctors-hm/nidal.jpg" alt="">
+                            <div class="dr-dtls-wraper">
+                                <div class="pro-dtls">
+                                    <h5>Dr. Nidal Zreiki</h5>
+                                    <p>Obstetrics & Gynaecology Department</p>
+                                    <small>
+                                        Consultant Obstetrician, Gynecologist & Infertility
+                                    </small>
+                                    <div class="bk-apmt">
+
+                                        <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="dr-list">
+                            <img src="images/doctors-hm/asmaa.jpg" alt="">
+                            <div class="dr-dtls-wraper">
+                                <div class="pro-dtls">
+                                    <h5>
+                                        Dr. Asmaa Mihdawi
+                                    </h5>
+                                    <p>Obstetrics & Gynaecology Department</p>
+                                    <small>
+                                        Consultant Obstetrician & Gynecologist
+                                    </small>
+                                    <div class="bk-apmt">
+
+                                        <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dr-list">
+                            <img src="images/doctors-hm/deniz.jpg" alt="">
+                            <div class="dr-dtls-wraper">
+                                <div class="pro-dtls">
+                                    <h5>Dr. Deniz Ulusoy</h5>
+                                    <p>Obstetrics & Gynaecology Department</p>
+                                    <small>Consultant Obstetrician & Gynecologist</small>
+                                    <div class="bk-apmt">
+
+                                        <a class="bk-cpt" href="coming-soon.html">Book An Appointment</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="prhC-cnt">
+    <div class="cus-container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="enqTl">
+                    Enquire Now
+                </div>
+                <div class="sbTl">
+                    <ul class="value-ftr">
+                        <li><strong>E </strong> <span> xceptional</span></li>
+                        <li><strong>L </strong> <span> uxurious</span></li>
+                        <li><strong>I </strong> <span> nnovative</span></li>
+                        <li><strong>T </strong> <span> eamwork</span></li>
+                        <li><strong>E </strong> <span> xellence </span></li>
+                    </ul>
+                    <ul class="value-ftr">
+                        <li><strong>C </strong> <span> ommitment </span></li>
+                        <li><strong>A </strong> <span> countability</span></li>
+                        <li><strong>R </strong> <span> espect</span></li>
+                        <li><strong>E </strong> <span> ngagement </span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="enqBtn">
+                    <a href="tel:+974 44 960 960">Call Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

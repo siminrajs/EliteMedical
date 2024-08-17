@@ -1,0 +1,158 @@
+﻿@model EliteHospital.Core.ContactU
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .dtls p span {
+        color: white !important;
+    }
+</style>
+
+<section class="inr-cnct" data-aos="fade-up">
+    <div class="cus-container">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class=" cnt_inr">
+                    <h3>
+                        Contact
+                        <span>
+                            Contact Us
+                        </span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="row ctnDtg" data-aos="fade-up">
+            <div class="col-md-3 ">
+                <div class="icSc">
+                    <img src="~/Content/MainSite/images/location_icon.svg" alt="location">
+                </div>
+                <div class="ttL">OUR ADDRESS</div>
+                <div class="dtls">
+                    @Html.Raw(Model.Address)
+                </div>
+            </div>
+            <div class="col-md-3 ">
+                <div class="icSc">
+                    <img src="~/Content/MainSite/images/phone_icon.svg" alt="phone">
+                </div>
+                <div class="ttL">PHONE US</div>
+                <div class="dtls">
+                    <a href="tel:@Model.Phone">@Model.Phone</a>
+                </div>
+            </div>
+            <div class="col-md-3 ">
+                <div class="icSc">
+                    <img src="~/Content/MainSite/images/email_icon.svg" alt="email">
+                </div>
+                <div class="ttL">EMAIL US</div>
+                <div class="dtls">
+                    <a href="mailto:@Model.Email">@Model.Email</a>
+                </div>
+            </div>
+            <div class="col-md-3 ">
+                <div class="icSc">
+                    <img src="~/Content/MainSite/images/clock_icon.svg" alt="Working-time">
+                </div>
+                <div class="ttL">WORKING HOURS</div>
+                <div class="dtls">
+                    <p>
+                        @Html.Raw(Model.WorkingHours)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="mapSec" data-aos="fade-up">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3606.8921682585246!2d51.489505514329636!3d25.307826733415226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e45db12f4b79e93%3A0x68bb468d25efa2cc!2sElite%20Medical%20Center!5e0!3m2!1sen!2sin!4v1604641502615!5m2!1sen!2sin"
+            width="1920" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+</section>
+
+<section class="ctFrm" data-aos="fade-up">
+    <div class="cus-container">
+        <div class="row">
+            <div class="col-md-12 ttLS">
+                <h3>
+                    GET IN TOUCH
+                    <span>ENQUIRY</span>
+                </h3>
+            </div>
+            <div class="col-md-3 "></div>
+            <div class="col-md-6 ">
+                <form id="form" name="form" class="color" action="/ContactUs/SaveDetails" method="post" enctype="multipart/form-data">
+                        <ul>
+                            <li class="hfFt lft">
+                                <input type="text" id="firstname" name="firstname" placeholder="First Name" >
+                            </li>
+                            <li class="hfFt rgt">
+                                <input type="text" id="lastname" name="lastname" placeholder="Last Name" >
+                            </li>
+                            <li class="hfFt lft">
+                                <input type="text" id="mobile" name="mobile" placeholder="Contact Number" >
+                            </li>
+                            <li class="hfFt rgt">
+                                <input type="text" id="email" name="email" placeholder="Email" >
+                            </li>
+                            <li class="">
+                                <input type="text" id="subject" name="subject" placeholder="Subject" >
+                            </li>
+                            <li class="">
+                                <textarea id="description" name="description" placeholder="Message" ></textarea>
+                            </li>
+                            <li class="">
+                                <button type="submit" class="submit-btn">SEND</button>
+
+                                @*<button id="sendenquiry">SEND</button>*@
+                            </li>
+                        </ul>
+                    </form>
+            </div>
+            <div class="col-md-3 "></div>
+        </div>
+    </div>
+</section>
+<style>
+    .color{
+        color:red;
+    }
+</style>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //$("#sendenquiry").click(function () {
+        //    alert("Thanks for submitting the enquiry. We will reach out to you soon");            
+        //});
+    });
+
+    $("#form").validate({
+        rules:
+        {
+            firstname: "required",
+            lastname: "required",
+            mobile: "required",
+            email: "required",
+            subject: "required",
+            description: "required",
+
+        },
+        messages:
+        {
+            firstname: "*enter firstname",
+            lastname: "*enter lastname",
+            mobile: "*enter mobile",
+            email: "*enter email",
+            subject: "*enter subject",
+            description: "*enter description",
+
+
+        },
+        errorClass: "error",
+        validClass: "valid_class",
+        submitHandler: function (form) {
+            form.submit();
+        }
+    });
+</script>

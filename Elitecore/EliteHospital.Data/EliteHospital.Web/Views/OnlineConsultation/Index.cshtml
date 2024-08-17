@@ -1,0 +1,82 @@
+﻿@model EliteHospital.Core.OnlineConsultation
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="inr-cnct inr-hd" data-aos="fade-up">
+    <div class="cus-container">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="cnt_inr">
+                    <h3>
+                        Online Consultation
+                        <span>
+                            Online Consultation
+                        </span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="onlne-consult" data-aos="fade-up">
+    <div class="cus-container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="con-vdo-bx">
+                    @{var imgSrc = "";
+                        if (Model.Image != null)
+                        {
+                            var base64 = Convert.ToBase64String(Model.Image);
+                            imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                            <img src="@imgSrc" class="img-fluid" alt="">
+                        }
+                        else
+                        {
+                            <img src="#" class="img-fluid" alt="">
+                        }
+                    }
+                    @*<img src="~/Content/MainSite/images/vdo-bnr.jpg" class="img-fluid" alt="">*@
+                    <div class="vdo-bx-caption">
+                        <h4>@Model.Title</h4>
+                        <p>@Model.Description</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="onlne-consult-vdos" data-aos="fade-up">
+    <div class="cus-container">
+        <div class="row">
+            @foreach (var item in (List<EliteHospital.Core.VideoUrl>)ViewData["VideoUrls"])
+            {
+                <div class="col-md-4">
+                    <div id="vdo" class="vdo-lst">
+                        <iframe width="100%" height="315" src="@item.VideoUrls" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h4>@item.Description</h4>
+                </div>
+            }
+            @*<div class="col-md-4">
+            <div id="vdo" class="vdo-lst">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/LlAaKIdFrvE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <h4>Zoom Online Consultation Explanation English</h4>
+        </div>
+        <div class="col-md-4">
+            <div class="vdo-lst">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/ZGl169_76K4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <h4>Zoom Online Consultation Explanation Arabic</h4>
+        </div>*@
+
+        </div>
+    </div>
+</section>
+
+

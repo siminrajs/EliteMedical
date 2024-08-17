@@ -1,0 +1,66 @@
+﻿@model EliteHospital.Data.APIRequestResponseModels.Response.Profile
+@{
+    ViewBag.Title = "My Profile";
+    Layout = "~/Views/Shared/_BookingLayout.cshtml";
+}
+
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="mn-hd">My Profile</h2>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-11 col-xl-9">
+            <div class="profile-dtls">
+                <div class="media">
+                    <img class="mr-5" src="~/Content/Site/Booking/images/profile-avatar.png" alt="Generic placeholder image">
+                    <div class="media-body">
+                        <div class="apmnt-top">
+                            <div class="apt-tpLt">
+                                <h5 class="mb-0">@Model.FullName</h5>
+                                <strong>QID-@Model.QatarId </strong>
+                            </div>
+                        </div>
+                        <div class="pro-dtls">
+                            <ul>
+                                <li><span>Email</span><strong>@Model.Email</strong></li>
+                                @if (Model.DOB != DateTime.MinValue)
+                                {
+                                    <li><span>Date of Birth</span><strong>@Model.DOB.ToString("MMM dd yyyy")</strong></li>
+                                }
+                                else
+                                {
+                                    <li><span>Date of Birth</span><strong></strong></li>
+                                }
+
+                                <li><span>Gender</span><strong>@Model.Gender</strong></li>
+                                <li><span>Phone</span><strong>@Model.Phone</strong></li>
+                                @*<li>
+            <span>Address</span><strong>
+                ABC st, 14545T, Qatar Ville,
+                Doha, Qatar
+            </strong>
+        </li>*@
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="pro-btns">
+                    @*<a href="#" class="btn-lgt">LOGOUT</a>*@
+                    @Html.ActionLink("LOGOUT", "LogOut", "Booking", new { }, new { @class = "btn-lgt" })
+                    <a href="#" class="btn-proEdt">Edit Profile </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidenav ul li").removeClass("active");
+        $("#menuMyProfile").addClass("active");
+    });
+</script>

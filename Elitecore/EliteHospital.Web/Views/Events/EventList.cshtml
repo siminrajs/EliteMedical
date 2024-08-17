@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "EventList";
+    Layout = "~/Views/Shared/_Layout.cshtml";   
+        var firstItem = ((List<EliteHospital.Core.Event>)ViewData["ImageList"]).FirstOrDefault();
+        ViewBag.OGImage = "http://www.emcqtr.com/" + firstItem.EventImages.Substring(1);
+        ViewBag.OGTitle = firstItem.Title;
+        ViewBag.OGDescription = System.Text.RegularExpressions.Regex.Replace(firstItem.Description, "<.*?>", String.Empty);    
+}
+<script>
+    $(document).ready(() => {
+        $(".lightgallery").lightGallery({
+            pager: true
+        });
+    });</script>
+<section class="inr-cnct">
+    <div class="cus-container">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class=" cnt_inr">
+                    <h3>
+                        Events
+                        <span>
+                            Events
+                        </span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="evTdt-inr">
+    <div class="cus-container">
+        <div class="row">
+
+            @{ foreach (var item in (List<EliteHospital.Core.Event>)ViewData["ImageList"])
+                {
+                    var Src = "";
+                    if (item.EventImages != null)
+                    {
+
+                        var parts = @item.EventImages.Split('/');
+                        Src = parts[3];
+                    }
+                    <div class="col-md-6">
+                        <div class="evtCt">
+                            <div class="ttL">@item.Title</div>
+                            <p>
+                                @Html.Raw(@item.Description)
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="prmIm">
+                            <div class="owl-carousel banner">
+                                <div class="slide-items">
+                                    <a id="facebook_share" onclick="javascript: window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600'); return false;" href="https://www.facebook.com/sharer/sharer.php?u=@HttpContext.Current.Request.Url.AbsoluteUri" class="fb_st_01"><i class="fab fa-facebook-f"></i>&nbsp; Share On Facebook</a>
+                                    <img src=@item.EventImages alt="Event" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+<style>
+    .fb_st_01 {
+        color: #007bff;
+    }
+</style>
+<section class="evTdt-inr">
+    <div class="tab-content" style="background-color: #f5f5f5">
+        <div id="home" class="tab-pane fade show active">
+            <div class="demo-gallery">
+                <ul class="lightgallery">
+                    @foreach (var item in (List<EliteHospital.Core.EventImagesList>)ViewData["EventImagesList"])
+                    {
+                        //var imgSrc = "";
+                        //if (item.Image != null)
+                        //{
+                        //    var base64 = Convert.ToBase64String(item.Image);
+                        //    imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                        //}
+                        <li data-responsive="@item.Event_Image" data-src="@item.Event_Image" data-sub-html=" " data-pinterest-text="Pin it" data-tweet-text="share on twitter ">
+                            <a href="#" class="imagelist">
+                                <img class="img-responsive" src="@item.Event_Image">
+                                <div class="demo-gallery-poster">
+                                    <img src="~/Content/MainSite/images/zoom.png">
+                                </div>
+                            </a>
+                        </li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<style>
+    .evTdt-inr {
+        padding-bottom: 51px;
+    }
+</style>

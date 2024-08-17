@@ -1,0 +1,3251 @@
+@import "../hover/hover.scss";
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+$black:#333333;
+$white:#fff;
+$orange: #f9b31c;
+$red: #d6172c;
+$font-main:'Source Sans Pro', sans-serif;
+$font-robo:'Roboto', sans-serif;
+@mixin flotwidth100 {
+    float: left;
+    width: 100%;
+    position: relative;
+}
+
+@mixin fontstyles ($fs: 16px,
+$fc: #333333,
+$fw:400) {
+    font-size: $fs;
+    color: $fc;
+    font-weight: $fw;
+}
+
+@mixin cusfloatwidth ($cuswidth:100%) {
+    float: left;
+    width: $cuswidth;
+    position: relative;
+}
+
+@mixin icon {
+    background: url(../images/menu-icons.png) no-repeat;
+    content: "";
+    position: absolute;
+    width: 27px;
+    height: 27px;
+}
+@mixin sp-sprite {
+    background: url(../images/sprite.png) no-repeat;
+    content: "";
+    position: absolute;
+}
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+    color: $black;
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+.form-control {
+    &:focus {
+        outline: none !important;
+        box-shadow: none;
+    }
+}
+
+select {
+    &:focus {
+        outline: none !important;
+    }
+}
+
+button:focus,
+input:focus {
+    outline: none !important;
+    box-shadow: none;
+}
+
+
+/******* General styles ******/
+
+
+
+
+/******* General styles ******/
+/******* login ******/
+
+.logn
+{
+    .lgn-lft
+    {
+        background: url(../images/login-img.jpg) no-repeat center;
+        background-size: cover;
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
+
+        &::after 
+        {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+           /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#7db9e8+0,fbb41e+100&0+1,1+100 */
+            background: -moz-linear-gradient(top,  rgba(125,185,232,0) 0%, rgba(126,185,230,0) 1%, rgba(251,180,30,1) 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(top,  rgba(125,185,232,0) 0%,rgba(126,185,230,0) 1%,rgba(251,180,30,1) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom,  rgba(125,185,232,0) 0%,rgba(126,185,230,0) 1%,rgba(251,180,30,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007db9e8', endColorstr='#fbb41e',GradientType=0 ); /* IE6-9 */
+
+        }
+        .lgn-contnr
+        {
+           margin: 0 auto;
+           max-width: 500px;
+           padding-left: 15px;
+           padding-right: 15px;
+           z-index: 9;
+           position: relative;
+           height: 100%;
+
+           h4 
+           {
+               @include fontstyles(50px, #F8F8F8, 600);
+           }
+           p 
+           {
+               @include fontstyles(20px, #F8F8F8, 400);
+           }
+           .brand-logo
+           {
+                max-width: 270px;
+                float: left;
+                width: 100%;
+                margin-top: 45px;
+           }
+        }
+        .login-cap {
+            position: absolute;
+            bottom: 75px;
+            width: 100%;
+        }
+    }
+
+    .lgn-rt
+    {
+        height: 70vh !important;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        .gn-rt-container
+        {
+           margin: 0 auto;
+           max-width: 450px;
+           width: 100%;
+           padding-left: 15px;
+           padding-right: 15px;
+           z-index: 9;
+           position: relative;
+        }
+        .logn-top
+        {
+            @include flotwidth100();
+            margin-top: 0;
+            margin-bottom: 20%;
+            a 
+            {
+                @include fontstyles(28px, #dadada, 700);
+                text-decoration: none;
+                margin-right: 20px;
+            }
+            a.active 
+            {
+                color: #000;
+            }
+        }
+    }
+    .lgn-flids
+    {
+        ::placeholder {
+            color: #cbcbcb;
+            opacity: 1; /* Firefox */
+          }
+          
+          :-ms-input-placeholder { /* Internet Explorer 10-11 */
+           color: #cbcbcb;
+          }
+          
+          ::-ms-input-placeholder { /* Microsoft Edge */
+           color: #cbcbcb;
+          }
+
+        .form-label
+        {
+            @include fontstyles(16px, #000, 500);
+            margin-bottom: 3px;
+        }
+        .input-group-text
+        {
+            background-color: #fff;
+            border: 2px solid #cbcbcb;
+            @include fontstyles(18px, #EFEEEB, 400);
+            margin-right: -2px;
+        }
+        .form-control
+        {
+            border-radius: 7px;
+            border: 2px solid #cbcbcb;
+            @include fontstyles(18px, #000, 400);
+            height: 55px;
+
+            &:focus
+            {
+                border: 2px solid #f9b31c;
+                box-shadow: none;
+                color: #f9b31c;
+            }
+        }
+        .btn-primary
+        {
+            background-color: #f9b31c;
+            @include fontstyles(18px, #fff, 700);
+            border: 1px solid #f9b31c;
+            width: 100%;
+            height: 55px;
+
+            &:hover 
+            {
+                box-shadow: 0px 2px 10px #f9b31c;
+            }
+        }
+    }
+    .frgt-pwd
+    {
+        @include fontstyles(16px, #cbcbcb, 400);
+        @include flotwidth100();
+        text-align: right;
+        text-decoration: none;
+        margin: 10px 0;
+    }
+    .lgn-botm
+    {
+        text-align: center;
+        @include fontstyles(16px, #cbcbcb, 400);
+        @include flotwidth100();
+        position: absolute;
+        bottom: 30px;
+        a {
+            text-decoration: none;
+            @include fontstyles(16px, #af7926, 600);
+        }
+    }
+}
+
+/******* signup ******/
+.sign_up
+{
+    .lgn-lft
+    {
+        background: url(../images/login-img.jpg) no-repeat center;
+        background-size: cover;
+        height: 100vh;
+        overflow: hidden;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 50%;
+
+        &::after 
+        {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+           /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#7db9e8+0,fbb41e+100&0+1,1+100 */
+            background: -moz-linear-gradient(top,  rgba(125,185,232,0) 0%, rgba(126,185,230,0) 1%, rgba(251,180,30,1) 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(top,  rgba(125,185,232,0) 0%,rgba(126,185,230,0) 1%,rgba(251,180,30,1) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom,  rgba(125,185,232,0) 0%,rgba(126,185,230,0) 1%,rgba(251,180,30,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007db9e8', endColorstr='#fbb41e',GradientType=0 ); /* IE6-9 */
+
+        }
+        .lgn-contnr
+        {
+           margin: 0 auto;
+           max-width: 500px;
+           padding-left: 15px;
+           padding-right: 15px;
+           z-index: 9;
+           position: relative;
+           height: 100%;
+
+           h4 
+           {
+               @include fontstyles(50px, #F8F8F8, 600);
+           }
+           p 
+           {
+               @include fontstyles(20px, #F8F8F8, 400);
+           }
+           .brand-logo
+           {
+                max-width: 270px;
+                float: left;
+                width: 100%;
+                margin-top: 45px;
+           }
+        }
+        .login-cap {
+            position: absolute;
+            bottom: 75px;
+            width: 100%;
+        }
+    }
+
+    .lgn-rt
+    {
+        position: relative;
+        margin-left: 50%;
+
+
+        .gnder
+        {
+            display: flex;
+            .container {
+                display: block;
+                position: relative;
+                padding-left: 47px;
+                margin-bottom: 0;
+                cursor: pointer;
+                padding-top: 13px;
+                font-size: 14px;
+                color: #8e8e8e;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+              }
+              
+              /* Hide the browser's default radio button */
+              .container input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+              }
+              
+              /* Create a custom radio button */
+              .oth .checkmark {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                height: 25px;
+                width: 25px;
+                background-color: #eee;
+                border-radius: 50px;
+              }
+              .mle .checkmark {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 45px;
+                width: 125px;
+                z-index: -1;
+                background-color: #fef4de;
+                border-radius: 50px;
+                padding-left: 50px;
+                padding-top: 12px;
+               @include fontstyles(14px, #8e8e8e, 400);
+
+
+                &::before 
+                {
+                    background: url(../images/sprite.png) 0 -505px;
+                    content: "";
+                    top: 8px;
+                    left: 19px;
+                    position: absolute;
+                    width: 25px;
+                    height: 29px;
+                }
+              }
+              .fmle .checkmark {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 45px;
+                width: 125px;
+                z-index: -1;
+                background-color: #fef4de;
+                border-radius: 50px;
+                padding-left: 50px;
+                padding-top: 12px;
+                @include fontstyles(14px, #8e8e8e, 400);
+
+                &::before 
+                {
+                    background: url(../images/sprite.png) 0 -410px;
+                    content: "";
+                    top: 7px;
+                    left: 17px;
+                    position: absolute;
+                    width: 25px;
+                    height: 30px;
+                }
+              }
+              
+              /* On mouse-over, add a grey background color */
+              .container:hover input ~ .checkmark {
+                background-color: #ccc;
+              }
+              
+              /* When the radio button is checked, add a blue background */
+              .container.oth input:checked ~ .checkmark {
+                background-color: #feb721;
+                &::before 
+                {
+                    background: #fcefd3;
+                    content: "";
+                    top: 2px;
+                    left: 2px;
+                    position: absolute;
+                    width: 21px;
+                    height: 21px;
+                    border-radius: 100%;
+                }
+              }
+              .container.mle input:checked ~ .checkmark {
+                /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#feb722+0,f1cc7d+100 */
+                background: rgb(254,183,34); /* Old browsers */
+                background: -moz-linear-gradient(left,  rgba(254,183,34,1) 0%, rgba(241,204,125,1) 100%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(left,  rgba(254,183,34,1) 0%,rgba(241,204,125,1) 100%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(to right,  rgba(254,183,34,1) 0%,rgba(241,204,125,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb722', endColorstr='#f1cc7d',GradientType=1 ); /* IE6-9 */
+               
+                color: #fff;
+
+                &::before 
+                {
+                    background: url(../images/sprite.png) 0 -549px;
+                }
+
+              }
+              .container.fmle input:checked ~ .checkmark {
+                /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#feb722+0,f1cc7d+100 */
+                background: rgb(254,183,34); /* Old browsers */
+                background: -moz-linear-gradient(left,  rgba(254,183,34,1) 0%, rgba(241,204,125,1) 100%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(left,  rgba(254,183,34,1) 0%,rgba(241,204,125,1) 100%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(to right,  rgba(254,183,34,1) 0%,rgba(241,204,125,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb722', endColorstr='#f1cc7d',GradientType=1 ); /* IE6-9 */
+                color: #fff;
+                &::before 
+                {
+                    background: url(../images/sprite.png) 0 -455px;
+                }
+
+              }             
+              
+              
+              /* Show the indicator (dot/circle) when checked */
+              .container input:checked ~ .checkmark:after {
+                display: block;
+              }
+            
+              
+        }
+        .gn-rt-container
+        {
+           margin: 0 auto;
+           max-width: 450px;
+           width: 100%;
+           padding-left: 15px;
+           padding-right: 15px;
+           z-index: 9;
+           position: relative;
+        }
+        .logn-top
+        {
+            @include flotwidth100();
+            margin-top: 50px;
+            margin-bottom: 15%;
+            a 
+            {
+                @include fontstyles(28px, #dadada, 700);
+                text-decoration: none;
+                margin-right: 20px;
+            }
+            a.active 
+            {
+                color: #000;
+            }
+        }
+    }
+    .lgn-flids
+    {
+        ::placeholder {
+            color: #cbcbcb;
+            opacity: 1; /* Firefox */
+          }
+          
+          :-ms-input-placeholder { /* Internet Explorer 10-11 */
+           color: #cbcbcb;
+          }
+          
+          ::-ms-input-placeholder { /* Microsoft Edge */
+           color: #cbcbcb;
+          }
+
+        .form-label
+        {
+            @include fontstyles(16px, #000, 500);
+            margin-bottom: 3px;
+        }
+        .input-group-text
+        {
+            background-color: #fff;
+            border: 2px solid #cbcbcb;
+            @include fontstyles(18px, #EFEEEB, 400);
+            margin-right: -2px;
+        }
+        .form-control
+        {
+            border-radius: 7px;
+            border: 2px solid #cbcbcb;
+            @include fontstyles(18px, #000, 400);
+            height: 55px;
+
+            &:focus
+            {
+                border: 2px solid #f9b31c;
+                box-shadow: none;
+                color: #f9b31c;
+            }
+        }
+        .btn-primary
+        {
+            background-color: #f9b31c;
+            @include fontstyles(18px, #fff, 700);
+            border: 1px solid #f9b31c;
+            width: 100%;
+            height: 55px;
+
+            &:hover 
+            {
+                box-shadow: 0px 2px 10px #f9b31c;
+            }
+        }
+    }
+    .frgt-pwd
+    {
+        @include fontstyles(16px, #cbcbcb, 400);
+        @include flotwidth100();
+        text-align: right;
+        text-decoration: none;
+        margin: 10px 0;
+    }
+    .lgn-botm
+    {
+        text-align: center;
+        @include fontstyles(16px, #cbcbcb, 400);
+        @include flotwidth100();
+        position: relative;
+        margin-bottom: 30px;
+        margin-top: 35px;
+        a {
+            text-decoration: none;
+            @include fontstyles(16px, #af7926, 600);
+        }
+    }
+}
+
+/****** home ****/
+
+.hdr-search
+{
+    float: left;
+    max-width: 350px;
+    width: 100%;
+
+    .serch_bx
+    {
+        background: url(../images/search.png) no-repeat 20px center;
+        padding-left: 50px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border: 1px solid #EBEBEB;
+        border-radius: 10px;
+        height: 55px;
+    }
+    ::-webkit-input-placeholder { /* Edge */
+        color: #dbdbdb;
+      }
+      
+      :-ms-input-placeholder { /* Internet Explorer */
+        color: #dbdbdb;
+      }
+      
+      ::placeholder {
+        color: #dbdbdb;
+      }
+}
+.hdr-account
+{
+    float: right;
+    display: flex;
+}
+.m-logo
+{
+    max-width: 240px;
+    float: left;
+}
+.hdr-lft
+{
+    @include flotwidth100();
+    padding: 12px 15px 12px 50px;
+    border-bottom: 2px solid #f5f6f9;
+    background: #fff;
+}
+.mn-nav
+{ 
+    @include flotwidth100();
+    padding-top: 30px;
+    
+    ul 
+    {
+        padding: 0;
+        li 
+        {
+            list-style: none;
+            padding-left: 50px;
+            padding-right: 15px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            position: relative;
+
+            &::before
+            {
+                content: "";
+                position: absolute;
+                width: 6px;
+                height: 26px;
+                border-radius: 140px;
+                /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#d81b30+0,f05465+100 */
+                background: rgb(216,27,48); /* Old browsers */
+                background: -moz-linear-gradient(top,  rgba(216,27,48,1) 0%, rgba(240,84,101,1) 100%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(top,  rgba(216,27,48,1) 0%,rgba(240,84,101,1) 100%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(to bottom,  rgba(216,27,48,1) 0%,rgba(240,84,101,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d81b30', endColorstr='#f05465',GradientType=0 ); /* IE6-9 */
+                right: 0;
+                top: 12px;
+                opacity: 0;
+
+            }
+            a 
+            {
+                @include fontstyles(20px, #C4C4C4, 400);
+                text-decoration: none;
+                position: relative;
+                padding-left: 40px;
+            }
+        }
+    }
+}
+.mn-nav .active
+{
+    background-color: #fbf8f8;
+}
+.mn-nav .active a::before
+{
+    background-position-x: -46px;
+}
+.mn-nav li.active::before
+{
+    opacity: 1;
+}
+
+.mn-nav li:hover
+{
+    background-color: #fbf8f8;
+    a::before
+    {
+        background-position-x: -46px;
+    }
+    &::before
+    {
+        opacity: 1;
+    }
+}
+.mn-1::before {
+    @include icon();
+    left: 0px;
+    top: 1px;   
+    background-position: 0px 0px;
+}
+.mn-2::before {
+    @include icon();
+    left: 0px;
+    top: 1px;   
+    background-position: 0px -36px;
+}
+.mn-3::before {
+    @include icon();
+    left: 0px;
+    top: 1px;   
+    background-position: 0px -74px;
+}
+.mn-4::before {
+    @include icon();
+    left: 0px;
+    top: 1px;   
+    background-position: 0px -261px;
+}
+.mn-5::before {
+    @include icon();
+    left: 0px;
+    top: 1px;   
+    background-position: 0px -149px;
+}
+.mn-6::before {
+    @include icon();
+    left: 0px;
+    top: 1px;   
+    background-position: 0px -187px;
+}
+.mn-7::before {
+    @include icon();
+    left: 0px;
+    top: 1px;   
+    background-position: 0px -223px;
+}
+
+.fnd-dr
+{
+    @include fontstyles(20px, #fff, 500);
+    text-decoration: none;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f05465+0,d81b30+100 */
+    background: rgb(240,84,101); /* Old browsers */
+    background: -moz-linear-gradient(left,  rgba(240,84,101,1) 0%, rgba(216,27,48,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  rgba(240,84,101,1) 0%,rgba(216,27,48,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  rgba(240,84,101,1) 0%,rgba(216,27,48,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f05465', endColorstr='#d81b30',GradientType=1 ); /* IE6-9 */
+    width: 100%;
+    float: left;
+    padding: 10px;
+    padding-left: 70px;
+    position: relative;
+    border-radius: 10px;
+    margin-left: 50px;
+    margin-top: 80px;
+    max-width: 230px;
+
+    &:hover 
+    {
+        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#d81b30+0,f05465+100 */
+        background: rgb(216,27,48); /* Old browsers */
+        background: -moz-linear-gradient(left,  rgba(216,27,48,1) 0%, rgba(240,84,101,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(left,  rgba(216,27,48,1) 0%,rgba(240,84,101,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right,  rgba(216,27,48,1) 0%,rgba(240,84,101,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d81b30', endColorstr='#f05465',GradientType=1 ); /* IE6-9 */
+        text-decoration: none;
+        color: #fff;
+    }
+    &::before
+    {
+        background: url(../images/doctor.png) no-repeat;
+        content: "";
+        position: absolute;
+        width: 27px;
+        height: 27px;
+        background-position: 0px 0;
+        left: 27px;
+        top: 13px;
+    }
+}
+
+
+.left-main
+{
+    width: 330px;
+    z-index: 9;
+    bottom: 0;
+    position: fixed;
+    top: 0;
+    padding-top: 0px;
+}
+.content_area
+{
+    margin-left: 330px;
+    overflow: hidden;
+    padding: 86px 30px 65px;
+    min-height: 100vh;
+    background: #f5f6f9;
+}
+.hdr-top
+{
+    padding: 15px 30px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 0 35px 0 rgba(154,161,171,.15);
+    box-shadow: 0 0 35px 0 rgba(154,161,171,.15);
+    min-height: 70px;
+    position: fixed;
+    left: 332px;
+    top: 0;
+    right: 0;
+    z-index: 8;
+}
+.visit_main
+{
+    @include fontstyles(14px, #4A4A4A, 400);
+    text-decoration: none;
+    border: 1px solid #EBEBEB;
+    width: 100%;
+    float: left;
+    padding: 10px;
+    padding-right: 18px;
+    padding-left: 40px;
+    position: relative;
+    border-radius: 10px;
+    margin-right: 30px;
+    max-width: 200px;
+    line-height: 34px;
+     
+    &:hover 
+    {
+        text-decoration: none;
+        color: $red;
+    }
+    &::before
+    {
+        background: url(../images/icon-glb.png) no-repeat;
+        content: "";
+        position: absolute;
+        width: 27px;
+        height: 27px;
+        background-position: 0px 0;
+        left: 15px;
+        top: 19px;
+    }
+}
+.my-acc .dropdown-toggle::after
+{
+    display: none;
+}
+.my-acc .dropdown-menu
+{
+    min-width: 13rem;
+}
+.acc-avtar
+{
+    position: relative;
+    padding-left: 54px;
+     
+    &:focus 
+    {
+        box-shadow: none;
+    }
+    
+    .img-avtr {
+        position: absolute;
+        border: 2px solid #D6172C;
+        border-radius: 100%;
+        padding: 1px;
+        width: 42px;
+        height: 42px;
+        overflow: hidden;
+        left: 0;
+    }
+    .usr-name {
+        float: left;
+        width: 100%;
+        text-align: left;
+        @include fontstyles(16px, #4A4A4A, 400);
+    }
+    small {
+        float: left;
+        width: 100%;
+        text-align: left;
+        @include fontstyles(12px, #C4C4C4, 400);
+    }
+}
+
+.main-content
+{
+    @include flotwidth100();
+    padding-top: 40px;
+}
+.mn-hd
+{
+    @include fontstyles(30px, #C4C4C4, 600);
+}
+
+.dpt-nav
+{
+    padding: 0;
+    margin: 35px 0;
+    white-space: nowrap;
+    li {
+        display: inline;
+        list-style: none;
+        margin-right: 12px;
+
+        a {
+            padding: 15px 30px;            
+            @include fontstyles(16px, #C4C4C4, 600);
+            border: 1px solid #A4A4A4;
+            border-radius: 10px;
+            text-decoration: none;
+            text-transform: uppercase;
+
+            &:hover
+            {
+                /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#d81b30+0,f05465+100 */
+                background: rgb(216,27,48); /* Old browsers */
+                background: -moz-linear-gradient(top,  rgba(216,27,48,1) 0%, rgba(240,84,101,1) 100%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(top,  rgba(216,27,48,1) 0%,rgba(240,84,101,1) 100%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(to bottom,  rgba(216,27,48,1) 0%,rgba(240,84,101,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d81b30', endColorstr='#f05465',GradientType=0 ); /* IE6-9 */
+                border: 1px solid #ef5062;
+                color: #fff;
+                box-shadow: 0px 2px 9px -1px rgba(216, 28, 49, 0.8);
+            }
+        }
+    }
+    .active 
+    {
+        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#d81b30+0,f05465+100 */
+        background: rgb(216,27,48); /* Old browsers */
+        background: -moz-linear-gradient(top,  rgba(216,27,48,1) 0%, rgba(240,84,101,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top,  rgba(216,27,48,1) 0%,rgba(240,84,101,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom,  rgba(216,27,48,1) 0%,rgba(240,84,101,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d81b30', endColorstr='#f05465',GradientType=0 ); /* IE6-9 */
+        border: 1px solid #ef5062;
+        color: #fff;
+        box-shadow: 0px 2px 9px -1px rgba(216, 28, 49, 0.8);
+    }
+}
+
+.dpt-apmnt
+{
+    padding: 0;
+    margin: 0;
+
+    .owl-stage-outer
+    {
+        padding-left: 10px;
+    }
+    .owl-item {
+        padding-left: 0px;
+    }
+
+    .dpt-active 
+    {
+        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#d81b30+0,f05465+100 */
+        background: rgb(216,27,48); /* Old browsers */
+        background: -moz-linear-gradient(top,  rgba(216,27,48,1) 0%, rgba(240,84,101,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top,  rgba(216,27,48,1) 0%,rgba(240,84,101,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom,  rgba(216,27,48,1) 0%,rgba(240,84,101,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d81b30', endColorstr='#f05465',GradientType=0 ); /* IE6-9 */
+        border: 1px solid #ef5062;
+        color: #fff;
+        box-shadow: 0px 2px 9px -1px rgba(216, 28, 49, 0.8);
+        a { color: #fff !important; }
+    }
+
+    .dpt-nme { 
+        border: 1px solid #A4A4A4;
+        border-radius: 10px;  
+        padding: 15px 30px;    
+        margin-bottom: 8px;
+        margin-top: 8px;   
+        
+        &:hover
+        {
+            /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#d81b30+0,f05465+100 */
+            background: rgb(216,27,48); /* Old browsers */
+            background: -moz-linear-gradient(top,  rgba(216,27,48,1) 0%, rgba(240,84,101,1) 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(top,  rgba(216,27,48,1) 0%,rgba(240,84,101,1) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom,  rgba(216,27,48,1) 0%,rgba(240,84,101,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d81b30', endColorstr='#f05465',GradientType=0 ); /* IE6-9 */
+            border: 1px solid #ef5062;
+            color: #fff;
+            box-shadow: 0px 2px 9px -1px rgba(216, 28, 49, 0.8);
+            
+            a { color: #fff; }
+        }
+
+        a {
+                     
+            @include fontstyles(16px, #C4C4C4, 600);
+            text-decoration: none;
+            text-transform: uppercase;            
+        }
+    }
+}
+
+
+.dr-list
+{
+    margin-bottom: 20px;
+    .media
+    {
+        align-items: center;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 10px;
+
+        h5 
+        {
+            @include fontstyles(19px, #44485E, 700);
+            margin-bottom: 10px;
+        }
+        p
+        {
+            @include fontstyles(13px, #A4A4A4, 300);
+            margin-bottom: 0;
+            strong {font-weight: 600;}
+            
+        }
+        .btn-profile
+        {
+            @include fontstyles(13px, #44485e, 400);
+            text-decoration: none;
+            width: 100%;
+            float: left;
+            padding: 8px;
+            position: relative;
+            border-radius: 50px;
+            max-width: 100px;
+            text-align: center;
+            border: 1px solid #707070;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        .btn-bkapmnt
+        {
+            @include fontstyles(13px, #fff, 400);
+            text-decoration: none;
+            width: 100%;
+            float: left;
+            padding: 9px;
+            position: relative;
+            border-radius: 50px;
+            max-width: 150px;
+            text-align: center;
+            margin-top: 10px;
+            /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#0fb798+0,02dfb7+100 */
+            background: rgb(15,183,152); /* Old browsers */
+            background: -moz-linear-gradient(left,  rgba(15,183,152,1) 0%, rgba(2,223,183,1) 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(left,  rgba(15,183,152,1) 0%,rgba(2,223,183,1) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to right,  rgba(15,183,152,1) 0%,rgba(2,223,183,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0fb798', endColorstr='#02dfb7',GradientType=1 ); /* IE6-9 */
+            box-shadow: 0px 2px 9px -1px rgba(15,183,152, .8);
+
+        }
+
+    }
+    img 
+    {
+        max-width: 130px;
+        max-height: 165px;
+        border-radius: 10px;
+    }
+}
+
+.dt-tbs
+{
+    padding: 0;
+    margin: 35px 0;
+    border: none;
+    li {
+        display: inline;
+        list-style: none;
+        margin-right: 12px;
+
+        a {
+            padding: 15px 30px;            
+            @include fontstyles(16px, #C4C4C4, 600);
+            border: 1px solid #A4A4A4;
+            border-radius: 10px;
+            text-decoration: none;
+            text-transform: uppercase;
+
+            &:hover
+            {
+                /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#d81b30+0,f05465+100 */
+                background: rgb(216,27,48); /* Old browsers */
+                background: -moz-linear-gradient(top,  rgba(216,27,48,1) 0%, rgba(240,84,101,1) 100%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(top,  rgba(216,27,48,1) 0%,rgba(240,84,101,1) 100%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(to bottom,  rgba(216,27,48,1) 0%,rgba(240,84,101,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d81b30', endColorstr='#f05465',GradientType=0 ); /* IE6-9 */
+                border: 1px solid #ef5062;
+                color: #fff;
+                box-shadow: 0px 2px 9px -1px rgba(216, 28, 49, 0.8);
+            }
+        }
+    }
+    .active 
+    {
+        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#d81b30+0,f05465+100 */
+        background: rgb(216,27,48); /* Old browsers */
+        background: -moz-linear-gradient(top,  rgba(216,27,48,1) 0%, rgba(240,84,101,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top,  rgba(216,27,48,1) 0%,rgba(240,84,101,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom,  rgba(216,27,48,1) 0%,rgba(240,84,101,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d81b30', endColorstr='#f05465',GradientType=0 ); /* IE6-9 */
+        border: 1px solid #ef5062;
+        color: #fff;
+        box-shadow: 0px 2px 9px -1px rgba(216, 28, 49, 0.8);
+    }
+}
+.tbcnt
+{
+    @include flotwidth100();
+}
+.apomnts
+{
+    .media
+    {
+        .btn-bkapmnt {
+            max-width: 120px;
+            margin-top: 10px;
+        }
+        p
+        {
+            @include fontstyles(11px, #C4C4C4, 400);
+            @include flotwidth100();
+            margin: 10px 0;
+        }
+        .apmnt-top
+        {
+            @include flotwidth100();
+            display: flex;
+            .apt-tpLt
+            {
+                @include cusfloatwidth(70%);
+                strong 
+                {
+                    @include fontstyles(15px, #A4A4A4, 600);
+                }
+            }
+            .apt-tpRt
+            {
+                @include cusfloatwidth(30%);
+                span
+                {
+                    @include fontstyles(10px, #A4A4A4, 400);
+                    @include flotwidth100();
+                    text-align: right;
+                    strong {font-weight: 600;}
+                }
+            }
+        }
+        .dtt
+        {
+            @include flotwidth100();
+            display: flex;
+    
+            .dt 
+            {
+                @include fontstyles(14px, #44485E, 400);
+                @include cusfloatwidth(50%);
+                padding-left: 23px;
+                &::before
+                {
+                    @include sp-sprite();
+                    left: 0px;
+                    top: 2px;   
+                    width: 20px;
+                    height: 20px;
+                    background-position: 0px 0px;
+                }
+            }
+            .tm
+            {
+                @include fontstyles(14px, #44485E, 400);
+                @include cusfloatwidth(50%);
+                padding-left: 23px;
+                &::before
+                {
+                    @include sp-sprite();
+                    left: 0px;
+                    top: 1px;   
+                    width: 20px;
+                    height: 20px;
+                    background-position: 0px -25px;
+                }
+            }
+        }
+    }
+    
+}
+
+.dr-dtls
+{
+    background: #fff;
+    border-radius: 15px;
+    padding: 15px;
+
+    img 
+    {
+        border-radius: 10px;
+    }
+    h4  
+    {
+        margin-bottom: 15px;
+        @include fontstyles(20px, #4A4A4A, 700);
+        text-transform: capitalize;
+        margin-top: 20px;
+        text-align: center;
+    }
+    p  
+    {
+        margin-bottom: 0;
+        display: flex;
+        justify-content: center;
+        @include fontstyles(14px, #A4A4A4, 400);
+        span {min-width: 80px;
+            float: left; text-align: right;}
+         strong {font-weight: 600;float: left; text-align: left;}
+    }
+}
+.consult_dtls
+{
+    background: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    @include flotwidth100();
+
+    .dr-card
+    {
+         /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#d81b30+0,f05465+100 */
+         background: rgb(216,27,48); /* Old browsers */
+         background: -moz-linear-gradient(top,  rgba(216,27,48,1) 0%, rgba(240,84,101,1) 100%); /* FF3.6-15 */
+         background: -webkit-linear-gradient(top,  rgba(216,27,48,1) 0%,rgba(240,84,101,1) 100%); /* Chrome10-25,Safari5.1-6 */
+         background: linear-gradient(to bottom,  rgba(216,27,48,1) 0%,rgba(240,84,101,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d81b30', endColorstr='#f05465',GradientType=0 ); /* IE6-9 */
+         padding: 35px;
+         border-radius: 15px;
+         @include flotwidth100();
+         box-shadow: 0px 0px 8px 0px rgba(215, 28, 49, .5); 
+
+         small 
+         {
+            @include fontstyles(17px, #fff, 400);
+            opacity: .5;
+            margin-bottom: 10px;
+            float: left;
+            width: 100%;
+         }
+         h4
+         {
+            @include fontstyles(22px, #fff, 700);
+         }
+         .dtt
+         {
+             @include flotwidth100();
+             display: flex;
+             margin-top: 40px;
+             align-items: center;
+     
+             .dt 
+             {
+                 @include fontstyles(17px, #fff, 400);
+                 @include cusfloatwidth(50%);
+                 padding-left: 23px;
+                 &::before
+                 {
+                     @include sp-sprite();
+                     left: 0px;
+                     top: 4px;   
+                     width: 20px;
+                     height: 20px;
+                     background-position: 0px -56px;
+                 }
+             }
+             .tm
+             {
+                 @include fontstyles(17px, #fff, 400);
+                 @include cusfloatwidth(50%);
+                 padding-left: 23px;
+                 &::before
+                 {
+                     @include sp-sprite();
+                     left: 0px;
+                     top: 4px;   
+                     width: 20px;
+                     height: 20px;
+                     background-position: 0px -82px;
+                 }
+             }
+         }
+         .resecdlue
+         {
+                @include fontstyles(16px, #fff, 600);
+                text-decoration: none;
+                width: 100%;
+                float: right;
+                padding: 12px 25px;
+                position: relative;
+                border-radius: 50px;
+                max-width: 135px;
+                text-align: center;
+                border: 1px solid #fff;        
+                
+                &:hover 
+                {
+                    color: $red;
+                    background-color: #fff;
+                }
+         }
+    }
+}
+.cus-chkbx
+{
+    float: left;
+    width: 100%;
+    position: relative;
+    margin-top: 30px;
+
+    .container {
+        display: block;
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        @include fontstyles(14px, #c4c4c4, 400);
+      }
+      
+      /* Hide the browser's default checkbox */
+      .container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+      }
+      
+      /* Create a custom checkbox */
+      .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        border-radius: 4px;
+        border: 1px solid #af7926;
+        background-color: #eee;
+      }
+      
+      /* On mouse-over, add a grey background color */
+      .container:hover input ~ .checkmark {
+        background-color: #ccc;
+      }
+      
+      /* When the checkbox is checked, add a blue background */
+      .container input:checked ~ .checkmark {
+        background-color: $orange;
+      }
+      
+      /* Create the checkmark/indicator (hidden when not checked) */
+      .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+      
+      /* Show the checkmark when checked */
+      .container input:checked ~ .checkmark:after {
+        display: block;
+      }
+      
+      /* Style the checkmark/indicator */
+      .container .checkmark:after {
+        left: 6px;
+        top: 3px;
+        width: 6px;
+        height: 10px;
+        border: solid #fff;
+        border-width: 0 2px 2px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+}
+.fild-set 
+{
+    @include flotwidth100();
+
+    ::placeholder {
+        color: #cbcbcb;
+        opacity: 1; /* Firefox */
+      }
+      
+      :-ms-input-placeholder { /* Internet Explorer 10-11 */
+       color: #cbcbcb;
+      }
+      
+      ::-ms-input-placeholder { /* Microsoft Edge */
+       color: #cbcbcb;
+      }
+
+    label
+    {
+        @include fontstyles(16px, #000, 500);
+        margin-bottom: 3px;
+    }
+    .form-control
+    {
+        border-radius: 7px;
+        border: 1px solid #cbcbcb;
+        @include fontstyles(18px, #000, 400);
+        height: 55px;
+
+        &:focus
+        {
+            border: 1px solid #f9b31c;
+            box-shadow: none;
+            color: #f9b31c;
+        }
+    }
+    select 
+    {
+        color: #cbcbcb !important;
+    }    
+}
+.btn-Wicon
+    {
+        @include fontstyles(21px, #fff, 600);
+        width: 100%;
+        float: left;
+        max-width: 230px;
+        padding: 15px 20px;       
+        text-transform: uppercase;
+        border: none;
+        border-radius: 50px;
+        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fcb51f+0,e49d07+100 */
+        background: rgb(252,181,31); /* Old browsers */
+        background: -moz-linear-gradient(left,  rgba(252,181,31,1) 0%, rgba(228,157,7,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(left,  rgba(252,181,31,1) 0%,rgba(228,157,7,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right,  rgba(252,181,31,1) 0%,rgba(228,157,7,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcb51f', endColorstr='#e49d07',GradientType=1 ); /* IE6-9 */
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 45px;
+
+        &:focus
+        {
+            box-shadow: none;
+        }
+        &:hover
+        {
+           /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#e49d07+0,fcb51f+100 */
+            background: rgb(228,157,7); /* Old browsers */
+            background: -moz-linear-gradient(left,  rgba(228,157,7,1) 0%, rgba(252,181,31,1) 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(left,  rgba(228,157,7,1) 0%,rgba(252,181,31,1) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to right,  rgba(228,157,7,1) 0%,rgba(252,181,31,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e49d07', endColorstr='#fcb51f',GradientType=1 ); /* IE6-9 */
+            color: #fff;
+            text-decoration: none;
+        }
+        &::before
+        {
+            @include sp-sprite();
+            right: 42px;
+            width: 27px;
+            height: 20px;
+            background-position: 0px -110px;
+        }
+    }
+    .process-status
+    {
+        @include flotwidth100();
+        padding-left: 20px;
+
+        ul 
+        {
+            padding: 0;
+            margin: 0;
+            
+            li 
+            {
+                list-style: none;
+                border-left: 1px solid #d3d4d6;
+                float: left;
+                width: 100%;
+                padding-left: 35px;
+                position: relative;
+                min-height: 100px;
+
+                small 
+                {
+                    @include fontstyles(12px, #C4C4C4, 600);
+                    font-family: $font-robo;
+                }
+                h4
+                {
+                    @include fontstyles(14px, #4A4A4A, 600);
+                    font-family: $font-robo;
+                }
+
+                &:last-child
+                {
+                    border-left: 0;
+                }
+            }
+           
+            li.active 
+            {
+                &::before
+                {
+                    @include sp-sprite();
+                    left: -13px;
+                    top: 0;
+                    width: 24px;
+                    height: 24px;
+                    background-position: 0px -148px;
+                    box-shadow: 0px 0px 0px 5px #f5f6f9;
+                    border-radius: 100%;
+                }
+            }
+            li.inactive 
+            {
+                &::before
+                {
+                    @include sp-sprite();
+                    left: -13px;
+                    top: 0;
+                    width: 24px;
+                    height: 24px;
+                    background-position: 0px -187px;
+                    box-shadow: 0px 0px 0px 5px #f5f6f9;
+                    border-radius: 100%;
+                }
+                h4 {
+                    color: #ebebeb;
+                }
+            }
+        }
+    }
+    .change_btn
+    {
+        @include fontstyles(10px, #4A4A4A, 600);
+        text-decoration: none;
+        width: 100%;
+        float: left;
+        padding: 5px 15px;
+        position: relative;
+        border-radius: 50px;
+        max-width: 65px;
+        text-align: center;
+        border: 1px solid #d3d4d6;       
+        
+        &:hover
+        {
+            background-color: $orange;
+            border: $orange;
+            color: $white;
+            text-decoration: none;
+        }
+    }
+.apomnts-dtls
+{
+    h5 
+    {
+        @include fontstyles(28px, #44485E, 600);
+        margin-bottom: 10px;
+    }
+    .apt-list
+    {
+        margin: 0;
+        padding: 0;
+        li {
+            @include cusfloatwidth(50%);
+            @include fontstyles(19px, #A4A4A4, 400);
+            font-family: $font-robo;
+            list-style: none;
+        }
+    }
+   
+    .btn-dtls
+    {
+        @include fontstyles(20px, #44485E, 400);
+        text-decoration: none;
+        width: 100%;
+        float: left;
+        padding: 10px;
+        position: relative;
+        border-radius: 50px;
+        max-width: 180px;
+        text-align: center;
+        border: 1px solid #44485E;
+        margin-top: 20px;
+
+        &:hover 
+        {
+            background-color: #44485E;
+            color: #fff;
+        }
+    }
+    
+        img 
+        {
+            max-width: 330px;
+            max-height: 365px;
+            border-radius: 10px;
+        }
+
+    .media
+    {
+        padding: 35px;
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 2px 4px 12px #dedede; 
+
+        p
+        {
+            @include fontstyles(24px, #C4C4C4, 300);
+            font-family: $font-robo;
+            @include flotwidth100();
+            margin: 25px 0 10px;
+        }
+        .apmnt-top
+        {
+            @include flotwidth100();
+            display: flex;
+            .apt-tpLt
+            {
+                @include cusfloatwidth(70%);
+                strong 
+                {
+                    @include fontstyles(28px, #CFCFCF, 600);
+                }
+            }
+            .apt-tpRt
+            {
+                @include cusfloatwidth(30%);
+                span
+                {
+                    @include fontstyles(14px, #A4A4A4, 400);
+                    @include flotwidth100();
+                    font-family: $font-robo;
+                    text-align: right;
+                    strong {font-weight: 600;font-size: 16px;}
+                }
+            }
+        }
+        .dtt
+        {
+            @include flotwidth100();
+            display: flex;
+            margin-bottom: 30px;
+            margin-top: 10px;
+    
+            .dt 
+            {
+                @include fontstyles(20px, #44485E, 600);
+                @include cusfloatwidth(50%);
+                padding-left: 45px;
+                &::before
+                {
+                    @include sp-sprite();
+                    left: 0px;
+                    top: -3px;
+                    width: 36px;
+                    height: 35px;
+                    background-position: 0px -282px;
+                }
+            }
+            .tm
+            {
+                @include fontstyles(20px, #44485E, 600);
+                @include cusfloatwidth(50%);
+                padding-left: 45px;
+                &::before
+                {
+                    @include sp-sprite();
+                    left: 0px;
+                    top: -1px;
+                    width: 37px;
+                    height: 37px;
+                    background-position: 0px -229px;
+                }
+            }
+        }
+    }
+}
+
+.repots
+{
+    margin-bottom: 25px;
+    .rpt-wrap
+    {
+        background-color: $white;
+        border-radius: 15px;
+        @include flotwidth100();
+        padding: 25px 20px;
+        min-height: 235px;
+        align-items: flex-end;
+        flex-direction: column;
+        display: flex;
+
+        h4   
+        {
+            @include fontstyles(24px, #4A4A4A, 600);
+            @include flotwidth100();
+            text-align: left;
+        }
+        p   
+        {
+            @include fontstyles(16px, #C4C4C4, 400);
+            @include flotwidth100();
+            text-align: left;
+            strong 
+            {
+                font-weight: 600;
+            }
+        }
+        .rpt-options
+        {
+            @include flotwidth100();
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            margin-top: auto!important;
+
+            .dwnld-rpt
+            {
+                width: 51px;
+                height: 51px;
+                background: url(../images/sprite.png) no-repeat 0 -334px;
+            }
+            .bt-view
+            {
+                @include fontstyles(16px, #707070, 400);
+                text-decoration: none;
+                width: 100%;
+                float: left;
+                padding: 7px;
+                position: relative;
+                border-radius: 50px;
+                max-width: 90px;
+                text-align: center;
+                border: 1px solid #707070;
+                max-height: 35px;
+                line-height: 16px;
+        
+                &:hover 
+                {
+                    background-color: #707070;
+                    color: #fff;
+                }
+            }
+            .dropdown-toggle::after
+            {
+                display: none;
+            }
+            .btn:focus
+            {
+                box-shadow: none;
+            }
+            .btn-dots span
+            {
+                border: 1px solid #707070;
+                height: 5px;
+                width: 5px;
+                float: left;
+                margin-right: 3px;
+                border-radius: 50px;
+                display: flex;                
+            }
+
+        }
+    }
+}
+
+/**** profile ****/
+.profile-dtls
+{
+    @include flotwidth100();    
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 2px 4px 20px #e6e6e6;
+
+    h5 
+    {
+        @include fontstyles(25px, #4A4A4A, 600);
+        margin-top: 20px;
+    }
+    .pro-dtls
+    {
+        @include flotwidth100();
+        margin-top: 60px;
+        ul 
+        {
+            margin: 0;
+            padding: 0;
+            li {
+               list-style: none;
+               @include flotwidth100();
+               margin-bottom: 12px;
+               span 
+               {
+                @include cusfloatwidth(30%);
+                @include fontstyles(19px, #C4C4C4, 400);
+                font-family: $font-robo;
+               }
+               strong 
+               {
+                @include cusfloatwidth(70%);
+                @include fontstyles(18px, #44485E, 600);
+                font-family: $font-robo;
+               }
+            }
+        }
+    }
+    .pro-btns
+    {
+        @include flotwidth100();
+        border-top: 1px solid #f5f6f9;
+        padding-left: 185px;
+        padding-bottom: 25px;
+        padding-top: 20px;
+        margin-top: 15px;
+
+        .btn-lgt
+        {
+            @include fontstyles(16px, #4A4A4A, 700);
+            font-family: $font-robo;
+            text-decoration: none;
+            width: 100%;
+            float: left;
+            padding: 10px;
+            position: relative;
+            border-radius: 50px;
+            max-width: 122px;
+            text-align: center;
+            background-color: #FCECC9;
+            margin-top: 10px;
+            margin-right: 20px;
+            margin-bottom: 10px;
+    
+            &:hover 
+            {
+                background-color: $orange;
+                color: #fff;
+            }
+        }
+        .btn-proEdt
+        {
+            @include fontstyles(16px, #4A4A4A, 700);
+            font-family: $font-robo;
+            text-decoration: none;
+            width: 100%;
+            float: left;
+            padding: 9px;
+            position: relative;
+            border-radius: 50px;
+            max-width: 147px;
+            text-align: center;
+            border: 1px solid #4A4A4A;
+            margin-top: 10px;
+            margin-bottom: 10px;
+    
+            &:hover 
+            {
+                background-color: $orange;
+                border: 1px solid $orange;
+                color: #fff;
+            }
+        }
+    }
+  
+    
+        img 
+        {
+            max-width: 107px;
+            max-height: 107px;
+            border-radius: 100%;
+            border: 2px solid #d6172c;
+            padding: 4px;
+        }
+
+    .media
+    {        
+        padding: 35px;
+        .apmnt-top
+        {
+            @include flotwidth100();
+            display: flex;
+            .apt-tpLt
+            {
+                @include cusfloatwidth(100%);
+                strong 
+                {
+                    @include fontstyles(19px, #C4C4C4, 400);
+                }
+            }
+           
+        }
+
+    }
+}
+
+
+.rewrd-list
+{
+    .reward-wraper
+    {
+        background: #fff;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0px 2px 9px 0px #ecedf1;
+        margin-bottom: 30px;
+
+        .rewrd-img
+        {
+            max-width: 100%;
+            max-height: 292px;
+            overflow: hidden;
+            img 
+            {
+                max-width: 100%;
+                width: 100%;
+            }
+        }
+        .rewrd-details
+        {
+            padding: 20px;
+            @include flotwidth100();
+        }
+        h4 
+        {
+            @include fontstyles(20px, #44485E, 400);
+            font-family: $font-robo;
+        }
+        .off-code
+        {
+            text-align: center;
+            border: 2px dashed #76b339;
+            padding: 10px;
+            border-radius: 50px;            
+            margin-bottom: 15px;
+            margin-top: 15px;
+
+            .spent
+            {
+                @include fontstyles(12px, #44485E, 400);
+                font-family: $font-robo;
+                margin-right: 10px;
+            }
+            .ponts
+            {
+                @include fontstyles(16px, #39B39D, 700);
+                font-family: $font-robo;
+            }
+        }
+        .rwdprice
+        {
+            @include flotwidth100();
+            display: flex;
+            justify-content: space-between;
+
+            a 
+            {
+                @include fontstyles(12px, #fff, 600);
+                text-decoration: none;
+                width: 100%;
+                float: left;
+                padding: 10px;
+                position: relative;
+                border-radius: 50px;
+                max-width: 122px;
+                text-align: center;                
+                border: 1px solid #0FB798;
+                height: 40px;
+
+                 /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#0fb798+0,02dfb7+100 */
+                background: rgb(15,183,152); /* Old browsers */
+                background: -moz-linear-gradient(left,  rgba(15,183,152,1) 0%, rgba(2,223,183,1) 100%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(left,  rgba(15,183,152,1) 0%,rgba(2,223,183,1) 100%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(to right,  rgba(15,183,152,1) 0%,rgba(2,223,183,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0fb798', endColorstr='#02dfb7',GradientType=1 ); /* IE6-9 */
+                box-shadow: 0px 2px 9px -1px rgba(15,183,152, .8);
+
+        
+                &:hover 
+                {
+                    background: $white;
+                    color: #0FB798;
+                }
+    
+            }
+            .offPrce
+            {
+                .rlPrice
+                {
+                    @include fontstyles(14px, #A4A4A4, 400);
+                    font-family: $font-robo;
+                    text-decoration: line-through;
+                    @include flotwidth100();
+                }
+                .offPrice
+                {
+                    @include fontstyles(20px, #D6172C, 700);
+                    font-family: $font-robo;
+                    @include flotwidth100();
+                }
+                
+            }
+        }
+    }
+}
+
+.lp-wraper-lt
+{
+    @include flotwidth100(); 
+    border-radius: 15px;
+    background: #fff;
+    overflow: hidden;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    
+    .lp-top
+    {
+        @include flotwidth100();
+        display: flex;
+        padding: 15px;
+
+        img 
+        {
+            max-width: 160px;
+        }
+        .lp-tp-dtl
+        {
+            padding-left: 20px;
+            margin-top: 15px;
+            text-align: right;
+            h4 
+            {
+                @include fontstyles(21px, #C4C4C4, 600);
+                font-family: $font-robo;
+            }
+            p 
+            {
+                @include fontstyles(18px, #2C2543, 400);
+                font-family: $font-robo;
+            }
+        }
+    }
+    .lp-mid
+    {
+        @include flotwidth100();
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid #f5f6f9;
+        padding-top: 20px;
+        margin-top: 15px;
+        padding-bottom: 20px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #f5f6f9;
+
+        .lp-points
+        {
+            @include fontstyles(16px, #44485E, 400);
+            span 
+            {
+                @include fontstyles(24px, #fff, 700);
+                padding: 6px 25px;
+                border-radius: 50px;
+                margin-left: 10px;
+                font-family: $font-robo;
+                /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#feb721+0,ffdd96+100 */
+                background: rgb(254,183,33); /* Old browsers */
+                background: -moz-linear-gradient(left,  rgba(254,183,33,1) 0%, rgba(255,221,150,1) 100%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(left,  rgba(254,183,33,1) 0%,rgba(255,221,150,1) 100%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(to right,  rgba(254,183,33,1) 0%,rgba(255,221,150,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb721', endColorstr='#ffdd96',GradientType=1 ); /* IE6-9 */
+
+            }
+        }
+        .lp-amts
+        {
+            small 
+            {
+                @include fontstyles(14px, #44485E, 400);
+                font-family: $font-robo;    
+                display: block;
+                margin-bottom: -7px;            
+            }
+            span 
+            {
+                @include fontstyles(24px, #44485E, 700);
+                font-family: $font-robo;                
+            }
+        }
+       
+    }
+    .lp-bottom
+    {
+        @include flotwidth100();
+        padding: 15px;
+        text-align: center;
+        img 
+        {
+            width: 332px;
+        }
+    }
+}
+
+.lp-wraper-rt
+{
+    @include flotwidth100(); 
+    border-radius: 15px;
+    background: #fff;
+    overflow: hidden;
+    margin-top: 20px;
+    padding: 30px;
+
+    h4 
+    {
+        @include fontstyles(21px, #C4C4C4, 600);
+        font-family: $font-robo;
+        margin-bottom: 25px;
+    }
+    .viwm
+    {
+        @include fontstyles(14px, #A4A4A4, 400);
+        text-transform: uppercase;
+        text-decoration: none;
+        float: left;
+        width: 100%;
+        text-align: right;
+        border-top: 1px solid #dee2e6;
+        padding-top: 20px;
+
+        &:hover
+        {
+            color: $red;
+        }
+    }
+    .table
+    {
+        margin-bottom: 5px;
+        thead
+        {
+            th 
+            {
+                @include fontstyles(14px, #A4A4A4, 600);
+                font-family: $font-robo;
+                border: none;
+            }
+        }
+        tbody
+        {
+            th 
+            {
+                @include fontstyles(14px, #A4A4A4, 600);
+                vertical-align: middle;
+                padding: 0.5rem;
+            }
+            td 
+            {
+                padding: 0.5rem;
+                vertical-align: middle;
+                p 
+                {
+                   @include fontstyles(14px, #2E3247, 600);
+                   margin-bottom: 0;
+                }
+                small 
+                {
+                    @include fontstyles(14px, #A4A4A4, 600);
+                }
+                span 
+                {
+                    @include fontstyles(14px, #2E3247, 600);
+                }
+            }
+            .tdate
+            {
+                @include fontstyles(14px, #2E3247, 600);
+            }
+            .amt 
+            {
+                @include fontstyles(16px, #2E3247, 600);
+                text-align: right;
+            }
+            .minz
+            {
+                color: #EB263A;
+            }
+            .pluz
+            {
+                color: #07CC00;
+            }
+        }
+    }
+}
+
+
+.succ-wrap
+{
+    background: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    float: left;
+    width: 100%;
+    position: relative;
+
+    .suc_img
+    {
+        @include flotwidth100();
+        text-align: center;
+    }
+    h3 
+    {
+        @include fontstyles(30px, #0C233C, 700);
+        @include flotwidth100();
+        text-align: center;
+        margin-bottom: 0;
+        margin-top: 10px;
+    }
+    p 
+    {
+        @include fontstyles(18px, #222222, 400);
+        @include flotwidth100();
+        text-align: center;
+        margin: 20px 0 50px;
+    }
+    a
+    {
+            background-color: #f9b31c;
+            @include fontstyles(16px, #fff, 600);
+            line-height: 40px;
+            border: none;
+            box-shadow: 0px 2px 10px #f9b31c;
+            width: 100%;
+            height: 55px;
+            max-width: 350px;
+            margin: 0 auto 30px;
+            display: table;
+
+            &:hover 
+            {
+                box-shadow: 0px 2px 10px rgb(216,27,48);;
+                background: rgb(216,27,48); /* Old browsers */
+                background: -moz-linear-gradient(top,  rgba(216,27,48,1) 0%, rgba(240,84,101,1) 100%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(top,  rgba(216,27,48,1) 0%,rgba(240,84,101,1) 100%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(to bottom,  rgba(216,27,48,1) 0%,rgba(240,84,101,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d81b30', endColorstr='#f05465',GradientType=0 );
+            }
+            &:focus
+            {
+                box-shadow: none;
+            }
+        
+    }
+}
+
+.rwds .dt-tbs li a {
+    padding: 9px 15px;
+    float: left;
+    margin-bottom: 10px;
+}
+
+.mob-serch, .fa-cog, .burger-menu, .closebtn, .cl-action
+{
+    display: none;
+}
+
+/**** chooose date ****/
+.choose_dt-wraper
+{
+    background: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    @include flotwidth100();
+
+ 
+      .weekdays {
+        margin: 0;
+        padding: 10px 0;     
+      }
+      
+      .weekdays li {
+        display: inline-block;
+        float: left;
+        width: 14.2%;
+        min-height: 35px;
+        @include fontstyles(24px, #C4C4C4, 600);
+        text-align: center;
+      }
+      
+      .days {
+        padding: 10px 0;
+        margin: 0;
+      }
+      
+      .days li {
+        list-style-type: none;
+        display: inline-block;
+        text-align: center;
+        margin-bottom: 5px;
+        @include fontstyles(24px, #44485E, 600);
+        float: left;
+        width: 14.2%;
+        min-height: 50px;
+      }
+      .days  li .active
+    {
+        width: 45px;
+        height: 45px;
+        display: table;
+        margin: 0 auto;
+        line-height: 42px;
+    }
+        .days li .active {
+            /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#d81b30+0,f05465+100 */
+            background: rgb(216,27,48); /* Old browsers */
+            background: -moz-linear-gradient(left,  rgba(216,27,48,1) 0%, rgba(240,84,101,1) 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(left,  rgba(216,27,48,1) 0%,rgba(240,84,101,1) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to right,  rgba(216,27,48,1) 0%,rgba(240,84,101,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d81b30', endColorstr='#f05465',GradientType=1 ); /* IE6-9 */
+            color: #fff;
+            border-radius: 100%;
+    }
+
+      .chose-top
+      {
+        @include flotwidth100();
+        display: flex;
+        justify-content: space-between;
+
+            .form-control
+            {
+                max-width: 225px;
+                width: 100%;
+                color: #C1C1C1;
+                border: 1px solid #C1C1C1;
+            }
+        
+          small 
+          {
+            @include fontstyles(20px, #C4C4C4, 400);
+          }
+      }
+      .caldr-date
+      {
+        @include flotwidth100();
+      }
+      .time-wrper
+      {
+        small 
+        {
+          @include fontstyles(20px, #C4C4C4, 400);
+          @include flotwidth100();
+          margin-bottom: 20px;
+          margin-top: 10px;
+        }
+        .time-list
+        {
+            margin: 0;
+            padding: 0;
+            @include flotwidth100();
+
+            li 
+            {           
+               
+                border: 1px solid #707070;
+                padding: 10px 15px;
+                border-radius: 10px;
+                margin-right: 10px;
+                @include fontstyles(20px, #0C233C, 500);
+                background: #fff;
+                font-family: $font-robo;
+                float: left;
+                list-style: none;
+                margin-bottom: 10px;
+            }
+            li.active, li:hover 
+            {
+                 /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#d81b30+0,f05465+100 */
+                 background: rgb(216,27,48); /* Old browsers */
+                 background: -moz-linear-gradient(left,  rgba(216,27,48,1) 0%, rgba(240,84,101,1) 100%); /* FF3.6-15 */
+                 background: -webkit-linear-gradient(left,  rgba(216,27,48,1) 0%,rgba(240,84,101,1) 100%); /* Chrome10-25,Safari5.1-6 */
+                 background: linear-gradient(to right,  rgba(216,27,48,1) 0%,rgba(240,84,101,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d81b30', endColorstr='#f05465',GradientType=1 ); /* IE6-9 */
+                 color: #fff;
+                 border: 1px solid #e33548;
+                 cursor: pointer;
+            }
+            
+        }
+
+        .btn-Wicon
+        {
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+      }
+}
+
+@media only screen and (max-width:1630px){
+    .left-main {
+        width: 280px;
+    }
+    .content_area {
+        margin-left: 280px;
+    }
+    .hdr-top {
+        left: 282px;
+    }
+    .hdr-lft {
+        padding: 14px 15px 14px 50px;
+    }
+    .mn-nav {
+        padding-top: 20px;
+    }
+    .dr-list img {
+        max-width: 90px;
+        max-height: 125px;
+    }
+    .fnd-dr {
+        font-size: 20px;
+        padding-left: 65px;
+        margin-left: 40px;
+        margin-top: 50px;
+        max-width: 200px;
+    }
+    .mn-nav ul li a {
+        font-size: 18px;
+    }
+}
+@media only screen and (max-width:1500px){
+    .dr-list .media .btn-profile {
+        padding: 5px;
+        max-width: 65px;      
+        margin-right: 7px;
+        margin-bottom: 10px;  
+    }
+    .dr-list img {
+        max-width: 80px;
+        max-height: 115px;
+        margin-right: 10px !important;
+    }
+    .dr-list .media .btn-bkapmnt {
+        font-size: 13px;
+        width: 100%;
+        float: left;
+        padding: 6px;
+        max-width: 130px;  
+        margin-bottom: 10px;   
+    }
+    .dt-tbs li a {
+        padding: 11px 25px;
+    }
+  
+}
+@media only screen and (max-width:1400px){ 
+ 
+    .dr-list .media h5 {
+        font-size: 16px;
+    }
+    .dt-tbs li a {
+        padding: 9px 23px;
+    }
+    .apomnts .media .apmnt-top .apt-tpLt strong {
+        font-size: 14px;
+    }
+    .mn-hd {
+        font-size: 24px;
+    }
+    .fnd-dr {
+        font-size: 17px;
+        padding-left: 60px;
+        margin-top: 30px;
+        max-width: 190px;
+    }
+    .fnd-dr::before {
+        left: 21px;
+        top: 11px;
+    }
+    .visit_main {
+        max-width: 170px;
+    }
+    .hdr-search {
+        max-width: 300px;
+    }
+    .apomnts-dtls h5 {
+        font-size: 24px;
+    }
+    .apomnts-dtls .media .apmnt-top .apt-tpLt strong {
+        font-size: 22px;
+    }
+    .apomnts-dtls .media p {
+        font-size: 20px;
+    }
+    .apomnts-dtls .apt-list li {
+        font-size: 16px;
+    }
+    .apomnts-dtls .btn-dtls {
+        padding: 7px;
+        max-width: 160px;
+        margin-top: 20px;
+    }
+    .dpt-apmnt .dpt-nme {
+        border-radius: 8px;
+        padding: 8px 18px;
+    }
+    .dpt-apmnt .dpt-nme a {
+        font-size: 14px;
+    }
+    .dr-list .media .btn-profile {
+        padding: 3px;
+        max-width: 60px;
+        margin-right: 5px;
+        margin-bottom: 0px;
+    }
+    .dr-list .media .btn-bkapmnt {
+        font-size: 13px;
+        padding: 4px;
+        margin-bottom: 10px;
+    }
+    .consult_dtls .dr-card .dtt .dt {
+        margin-right: 8px;
+    }
+    .consult_dtls .dr-card {
+        padding: 25px;
+    }
+    .consult_dtls .dr-card .resecdlue {
+        padding: 7px 21px;
+        max-width: 130px;
+    }
+    .repots .rpt-wrap h4 {
+        font-size: 22px;
+    }
+    .choose_dt-wraper .chose-top small {
+        font-size: 18px;
+    }
+    .choose_dt-wraper .weekdays li {
+        min-height: 30px;
+        font-size: 20px;
+    }
+    .choose_dt-wraper .days li {
+        margin-bottom: 5px;
+        font-size: 20px;
+        min-height: 40px;
+    }
+    .choose_dt-wraper .days li .active {
+        width: 40px;
+        height: 40px;
+        line-height: 37px;
+    }
+    .choose_dt-wraper .time-wrper .time-list li {
+        padding: 5px 11px;
+        margin-right: 8px;
+        font-size: 16px;
+    }
+    .btn-Wicon {
+        font-size: 20px;
+        max-width: 180px;
+        padding: 10px 16px;       
+        padding-left: 30px;
+    }
+    .btn-Wicon::before {
+        right: 23px;
+    }
+    .dr-dtls h4 {
+        font-size: 16px;
+    }
+    .my-acc {
+        max-width: 250px;
+    }
+}
+@media only screen and (min-width:1024px) and (max-width:1200px){
+
+.process-status ul li {
+    width: auto;
+    display: inline;
+    margin-right: 30px;
+    margin-top: 30px;
+    border: none;
+}
+
+}
+@media only screen and (max-width:1200px){
+    .hdr-search {
+        max-width: 260px;
+    }
+    .my-acc {
+        max-width: 210px;
+    }
+    .visit_main {
+        max-width: 160px;
+        padding-right: 8px;
+        margin-right: 15px;
+    }
+    .dt-tbs li a {
+        padding: 9px 15px;
+    }
+    .rwds .dt-tbs li a {
+        padding: 9px 15px;
+        float: left;
+        margin-bottom: 10px;
+    }
+    .repots .rpt-wrap h4 {
+        font-size: 20px;
+    }
+}
+@media only screen and (min-width:767px) and (max-width:1024px) {
+    .hdr-search {
+        max-width: 260px;
+    }
+    .my-acc {
+        max-width: 210px;
+    }
+    .visit_main {
+        max-width: 160px;
+        padding-right: 8px;
+        margin-right: 15px;
+    }
+
+    .mob-serch
+    {
+        display: block;
+        background: url(../images/search.png) no-repeat center;
+        height: 30px;
+        width: 30px;
+        border: none;
+    }
+    .m-logo {
+        margin: 0 15px;
+    }
+    .fa-cog
+    {
+        display: block;
+    }
+    .burger-menu
+    {
+        display: block;
+        background: url(../images/burger.svg) no-repeat center;
+        height: 40px;
+        width: 70px;
+        background-size: 25px;
+        float: left;
+        margin-top: 11px;
+    }
+    .closebtn
+    {
+        display: block;
+    }
+    .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+        text-align:left;
+        background-color: #fff;
+      }
+      .hdr-lft {
+        padding: 10px 15px 10px 15px;
+        display: flex;
+      }
+      .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+        color: #000;
+      }
+      .visit_main {
+        font-size: 0;
+        border: none;
+        padding: 10px;
+        padding-right: 15px;
+        padding-left: 20px;
+        border-radius: 10px;
+        margin-right: 0;
+        max-width: 20px;
+        line-height: 34px;
+    }
+    .cl-action 
+    {
+        display: block;
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 74px;
+    }
+      .img-avtr, .acc-avtar .usr-name, .acc-avtar small, .i-down
+      {
+          display: none;
+      }
+      .left-main {
+        width: 100%;
+        position: relative;
+    }
+    .content_area {
+        margin-left: 0;
+        width: 100%;
+        padding: 30px 15px 30px;
+    }
+    .hdr-top {  
+        position: absolute;
+        left: auto;
+        right: 25px;
+        float: right;
+        top: 5px;
+        box-shadow: none;
+        min-height: 50px;
+        display: flex;
+        min-height: 35px;
+        max-height: 35px;
+        margin-top: 5px;
+    }
+    .hdr-search {
+        position: fixed;
+        max-width: 100%;
+        left: 0;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+        z-index: 999;
+        width: 100%;
+        height: 100vh;
+        display: none;
+        padding: 15px;
+    }
+    .hdr-search .serch_bx {
+        background: url(../images/search.png) #fff no-repeat 20px center;   
+    }
+    .acc-avtar {
+        padding: 0;
+    }
+    .visit_main::before {
+        background: url(../images/icon-glb.png) no-repeat;
+        content: "";
+        position: absolute;
+        width: 27px;
+        height: 27px;
+        background-position: 0px 0;
+        left: 6px;
+        top: 6px;
+    }
+    .my-acc .dropdown-menu {
+        min-width: 8rem;
+        left: auto !important;
+        right: 0 !important;
+        transform: translate3d(0px, 30px, 0px) !important;
+    }
+    .main-content {
+        padding-top: 0px;
+    }
+    .dr-list .media .btn-bkapmnt {
+        font-size: 11px;
+    }
+    .dr-list .media .btn-profile .sign_up .lgn-rt .gnder .mle .checkmark
+    font-size: 11px;
+    }
+    .logn .lgn-lft .lgn-contnr h4, .sign_up .lgn-lft .lgn-contnr h4 {
+        font-size: 35px;
+    }
+    .sign_up .lgn-rt .gnder .mle .checkmark {
+        width: 97px;
+    }
+    .sign_up .lgn-rt .gnder .fmle .checkmark {
+        width: 107px;
+    }
+
+    .process-status ul li {
+        width: auto;
+        display: inline;
+        margin-right: 30px;
+        margin-top: 30px;
+        border: none;
+    }
+
+}
+@media only screen and (max-width:767px){
+    .rwds .dt-tbs li a {
+        padding: 5px 10px;
+        border-radius: 7px;
+        float: left;
+        margin-bottom: 0px;
+    }
+    .mn-hd {
+        font-size: 20px;
+    }
+    .mob-serch
+    {
+        display: block;
+        background: url(../images/search.png) no-repeat center;
+        height: 30px;
+        width: 30px;
+        border: none;
+    }
+    .m-logo {
+        margin: 0 15px;
+    }
+    .fa-cog
+    {
+        display: block;
+    }
+    .burger-menu
+    {
+        display: block;
+        background: url(../images/burger.svg) no-repeat center;
+        height: 40px;
+        width: 70px;
+        background-size: 25px;
+        float: left;
+        margin-top: 0px;
+    }
+    .closebtn
+    {
+        display: block;
+    }
+    .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+        text-align:left;
+        background-color: #fff;
+      }
+      .hdr-lft {
+        padding: 10px 15px 10px 15px;
+        display: flex;
+        align-items: center;
+      }
+      .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+        color: #000;
+      }
+      .visit_main {
+        font-size: 0;
+        border: none;
+        padding: 10px;
+        padding-right: 15px;
+        padding-left: 20px;
+        border-radius: 10px;
+        margin-right: 0;
+        max-width: 20px;
+        line-height: 34px;
+    }
+    .cl-action 
+    {
+        display: block;
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 74px;
+    }
+      .img-avtr, .acc-avtar .usr-name, .acc-avtar small, .i-down
+      {
+          display: none;
+      }
+      .left-main {
+        width: 100%;
+        position: relative;
+    }
+    .content_area {
+        margin-left: 0;
+        width: 100%;
+        padding: 30px 15px 30px;
+    }
+    .hdr-top
+    {
+        position: relative;
+        left: 0;
+        float: left;
+        padding: 0;
+        box-shadow: none;
+        min-height: 50px;
+        display: flex;
+        min-height: 35px;
+        max-height: 35px;
+        margin-top: 5px;
+    }
+    .hdr-search {
+        position: fixed;
+        max-width: 100%;
+        left: 0;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+        z-index: 999;
+        width: 100%;
+        height: 100vh;
+        display: none;
+        padding: 15px;
+    }
+    .hdr-search .serch_bx {
+        background: url(../images/search.png) #fff no-repeat 20px center;   
+    }
+    .acc-avtar {
+        padding: 0;
+    }
+    .visit_main::before {
+        background: url(../images/icon-glb.png) no-repeat;
+        content: "";
+        position: absolute;
+        width: 27px;
+        height: 27px;
+        background-position: 0px 0;
+        left: 6px;
+        top: 6px;
+    }
+    .my-acc .dropdown-menu {
+        min-width: 8rem;
+        left: auto !important;
+        right: 0 !important;
+        transform: translate3d(0px, 30px, 0px) !important;
+    }
+    .main-content {
+        padding-top: 0px;
+    }
+    .mn-hd {
+        font-size: 24px;
+    }
+    .dpt-apmnt .dpt-nme {
+        padding: 7px 18px;
+    }
+    .dpt-apmnt .dpt-nme a {
+        font-size: 14px;
+    }
+    .dr-list .media .btn-bkapmnt {
+        font-size: 12px;
+        padding: 5px;
+        max-width: 120px;
+        margin-bottom: 10px;
+    }
+    .dr-list img {
+        max-width: 68px;
+        max-height: 68px;
+        margin-right: 10px !important;
+    }
+    .dr-list .media .btn-profile {
+        padding: 4px;
+        max-width: 63px;
+        margin-right: 5px;
+    }
+
+    /*** login ***/
+
+    .logn .lgn-lft {
+        height: 70vh;
+    }
+    .logn .lgn-lft .lgn-contnr h4 {
+        font-size: 30px;
+    }
+    .logn .lgn-lft .lgn-contnr .brand-logo {
+        max-width: 210px;
+    }
+    .logn .lgn-rt .logn-top a {
+        font-size: 24px;
+    }
+
+    /*** SIGN UP ***/
+    .sign_up .lgn-lft {
+        height: 75vh;
+        position: relative;      
+        width: 100%;
+    }
+    .sign_up .lgn-lft .lgn-contnr h4 {
+        font-size: 30px;
+    }
+    .sign_up .lgn-lft .lgn-contnr p {
+        font-size: 16px;
+    }
+    .sign_up .lgn-rt {
+        margin-left: 0;
+    }
+    .sign_up .lgn-rt .logn-top a {
+        font-size: 24px;
+    }
+    .sign_up .lgn-rt .gnder .mle .checkmark {
+        width: 110px;
+        height: 50px;
+        font-size: 14px;
+    }   
+    .sign_up .lgn-rt .gnder .fmle .checkmark {
+        width: 110px;
+        height: 50px;
+        font-size: 14px;
+    } 
+    .sign_up .lgn-rt .gnder .mle .checkmark::before {
+        top: 9px;
+        left: 16px;
+    }
+    .sign_up .lgn-rt .gnder .fmle .checkmark::before {
+        top: 9px;
+        left: 16px;
+    }
+    /*** apmnt details ***/
+    .apomnts-dtls .media {
+        padding: 25px;
+        float: left;
+        display: block;
+    }
+    .apomnts-dtls h5 {
+        font-size: 22px;
+    }
+    .apomnts-dtls .media .apmnt-top {
+        margin-top: 20px;
+    }
+    .apomnts-dtls .media .apmnt-top .apt-tpLt strong {
+        font-size: 24px;
+    }
+    .apomnts-dtls .media p {
+        font-size: 18px;
+        margin: 20px 0 10px;
+    }
+    .apomnts-dtls .media .apmnt-top .apt-tpRt span strong {
+        font-size: 13px;
+    }
+    .apomnts-dtls .media .dtt .dt::before { 
+        left: 0px;
+        top: -4px;
+        width: 30px;
+        height: 30px;
+        background-position: 0px -211px;
+        background-size: 70px;
+    }
+    .apomnts-dtls .media .dtt .tm {
+        font-size: 14px;
+    }
+    .apomnts-dtls .media .dtt .tm::before {
+        left: 0px;
+        top: -6px;
+        width: 30px;
+        height: 30px;
+        background-size: 70px;
+        background-position: 0px -170px;
+    }
+    .apomnts-dtls .media .apmnt-top .apt-tpRt span {
+        font-size: 12px;
+    }
+    .apomnts-dtls img {
+        margin-right: auto !important;
+        margin: 0 auto;
+        display: table;
+    }
+    .apomnts-dtls .media .dtt .dt {
+        font-size: 15px;
+    }
+    .apomnts-dtls .apt-list li {
+        font-size: 16px;
+    }
+    .apomnts-dtls .btn-dtls {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    .apomnts .media .dtt .dt {
+        font-size: 13px;
+        margin-right: 5px;
+    }
+    .dr-list .media h5 {
+        font-size: 16px;
+    }
+   .apontmnts .nav-tabs .nav-item {
+        margin-bottom: 10px;
+    }
+    .dt-tbs li a {
+        padding: 8px 25px;
+        float: left;
+    }
+    .dt-tbs {
+        margin: 15px 0;
+    }
+    .dt-tbs li 
+    {
+        margin-bottom: 10px !important;
+    }
+    .lp-wraper-lt .lp-top {
+        padding: 15px;
+        text-align: center;
+    }
+    .lp-wraper-lt .lp-top .lp-tp-dtl {
+        padding-left: 0;
+        margin-top: 15px;
+        text-align: center;
+    }
+    .lp-wraper-lt .lp-bottom img {
+        width: 100%;
+        max-width: 300px;
+    }
+    .lp-wraper-rt {
+        padding: 15px;
+    }
+    .lp-wraper-rt h4 {
+        font-size: 19px;
+        margin-bottom: 15px;
+    }
+    .lp-wraper-lt .lp-mid .lp-points span {
+        font-size: 20px;
+    }
+    .lp-wraper-lt .lp-mid .lp-amts span {
+        font-size: 20px;
+    }
+    .lp-wraper-lt .lp-top {
+        display: block;
+    }
+    .consult_dtls {
+        padding: 15px;
+        margin: 20px 0;
+    }
+    .consult_dtls .dr-card .dtt {
+        display: block;
+    }
+    .consult_dtls .dr-card {
+        padding: 20px;
+    }
+    .consult_dtls .dr-card .dtt .dt {
+        font-size: 15px;
+    }
+    .consult_dtls .dr-card .dtt .tm {
+        font-size: 15px;
+    }
+    .consult_dtls .dr-card .resecdlue {
+        font-size: 16px;
+        float: left;
+        padding: 8px 20px;
+        margin-top: 20px;
+    }
+    .dr-dtls h4 {
+        margin-bottom: 10px;
+        font-size: 17px;
+    }
+    .consult_dtls .dr-card h4 {
+        font-size: 20px;
+    }
+    .btn-Wicon {
+        font-size: 20px;
+        max-width: 210px;
+        padding: 10px 20px;
+    }
+    .profile-dtls .media {
+        display: block;
+        padding: 20px;
+        float: left;
+    }
+    .profile-dtls .pro-dtls ul li strong {
+        font-size: 15px;
+    }
+    .profile-dtls .pro-dtls ul li span {
+        font-size: 14px;
+    }
+    .profile-dtls .pro-btns {
+        padding-left: 15px;
+    }
+    .profile-dtls .pro-btns .btn-lgt {
+        font-size: 14px;;
+        padding: 8px;
+        max-width: 100px;
+        margin-right: 10px;
+    }
+    .profile-dtls .pro-btns .btn-proEdt {
+        font-size: 14px;
+        padding: 8px;
+        max-width: 125px;
+    }
+    .profile-dtls h5 {
+        font-size: 20px;
+    }
+    .profile-dtls .media .apmnt-top .apt-tpLt strong {
+        font-size: 15px;
+    }
+    .profile-dtls .media .apmnt-top .apt-tpLt {
+        text-align: center;
+    }
+    .profile-dtls img {
+        margin: 0 auto !important;
+        display: table;
+    }
+    .profile-dtls .pro-dtls {
+        margin-top: 30px;
+    }
+    .repots .rpt-wrap h4 {
+        font-size: 20px;
+    }
+    .repots .rpt-wrap {
+        min-height: 180px;
+    }
+    .succ-wrap p {
+        font-size: 16px;
+    }
+    .succ-wrap h3 {
+        font-size: 22px;
+    }
+    .succ-wrap {
+        margin-bottom: 30px;
+        margin-top: 20px;
+    }
+    .choose_dt-wraper .chose-top {
+        display: block;
+    }
+
+    .choose_dt-wraper
+    {
+        margin-top: 20px;
+        padding: 20px;
+    }
+    .choose_dt-wraper .chose-top small {
+        font-size: 18px;
+        margin-bottom: 10px;
+        float: left;
+    }
+    .choose_dt-wraper .weekdays li {
+        font-size: 20px;
+    }
+    .choose_dt-wraper .days li .active {
+        width: 35px;
+        height: 35px;
+        line-height: 33px;
+    }
+    .choose_dt-wraper .days li {
+        font-size: 18px;
+        min-height: 36px;
+    }
+    .choose_dt-wraper .time-wrper .time-list li {
+        padding: 5px 10px;
+        margin-right: 6px;
+        font-size: 12px;
+        margin-bottom: 6px;
+    }
+}

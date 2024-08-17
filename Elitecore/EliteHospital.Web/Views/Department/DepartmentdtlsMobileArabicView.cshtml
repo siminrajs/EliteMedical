@@ -1,0 +1,53 @@
+﻿@model EliteHospital.Core.Department
+@{ ViewBag.Title = "Departmentdtls";
+    Layout = "~/Views/Shared/_ViewPage1.cshtml"; }
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".bookappointment").click(function () {
+            document.location = '@Url.Action("Index", "Account")';
+        });
+    });
+</script>
+
+<section class="evTdt-inr">
+    <div class="cus-container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="prmIm">
+                    <div class="owl-carousel banner">
+                        <div class="slide-items">
+                            @*<img src="images/dept-1.jpg" alt="Event">*@
+                            @{var imgSrc = "";
+                                if (Model.DepartmentImage != null)
+                                {
+                                    //var base64 = Convert.ToBase64String(Model.DepartmentImage);
+                                    //imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                    <img src="@Model.Department_Image" alt="Event"> }
+                else
+                {
+        <img src="#" alt="Event"> } }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="evtCt">
+                    @{ if (@Model.DepartmentNameArabic != null)
+                        {
+            <div class="ttL" style="text-transform: uppercase;">@Model.DepartmentNameArabic.ToLower()</div> } }
+                    @*@Model.DepartmentNameArabic*@
+
+                    @Html.Raw(Model.DescriptionArabic)
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+

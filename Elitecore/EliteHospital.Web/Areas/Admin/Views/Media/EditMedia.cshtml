@@ -1,0 +1,151 @@
+﻿
+@model EliteHospital.Web.Areas.Admin.ViewModel.MediaViewModel
+@{ ViewBag.Title = "EditMedia";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int Id = Convert.ToInt32(ViewBag.Id);
+}
+
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0 header-table form-header">
+                <h6>Media Edit</h6>
+                @Html.ActionLink("View All", "Index", "Media", null, new { })
+            </div>
+            <div class="card-body px-0 pt-0 pb-2 main-form">
+                @using (Html.BeginForm("EditMedia", "Media", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {@Html.AntiForgeryToken()
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="first">Category</label>
+                            @Html.HiddenFor(p => p.Id)
+                            @Html.DropDownListFor(p => p.Category, new SelectList(ViewData["medialist"] as List<EliteHospital.Core.tbl_Media>, "Category", "Category"), new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="first">Title</label>
+                            @Html.HiddenFor(p => p.Id)
+                            @Html.TextBoxFor(p => p.Title, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label for="email">Images</label>
+                            <label for="file" class="input input-file">                               
+                                <div id="header" class="cont-img d-flex"></div>
+                                <div id="cont" class="cont-img d-flex" ></div>
+                                <input name="images" type="file" multiple class="form-control" accept=".jpg, .png, .gif" onchange="loadFile(event)">
+                            </label>
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 btn-save-outer">
+                        <button type="submit" class="btn-save">Save</button>
+                    </div>
+                </div>}
+            
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .cont-img img {
+        margin-right: 15px;
+        height: 150px;
+        object-fit: fill;
+    }
+</style>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+        $("#menuMedia").addClass("active");
+
+        $(function () {
+            var Id =@Id;
+            if (Id != 0) {
+                GetImages();
+            }
+        });
+
+        function GetImages() {
+            var deleteurl = '@Url.Action("getMedia", "Media")';
+            var Id =@Id;
+            var data = { Id: Id };
+            $.ajax({
+                type: "GET",
+                url: deleteurl,
+                data: data,
+                dataType: "json",
+                success: function (response) {
+                    var data = response.result;
+                    var src = document.getElementById("header");
+                    for (let i = 0; i < data.length; i++) {
+                        var divElm = document.createElement('div');
+                        divElm.id = "rowdiv" + i;
+                        var spanElm = document.createElement('span');
+                        var img = document.createElement("img");
+                        img.src = data[i].Media_Image;
+                        img.id = data[i].Id;
+                        img.width = "200";
+                        spanElm.appendChild(img);
+                        var deleteImg = document.createElement('p');
+                        deleteImg.innerHTML = "x";
+                        deleteImg.onclick = function getdata() {
+                            var ids = img.id
+                            this.parentNode.remove()
+                            getlist(ids);
+                        };
+                        divElm.appendChild(spanElm);
+                        divElm.appendChild(deleteImg);
+                        src.appendChild(divElm);
+                    }
+                }
+
+            });
+        }
+    });
+
+    function getlist(imageid) {
+        var deleteurl = '@Url.Action("DeleteImage", "Media")';
+        var data = { Id: imageid };
+        $.ajax({
+            type: "POST",
+            url: deleteurl,
+            data: data,
+            dataType: "json",
+            success: function (response) {
+            }
+        });
+    }
+
+    var loadFile = function (event) {
+        var imgCont = document.getElementById("cont");
+        for (let i = 0; i < event.target.files.length; i++) {
+            var divElm = document.createElement('div');
+            divElm.id = "rowdiv" + i;
+            var spanElm = document.createElement('span');
+            var image = document.createElement('img');
+            image.src = URL.createObjectURL(event.target.files[i]);
+            image.id = "output" + i;
+            image.width = "200";
+            spanElm.appendChild(image);
+            var deleteImg = document.createElement('p');
+            deleteImg.innerHTML = "x";
+            deleteImg.onclick = function getdate() {
+                this.parentNode.remove()
+            };
+            divElm.appendChild(spanElm);
+            divElm.appendChild(deleteImg);
+            imgCont.appendChild(divElm);
+        }
+    };</script>

@@ -1,0 +1,274 @@
+﻿@model EliteHospital.Web.ViewModel.Booking.SignUpViewModel
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="~/Content/Admin/img/brand/favicon.png" />
+    <title>Elite Medical Center</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/3dee8755de.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="~/Content/Site/Booking/scss/style.css" rel="stylesheet">
+    <link href="~/Content/Site/Booking/scss/new-style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container-fluid sign_up">
+        @*<a href="@Url.Action("Index", "Home", "")" class="homelink"><img src="~/Content/MainSite/images/home.png" class="img-fluid" alt="Elite Medical Center"></a>*@
+        <ul class ="homelink">
+            <li><a style="color: black" href="@Url.Action("Index", "Home", "")">BACK TO HOME</a></li>
+        </ul>
+        <div class="row">
+            <div class="col-md-6 lgn-lft">
+                <div class="lgn-contnr">
+                    <a href="index.html" class="brand-logo"><img src="~/Content/Site/Booking/images/logo.png" class="img-fluid" alt="Elite Medical Center"></a>
+                    <div class="login-cap">
+                        <h4>
+                            Next appointment <br>
+                            is at your fingertips!
+                        </h4>
+                        <p>Register now and Book An Appointment</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 lgn-rt">
+                <div class="gn-rt-container">
+                    <div class="logn-top">
+                        @Html.ActionLink("Login", "Index")
+                        @Html.ActionLink("Sign Up", "SignUp", null, new { @class = "active" })
+                        @*<a href="index.html">Login</a>
+                        <a class="active" href="sign-up.html">Sign Up</a>*@
+                    </div>
+                    @*<form class="lgn-flids" action="home.html">*@
+                    @using (Html.BeginForm("SignUp", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "lgn-flids" }))
+                    {
+                        <div class="mb-3">
+                            <label class="form-label">First Name</label>
+                            @*<input id="FirstName" name="FirstName" type="text" placeholder="First Name" class="form-control">*@
+                            @Html.TextBoxFor(p => p.FirstName, new { type = "text", @class = "form-control", placeholder = "First Name" })
+                            @Html.ValidationMessageFor(p => p.FirstName, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Last Name</label>
+                            @*<input id="LastName" name="LastName" type="text" placeholder="Last Name" class="form-control">*@
+                            @Html.TextBoxFor(p => p.LastName, new { type = "text", @class = "form-control", placeholder = "Last Name" })
+                            @Html.ValidationMessageFor(p => p.LastName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Date of Birth </label>
+                            @*<input name="DateOfBirth" id="DateOfBirth" type="date" placeholder="Choose Date" class="form-control">*@
+                            @Html.TextBoxFor(p => p.DateOfBirth, new { type = "date", @class = "form-control", placeholder = "Choose Date" })
+                            @Html.ValidationMessageFor(p => p.DateOfBirth, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3 gnder  mt-4">
+                            <label class="container mle" style="height: 50px;">
+                                @*<input type="radio" checked="checked" name="radio" value="MALE">*@
+                                @Html.RadioButtonFor(p => p.Gender, true, new { @checked = "checked" })
+                                <span class="checkmark">Male</span>
+                            </label>
+                            <label class="container fmle" style="height: 50px;">
+                                @*<input type="radio" name="radio" value="FEMALE">*@
+                                @Html.RadioButtonFor(p => p.Gender, false, new { })
+                                <span class="checkmark">Female</span>
+                            </label>
+                        </div>
+                        <div class="mb-3 mt-4">
+                            <label class="form-label">Email</label>
+                            @*<input id="Email" name="Email" type="email" placeholder="Enter your email address" class="form-control">*@
+                            @Html.TextBoxFor(p => p.Email, new { type = "text", @class = "form-control", placeholder = "Enter your email address" })
+                            @Html.ValidationMessageFor(p => p.Email, "", new { @class = "text-danger" })
+                        </div>
+                        @*<div class="mb-3">
+                            <label class="form-label">Nationality</label>
+                            <select class="form-select form-control" aria-label="Default select example">
+                                <option selected>Select Your Nationality</option>
+                                <option value="1">Qatar</option>
+                                <option value="2">India</option>
+                                <option value="3">Germany</option>
+                            </select>
+                        </div>*@
+                        <label class="form-label">Mobile</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">+974</span>
+                            <span class="input-group-text" id="basic-addon2">+91</span>
+                            @*<input id="MobileNo" name="MobileNo" type="tel" class="form-control">*@
+                            @Html.TextBoxFor(p => p.MobileNo, new { type = "text", @class = "form-control" })
+                            @Html.HiddenFor(p => p.CountryCode)
+                            @Html.ValidationMessageFor(p => p.MobileNo, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Q ID</label>
+                            @*<input id="QatarId" name="QatarId" type="text" placeholder="Enter Q-ID" class="form-control">*@
+                            @Html.TextBoxFor(p => p.QatarId, new { type = "text", @class = "form-control", placeholder = "Enter Q-ID" })
+                            @Html.ValidationMessageFor(p => p.QatarId, "", new { @class = "text-danger" })
+                        </div>
+                        <div id="divVerificationCode" class="mb-3" style="display:none">
+                            <label class="form-label">Verification Code</label>
+                            @*<input id="VerificationCode" name="VerificationCode" type="text" placeholder="Enter Verification Code" class="form-control">*@
+                            @Html.TextBoxFor(p => p.VerificationCode, new { type = "text", @class = "form-control" })
+                            @Html.ValidationMessageFor(p => p.VerificationCode, "", new { @class = "text-danger" })
+                        </div>
+                        <input id="btnSendVerificationCode" type="button" value="SEND VERIFICATION CODE" class="btn btn-primary" />
+                        <button id="btnSubmit" style="display:none" type="submit" class="btn btn-primary">Sign Up</button>
+                    }
+                    <div class="lgn-botm">
+                        Already have an account?  @*<a href="#"> Login</a>*@@Html.ActionLink("Login", "Index")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade otp-pop" id="pop1" tabindex="-1" role="dialog" aria-labelledby="pop1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+                <div class="modal-body logn ">
+                    <div class="pop-logo">
+                        <img src="~/Content/Site/Booking/images/p-logo.png" alt="">
+                    </div>
+                    <h3>Phone Verification</h3>
+                    <h4>Enter The OTP Recivied on <span id="mobileNoInVerifyOTP"></span></h4>
+                    <form action="" class="lgn-flids">
+                        <div class="mb-3">
+                            <input type="text" id="codereceived" placeholder="VERIFICATION CODE" class="form-control">
+                        </div>
+                        <button type="button" class="btn btn-primary" id="verifyOTP">VERIFY</button>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    </form>
+                    <h5 id="timerdiv"><span id="timer"></span></h5>
+                    <h5 id="resendotp" style="display: none;">If you did not recive your OTP or your OTP has expired, <a id="resendVerificationCode" href="#">Resend</a></h5>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/popper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <script src="~/Content/Site/Booking/js/custom.js"></script>
+    <script>
+        $(document).ready(function () {
+            let timerOn = true;
+            function timer(remaining) {
+                var m = Math.floor(remaining / 60);
+                var s = remaining % 60;
+
+                m = m < 10 ? '0' + m : m;
+                s = s < 10 ? '0' + s : s;
+                document.getElementById('timer').innerHTML = m + ':' + s;
+                remaining -= 1;
+
+                if (remaining >= 0 && timerOn) {
+                    setTimeout(function () {
+                        timer(remaining);
+                    }, 1000);
+                    return;
+                }
+
+                if (!timerOn) {
+                    // Do validate stuff here
+                    return;
+                }
+                $("#timerdiv").hide();
+                $("#resendotp").show();
+            }
+
+            if (window.location.host.startsWith("localhost") == true) {
+                $("#basic-addon1").hide();
+                $("#basic-addon2").show();
+                $("#CountryCode").val("+91");
+            }
+            else {
+                $("#basic-addon1").show();
+                $("#basic-addon2").hide();
+                $("#CountryCode").val("+974");
+            }
+
+            $('#btnSendVerificationCode').click(function () {
+                sendVerificationCode();
+            });
+
+            var url = '@Url.Action("ResendOTPAsync", "Account")';
+            $("body").off("click", "#resendVerificationCode")
+            $("body").on("click", "#resendVerificationCode", function () {
+                var mobile = $("#CountryCode").val() + $("#MobileNo").val();
+                var qatarid = $("#QatarId").val();
+                $.ajax({
+                    type: "POST",
+                    data: { mobile: mobile, qatarId: qatarid },
+                    url: url,
+                    dataType: "json",
+                    success: function (result) {
+                        $("#timerdiv").show();
+                        $("#resendotp").hide();
+                        timer(30);
+                    }
+                });
+            });
+
+            if ('@Model.IsValidated' == 'True') {
+                $('#pop1').modal('show');
+                var mobile = $("#CountryCode").val() + " " + $("#MobileNo").val();
+                $("#mobileNoInVerifyOTP").text(mobile);
+                $('#IsValidated').val('@Model.IsValidated.ToString().ToLower()');
+            }
+
+            $("#verifyOTP").click(function () {
+                var otp = $("#codereceived").val();
+                if (otp != null && otp.trim().length > 0) {
+                    $("#VerificationCode").val(otp);
+                    $("#btnSubmit").click();
+                }
+            });
+
+            $(".close").click(function () {
+                $('#pop1').modal('hide');
+            });
+
+            var sendVerficationCodeURL = '@Url.Action("SendVerficationCode", "Account")';
+            function sendVerificationCode() {
+                $('#btnSendVerificationCode').hide();
+                var mob = $("#CountryCode").val() + $("#MobileNo").val();
+                $.ajax({
+                    type: "POST",
+                    url: sendVerficationCodeURL,
+                    data: {
+                        mobileNo: mob,
+                        qatarId: $("#QatarId").val()
+                    },
+                    dataType: "json",
+                    success: function (result) {
+                        if (result.success) {
+                            var mob = $("#CountryCode").val() + $("#MobileNo").val();
+                            $("#mobileNoInVerifyOTP").text(mob);
+                            $('#pop1').modal('show');
+                            timer(30);
+                            //$("#divVerificationCode").show();
+                            //$("#btnSubmit").show();
+                        }
+                        else {
+                            alert(result.Message);
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

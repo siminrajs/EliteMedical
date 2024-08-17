@@ -1,0 +1,60 @@
+﻿@model EliteHospital.Web.Areas.Admin.ViewModel.TermsAndConditionsViewModel
+@{
+    ViewBag.Title = "EditUser";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+
+        $("#menuTermsAndConditions").addClass("active");
+        $('#TC_Description').jqte();
+        $('#TC_Description_Arabic').jqte();
+
+
+    });
+</script>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0 header-table form-header">
+                <h6>Users Edit</h6>
+                @Html.ActionLink("View All", "Index", "TermsAndConditions", null, new { })
+            </div>
+            <div class="card-body px-0 pt-0 pb-2 main-form">
+                @using (Html.BeginForm("EditTermsAndConditions", "TermsAndConditions", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="first">Description</label>
+                            @Html.HiddenFor(p => p.TC_Id)
+                            @Html.TextAreaFor(p => p.TC_Description, new { @class = "form-control", @cols = 30, @rows = 10 })
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="first">Description_Arabic</label>
+                            @Html.TextAreaFor(p => p.TC_Description_Arabic, new { @class = "form-control", @cols = 30, @rows = 10 })
+                            </div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-md-12 btn-save-outer">
+                        <button type="submit" class="btn-save">Save</button>
+                    </div>
+                </div>
+            }
+            </div>
+        </div>
+    </div>
+</div>

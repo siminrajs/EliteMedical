@@ -1,0 +1,95 @@
+﻿@model EliteHospital.Web.Areas.Admin.ViewModel.AboutusViewModel
+@{
+    ViewBag.Title = "EditHomeBanner";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+        $("#menuAboutUS").addClass("active");
+
+        //font editing
+        $('#ShortDescription').jqte();
+        $('#LongDescription').jqte();
+        $('#OurVision').jqte();
+        $('#OurMission').jqte();
+
+        $("#aboutusimage").change(function () {
+            $("#aboutusfilename").val($(this).val());
+        });
+    });
+</script>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0 header-table form-header">
+                <h6>Banners Edit</h6>
+                @Html.ActionLink("View All", "Index", "AboutUs", null, new { })
+            </div>
+            <div class="card-body px-0 pt-0 pb-2 main-form">
+                @using (Html.BeginForm("EditAboutUs", "AboutUs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="first">Short Description</label>
+                                @Html.HiddenFor(p => p.Id)
+                                @Html.TextBoxFor(p => p.ShortDescription, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(p => p.ShortDescription, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="first">Long Description</label>
+                                @Html.TextBoxFor(p => p.LongDescription, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="first">Our Vision</label>
+                                @Html.TextBoxFor(p => p.OurVision, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(p => p.OurVision, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="first">Our Mission</label>
+                                @Html.TextBoxFor(p => p.OurMission, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(p => p.OurMission, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email">Image (800x685 px)</label>
+                                <label for="file" class="input input-file">
+                                    <div class="button">
+                                        @Html.TextBox("aboutusimage", "", new { @class = "form-control", type = "file", id = "aboutusimage", accept = "image/png, image/gif, image/jpeg" })
+                                        Browse
+                                    </div>
+                                    @Html.TextBoxFor(p => p.ImagePath, new { id = "aboutusfilename", @class = "form-control", placeholder = "Include some files" })
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 btn-save-outer">
+                            <button type="submit" class="btn-save">Save</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,123 @@
+﻿@model EliteHospital.Data.ViewModel.LoginViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Elite Medical Center - Login</title>
+    <!-- Favicon -->
+    <link rel="icon" href="~/Content/Admin/img/brand/favicon.png" type="image/png">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+    <!-- Icons -->
+    <link rel="stylesheet" href="~/Content/Admin/vendor/nucleo/css/nucleo.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/Admin/vendor/fortawesomefree/fontawesome-free/css/all.min.css" type="text/css">
+    <!-- Argon CSS -->
+    <link rel="stylesheet" href="~/Content/Admin/css/argon.css?v=1.2.0" type="text/css">
+    <link rel="stylesheet" href="~/Content/Admin/css/custom.css" type="text/css">
+</head>
+
+<body class="login">
+    <!-- preloader-->
+    <!--<div class="spinner-wrapper">
+        <div class="spinner">   <img src="~/Content/Admin/img/loader.gif" alt=""></div>
+    </div>-->
+    <!-- Main content -->
+    <div class="main-content">
+        <!-- Header -->
+        <div class="header py-7 py-lg-7 pt-lg-7">
+            <div class="container">
+                <div class="header-body text-center mb-7">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-5 col-lg-6 col-md-8 px-5">
+                            <a class="navbar-brand" href="login.html">
+                                <img width="295" src="~/Content/Admin/img/brand/logo-red.svg">
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Page content -->
+        <div class="container mt--8 pb-5">
+            <div class="row justify-content-center lg-ftr">
+                <div class="col-lg-5 col-md-7">
+                    <div class="card border-0 mb-0">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="card-body px-lg-5 py-lg-5">
+                                <div class="text-center text-muted mb-4">
+                                    <small>Sign in with credentials</small>
+                                </div>
+                                <form role="form">
+                                    <div class="form-group mb-3">
+                                        <div class="input-group input-group-merge input-group-alternative">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                                            </div>
+                                            @*<input class="form-control" placeholder="Email" type="email">*@
+                                            @Html.TextBoxFor(p => p.UserName, new { @class = "form-control", placeholder = "Username",required="required" })
+
+                                        </div>
+                                        @Html.ValidationMessageFor(p => p.UserName, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group input-group-merge input-group-alternative">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                            </div>
+                                            @*<input class="form-control" placeholder="Password" type="password">*@
+                                            @Html.TextBoxFor(p => p.Password, new { @class = "form-control", placeholder = "Password", type = "password", required = "required" })
+                                        </div>
+                                        @Html.ValidationMessageFor(p => p.Password, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group input-group-merge input-group-alternative">
+                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary my-2">Sign in</button>
+                                    </div>
+                                </form>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core -->
+    <script src="~/Content/Admin/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="~/Content/Admin/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/Admin/vendor/js-cookie/js.cookie.js"></script>
+    <script src="~/Content/Admin/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="~/Content/Admin/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+    <!-- Argon JS -->
+    <script src="~/Content/Admin/js/argon.js?v=1.2.0"></script>
+
+    @*<script>
+        $(document).ready(function () {
+            //Preloader
+            $(window).on("load", function () {
+                preloaderFadeOutTime = 500;
+                function hidePreloader() {
+                    var preloader = $('.spinner-wrapper');
+                    preloader.fadeOut(preloaderFadeOutTime);
+                }
+                hidePreloader();
+            });
+        });</script>*@
+</body>
+
+</html>

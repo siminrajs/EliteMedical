@@ -1,0 +1,101 @@
+﻿@model EliteHospital.Web.Areas.Admin.ViewModel.SpecialOfferViewModel
+@{
+    ViewBag.Title = "EditCovidBanner";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+        if ( '@Model.FromMob' == 'True') {
+            $("#menuSpecialOfferMob").addClass("active");
+        }
+        else {
+            $("#menuSpecialOffer").addClass("active");
+        }
+
+        $("#image").change(function () {
+            $("#filename").val($(this).val());
+        });
+        $("#imageMob").change(function () {
+            if ($(this).get(0).files[0].size > 102400) {
+                alert("Mobile image size should be less than 100kb");
+                $("#imageMob").val('');
+            }
+            else {
+                $("#mobfilename").val($(this).val());
+            }
+        });
+    });
+</script>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0 header-table form-header">
+                @if (Model.FromMob == false)
+                {
+                    <h6>Special Offer Edit</h6>
+                }
+                else
+                {
+                    <h6>Special Offer Edit (Mobile)</h6>
+                }
+                @*@Html.ActionLink("View All", "Index", "SpecialOffer", null, new { FromMob = ViewBag.FromMob })*@
+            <a href='@Url.Action("Index", "SpecialOffer", new { FromMob = ViewBag.FromMob })' class="btn-bkapmnt">View All</a>
+            </div>
+            <div class="card-body px-0 pt-0 pb-2 main-form">
+                @using (Html.BeginForm("EditSpecialOffer", "SpecialOffer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.HiddenFor(p => p.Id)
+                    @Html.HiddenFor(p => p.FromMob)
+                    if (Model.FromMob == false)
+                    {
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email">Special Offer Image (596x1024 px)</label>
+                                    <label for="file" class="input input-file">
+                                        <div class="button">
+                                            @Html.TextBox("image", "", new { @class = "form-control", type = "file", id = "image", accept = "image/png, image/gif, image/jpeg" })
+                                            Browse
+                                        </div>
+
+                                        @Html.TextBoxFor(p => p.ImagePath, new { id = "filename", @class = "form-control", placeholder = "Include some files" })
+                                        @Html.ValidationMessageFor(p => p.ImagePath, "", new { @class = "text-danger" })
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email">Special Offer Mobile Image (596x1024 px)</label>
+                                    <label for="file" class="input input-file">
+                                        <div class="button">
+                                            @Html.TextBox("imageMob", "", new { @class = "form-control", type = "file", accept = "image/png, image/gif, image/jpeg" })
+                                            Browse
+                                        </div>
+
+                                        @Html.TextBoxFor(p => p.ImageMobPath, new { id = "mobfilename", @class = "form-control", placeholder = "Include some files" })
+                                        @Html.ValidationMessageFor(p => p.ImageMobPath, "", new { @class = "text-danger" })
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="row">
+                        <div class="col-md-12 btn-save-outer">
+                            <button type="submit" class="btn-save">Save</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

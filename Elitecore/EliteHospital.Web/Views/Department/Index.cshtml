@@ -1,0 +1,262 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .dep-cpat p span {
+        color: #fff !important;
+        font-weight: 300 !important;
+        text-transform: capitalize !important;
+    }
+</style>
+<section class="inr-cnct inr-hd">
+    <div class="cus-container">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="cnt_inr">
+                    <h3>
+                        Our Departments
+                        <span>
+                            Our Departments
+                        </span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="depts">
+    <div class="cus-container">
+        <div class="row">
+            @foreach (var item in (List<EliteHospital.Core.Department>)ViewData["DepartmentList"])
+            {
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="dpt-lst">
+                        @*<img src="~/Content/MainSite/images/dept-1.jpg" class="img-fluid" alt="">*@
+                        @{var imgSrc = "";
+                            if (item.Department_Image != null)
+                            {
+                                //var base64 = Convert.ToBase64String(item.DepartmentImage);
+                                //imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                <img src="@item.Department_Image" class="img-fluid" alt="">
+                            }
+                            else
+                            {
+                                <img src="#" class="img-fluid" alt="">
+                            }
+                        }
+                    <div class="dep-cpat">
+                        <h4>@item.DepartmentName.ToLower()</h4>
+                        <p>@Html.Raw(item.Description)</p>
+                        <a href="@Url.Action("Departmentdtls", "Department", new { dept = item.DepartmentName })">Read more</a>
+                    </div>
+                    </div>
+                </div>
+            }
+            @*<div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="dpt-lst">
+                        <img src="~/Content/MainSite/images/dept-1.jpg" class="img-fluid" alt="">
+                        <div class="dep-cpat">
+                            <h4>Obstetrics & Gynaecology</h4>
+                            <p>The Department of Obstetrics and Gynaecology at Elite Medical Center covers a broad spectrum of women’s health issue ... </p>
+                            <a href="obstetrics-gynaecology.html">Read more</a>
+                        </div>
+                    </div>
+                </div>*@
+            @*<div class="col-md-6" data-aos="fade-up" data-aos-delay="350">
+                    <div class="dpt-lst">
+                        <img src="~/Content/MainSite/images/dept-6.jpg" class="img-fluid" alt="">
+                        <div class="dep-cpat">
+                            <h4>Assisted Conception Unit (IVF)</h4>
+                            <p>The Assisted Conception Unit at Elite Medical Center provides medical services to solve a range of fertility issues in a comfortable private environment. </p>
+                            <a href="assisted-conception-unit.html">Read more</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="350">
+                    <div class="dpt-lst">
+                        <img src="~/Content/MainSite/images/dept-2.jpg" class="img-fluid" alt="">
+                        <div class="dep-cpat">
+                            <h4>Paediatrics</h4>
+                            <p>The Paediatrics Department at Elite Medical Center is devoted to caring for babies and children up to the age of 16 years.</p>
+                            <a href="paediatrics.html">Read more</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="dpt-lst">
+                        <img src="~/Content/MainSite/images/dept-3.jpg" class="img-fluid" alt="">
+                        <div class="dep-cpat">
+                            <h4>Dental</h4>
+                            <p>Healthy Teeth are part of a healthy lifestyle. Investing some time in keeping your teeth healthy is imperative for good oral hygiene . </p>
+                            <a href="dentistry.html">Read more</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="dpt-lst">
+                        <img src="~/Content/MainSite/images/dept-5.jpg" class="img-fluid" alt="">
+                        <div class="dep-cpat">
+                            <h4>Dermatology and Skin Care</h4>
+                            <p>Elite Medical Center's Dermatology Department has gained an excellent reputation for many aesthetically pleasing and medical procedures. </p>
+                            <a href="dermatology&skin-care.html">Read more</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="dpt-lst">
+                        <img src="~/Content/MainSite/images/dept-13.jpg" class="img-fluid" alt="">
+                        <div class="dep-cpat">
+                            <h4>General Surgery</h4>
+                            <p>The General Surgery Department at Elite Medical Center is committed to the integrated delivery of exceptional clinical care as well as ...</p>
+                            <a href="general-surgery.html">Read more</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="350">
+                    <div class="dpt-lst">
+                        <img src="~/Content/MainSite/images/dept-4.jpg" class="img-fluid" alt="">
+                        <div class="dep-cpat">
+                            <h4>Plastic Surgery</h4>
+                            <p>Our Surgical team of 3 Surgeons at Elite Medical Center are highly trained professionals with a wide range of specialties ...</p>
+                            <a href="plastic-surgery.html">Read more</a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="dpt-lst">
+                        <img src="~/Content/MainSite/images/dept-12.jpg" class="img-fluid" alt="">
+                        <div class="dep-cpat">
+                            <h4>Day Case Surgery</h4>
+                            <p>Elite Medical Center takes pride in it’s commitment to having exceptional Day Case Surgery Services. We provide a comprehensive range of surgical services ...</p>
+                            <a href="day-case-surgery.html">Read more</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="350">
+                    <div class="dpt-lst">
+                        <img src="~/Content/MainSite/images/dept-9.jpg" class="img-fluid" alt="">
+                        <div class="dep-cpat">
+                            <h4>Family Medicine</h4>
+                            <p>General Practitioners (GPs) at Elite Medical Center treat all common medical conditions.</p>
+                            <a href="family-medicine.html">Read more</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="350">
+                    <div class="dpt-lst">
+                        <img src="~/Content/MainSite/images/dept-14.jpg" class="img-fluid" alt="">
+                        <div class="dep-cpat">
+                            <h4>E.N.T</h4>
+                            <p>Elite Medical Center's ENT department offers a wide range of services carried out by a highly qualified team consisting of physicians, surgeons and nurses each offering...</p>
+                            <a href="ENT.html">Read more</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="350">
+                    <div class="dpt-lst">
+                        <img src="~/Content/MainSite/images/dept-16.jpg" class="img-fluid" alt="">
+                        <div class="dep-cpat">
+                            <h4>Orthopaedic</h4>
+                            <p>Elite Medical Center's Orthopaedic Department benefits from a team of highly trained and experienced Consultant Orthopaedic Surgeons...</p>
+                            <a href="orthopaedic.html">Read more</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="dpt-lst">
+                        <img src="~/Content/MainSite/images/dept-7.jpg" class="img-fluid" alt="">
+                        <div class="dep-cpat">
+                            <h4>Nutrition & Slimming</h4>
+                            <p>Our Dietician at Elite Medical Center is an expert in food and nutrition and helps our clients to promote healthy eating habits. </p>
+                            <a href="nutrition-slimming.html">Read more</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="dpt-lst">
+                        <img src="~/Content/MainSite/images/dept-15.jpg" class="img-fluid" alt="">
+                        <div class="dep-cpat">
+                            <h4>Pharmacy</h4>
+                            <p>The Pharmacy at Elite Medical Center provides the best medical services to walk-in and in-house guests. </p>
+                            <a href="pharmacy.html">Read more</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="dpt-lst">
+                        <img src="~/Content/MainSite/images/dept-10.jpg" class="img-fluid" alt="">
+                        <div class="dep-cpat">
+                            <h4>Laboratory</h4>
+                            <p>Our laboratory test spectrum ranges from Hematology, Serology, Microbiology, Clinical chemistry to Molecular Biology and Surgical Pathology.</p>
+                            <a href="laboratory.html">Read more</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="350">
+                    <div class="dpt-lst">
+                        <img src="~/Content/MainSite/images/dept-11.jpg" class="img-fluid" alt="">
+                        <div class="dep-cpat">
+                            <h4>Radiology</h4>
+                            <p>Elite Medical Center features the latest medical systems, methodologies, and technology to facilitate the best experience and environment ...</p>
+                            <a href="radiology.html">Read more</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="350">
+                    <div class="dpt-lst">
+                        <img src="~/Content/MainSite/images/dept-8.jpg" class="img-fluid" alt="">
+                        <div class="dep-cpat">
+                            <h4>Anesthesiology</h4>
+                            <p>Our Highly-Recognized, Experienced Anesthesiologists provide their services in order to optimize care for ours guest during the pre-operative period</p>
+                            <a href="anesthesiology.html">Read more</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="dpt-lst">
+                        <img src="~/Content/MainSite/images/srgc_03.jpg" class="img-fluid" alt="">
+                        <div class="dep-cpat">
+                            <h4>Surgical Procedures</h4>
+
+                            <a href="surgical-procedures.html">Read more</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="350">
+                    <div class="dpt-lst">
+                        <img src="~/Content/MainSite/images/dept-17.jpg" class="img-fluid" alt="">
+                        <div class="dep-cpat">
+                            <h4>Physiotherapy</h4>
+                            <p>Elite Medical Center’s Physiotherapy Department improves quality of care by bringing additional knowledge and expertise to the management of patients with disabilities and pain syndromes.</p>
+                            <a href="Physiotherapy.html">Read more</a>
+                        </div>
+                    </div>
+
+                </div>*@
+
+        </div>
+    </div>
+</section>
+
+

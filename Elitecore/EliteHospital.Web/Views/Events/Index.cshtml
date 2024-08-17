@@ -1,0 +1,170 @@
+﻿<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+@using System.Data;
+@{ ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<section class="inr-cnct">
+    <div class="cus-container">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class=" cnt_inr">
+                    <h3>
+                        Events
+                        <span>
+                            Events
+                        </span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="evtPgs">
+    <div class="cus-container">
+        <div class="row">
+            @{ foreach (var item in (List<EliteHospital.Core.Event>)ViewData["EventList"])
+                {
+                    //var imgSrc = "";
+                    //if (item.Image != null)
+                    //{
+                    //    var base64 = Convert.ToBase64String(item.Image);
+                    //    imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                    //}
+                    DateTime strDate = Convert.ToDateTime(@item.CreatedDate);
+                    String date = strDate.ToString("dd-MM-yyyy");
+                    var parts = date.Split('-');
+                    int day = Convert.ToInt16(parts[0]);
+                    int year = Convert.ToInt16(parts[2]);
+                    int month = Convert.ToInt16(parts[1]);
+                    string[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+                    string newmonth = months[month - 1];
+                    string newdate = day + " " + newmonth + " " + year;
+
+                    @*var exploreText = @item.Description;
+                        var exploreTextShort = "";
+                        if (@item.Description != null)
+                        {
+
+                            if (exploreText.ToString().Length > 15)
+                            {
+                                exploreTextShort = exploreText.ToString().Substring(0, 15);
+                            }
+                            else
+                            {
+                                exploreTextShort = exploreText;
+                            }
+                         }*@
+
+                    <div class="col-md-4 sngEv">
+                        <div class="EvtS">
+
+                          
+                            <a href="/Events/EventList?Id=@item.Id">
+                                <div class="evImg">
+                                    <img src="@item.EventImages" alt="event">
+                                    @if (@item.CreatedDate != null)
+                                    {
+                                        <div class="dtBx">
+                                            @day
+                                            <span>@newmonth,  @year</span>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="evCt">
+                                    <div class="txEvt">
+                                        @item.Title
+                                    </div>
+                                    <div class="addReadMore showlesscontent dtl">
+                                        @Html.Raw(@item.Description)
+                                    </div>
+                                    @*<p class="addReadMore showlesscontent dtl">@Html.Raw(@item.Description)</p>*@
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+<style>
+    .fb_st_01 {
+        color: #007bff;
+    }
+</style>
+<style>
+    .addReadMore.showlesscontent .SecSec,
+    .addReadMore.showlesscontent .readLess {
+        display: none;
+    }
+
+    .addReadMore.showmorecontent .readMore {
+        display: none;
+    }
+
+    .addReadMore .readMore,
+    .addReadMore {
+        margin-left: 2px;
+        color: #f7f7f7;
+        cursor: pointer;
+    }
+
+    .addReadMoreWrapTxt.showmorecontent .SecSec,
+    .addReadMoreWrapTxt.showmorecontent {
+        display: block;
+    }
+</style>
+<script>
+
+    function AddReadMore() {
+        //This limit you can set after how much characters you want to show Read More.
+        var carLmt = 280;
+        // Text to show when text is collapsed
+        var readMoreTxt = " .....";
+        // Text to show when text is expanded
+        var readLessTxt = "....";
+
+
+        //Traverse all selectors with this class and manupulate HTML part to show Read More
+        $(".addReadMore").each(function () {
+            if ($(this).find(".firstSec").length)
+                return;
+
+            var allstr = $(this).text();
+            if (allstr.length > carLmt) {
+                var firstSet = allstr.substring(0, carLmt);
+                var secdHalf = allstr.substring(carLmt, allstr.length);
+                var strtoadd = firstSet + "<span class='SecSec'>" + secdHalf + "</span><span   title='Click to Show More'>" + readMoreTxt + "</span><span  title='Click to Show Less'>" + readLessTxt + "</span>";
+                $(this).html(strtoadd);
+            }
+
+        });
+        //Read More and Read Less Click Event binding
+        $(document).on("click", ".readMore,.readLess", function () {
+            $(this).closest(".addReadMore").toggleClass("showlesscontent showmorecontent");
+        });
+    }
+    $(function () {
+        //Calling function after Page Load
+        AddReadMore();
+    });
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("body").off("click", ".imagelist");
+        $("body").on("click", ".imagelist", function () {
+            debugger
+            var Id = parseInt(this.id);
+            //$("#usercontainer").html('Loading...');
+            //$("#usercontainer").load("/Media/MediaPartialView?Id=" + Id);
+            $.get("/Events/EventList", { Id: Id }, function (data) {
+            });
+
+        });
+    });
+
+
+</script>

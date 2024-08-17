@@ -1,0 +1,168 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0 header-table">
+                @if (ViewBag.FromMob == true)
+                {
+                    <h6 id="type" fromMob="true">Departments List (Mobile)</h6> }
+                else
+                {
+                    <h6 id="type" fromMob="false">Departments List</h6>
+                }
+                @*<a href="department-edit.html">Add New</a>*@
+                <a href='@Url.Action("EditDepartment", "Department", new {FromMob = ViewBag.FromMob })' class="">Add New</a>
+            </div>
+            <div class="card-body px-0 pt-0 pb-2 main-table">
+                <div class="table-responsive p-0">
+                    <table class="table align-items-center mb-0">
+                        <thead>
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder ">SL.NO</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder ">Name</th>
+                                @*<th class="text-uppercase text-secondary text-xxs font-weight-bolder  ps-2">Name(Arabic)</th>*@
+                                @*<th class="text-uppercase text-secondary text-xxs font-weight-bolder  ps-2">Description</th>*@
+                                @if (ViewBag.FromMob == false)
+                                {
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Dept Image</th>
+                                }
+                                else
+                                {
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Dept Image Mobile</th>
+                                }
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">EDIT</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">DELETE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in (List<EliteHospital.Core.Department>)ViewData["DepartmentList"])
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+                                            <p class="text-xs font-weight-bold mb-0">@(((Int32) 1) + ((List<EliteHospital.Core.Department>)ViewData["DepartmentList"]).IndexOf(item))</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-sm">@item.DepartmentName</h6>
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                    @*<td>
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <h6 class="mb-0 text-sm">@item.DepartmentNameArabic</h6>
+                                        </div>
+                                    </td>*@
+                                    @*<td>
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <h6 class="mb-0 text-sm">@item.Description</h6>
+                                        </div>
+                                    </td>*@
+                                    @if (ViewBag.FromMob == false)
+                                    {
+                                        <td class="align-middle text-center text-sm">
+                                            <div>
+                                                @{
+                                                    var imgSrc = "";
+                                                    if (item.DepartmentImage != null && item.DepartmentImage.Length > 0)
+                                                    {
+                                                        var base64 = Convert.ToBase64String(item.DepartmentImage);
+                                                        imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                                    }
+                                                }
+                                                @if (item.DepartmentImage != null && item.DepartmentImage.Length > 0)
+                                                {
+                                                    <img src="@imgSrc" class="avatar avatar-sm me-3" alt="user1">
+                                                }
+                                                else
+                                                {
+
+                                                }
+                                            </div>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td class="align-middle text-center text-sm">
+                                            <div>
+                                                @{
+                                                    var imgSrcMob = "";
+                                                    if (item.DepartmentImageMob != null && item.DepartmentImageMob.Length > 0)
+                                                    {
+                                                        var base64 = Convert.ToBase64String(item.DepartmentImageMob);
+                                                        imgSrcMob = String.Format("data:image/gif;base64,{0}", base64);
+                                                    }
+                                                }
+                                                @if (item.DepartmentImageMob != null && item.DepartmentImageMob.Length > 0)
+                                                {
+                                                    <img src="@imgSrcMob" class="avatar avatar-sm me-3" alt="user1">
+                                                }
+                                                else
+                                                {
+
+                                                }
+                                            </div>
+                                        </td>
+                                    }
+
+                                    <td class="align-middle">
+                                        @Html.ActionLink("Edit", "EditDepartment", "Department", new { DepartmentName = @item.DepartmentName, FromMob = ViewBag.FromMob }, new { @class = "departmentedit text-secondary font-weight-bold text-xs link-tab" })
+                                    </td>
+                                    <td class="align-middle">
+                                        @*@Html.ActionLink("Delete", "DeleteDepartment", "Department", new { DepartmentName = @item.DepartmentName, FromMob = ViewBag.FromMob }, new { @class = "departmentdelete text-secondary font-weight-bold text-xs link-tab" })*@
+                                        <a Id=@item.DepartmentName class="DeleteDepartment bannerdelete text-secondary font-weight-bold text-xs link-tab" href="#">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+        if ($("#type").attr("fromMob") == 'true') {
+            $("#menuDepartmentsMob").addClass("active");
+        }
+        else {
+            $("#menuDepartments").addClass("active");
+        }
+
+        $("#pageHeader").text("Departments");
+        $("#pageHeader1").text("Departments");
+
+        var deleteurl = '@Url.Action("DeleteDepartment", "Department")';
+        $("body").off("click", ".DeleteDepartment");
+        $("body").on("click", ".DeleteDepartment", function () {
+            if (confirm("Do you want to delete?")) {
+                var Id = parseInt(this.id);
+                var data = { DepartmentName: Id };
+                var row = $(this).closest("tr");
+                $.ajax({
+                    type: "POST",
+                    url: deleteurl,
+                    data: data,
+                    dataType: "json",
+                    success: function (response) {
+                        if (response.success) {
+                            row.remove();
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+

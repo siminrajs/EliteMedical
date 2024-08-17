@@ -1,0 +1,176 @@
+main {
+    display: block;
+    }
+    
+    
+    
+    /* clearfix */
+    
+    .cf:before,
+    .cf:after {
+    content: " ";
+    display: table;
+    }
+    
+    .cf:after {
+    clear: both;
+    }
+    
+    .cf {
+    *zoom: 1;
+    }
+    
+    
+    /* inline block */
+    
+    .ib {
+    display: -moz-inline-stack;
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+    vertical-align: top;
+    }
+    
+    
+    /* ul-reset */
+    
+    .ul-reset {
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style: none;
+    }
+    
+    
+    /* global classes */
+    
+    
+    /* wrapper */
+    
+    .wrapper {
+    width: 660px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 10px;
+    padding-left: 10px;
+    }
+    
+    
+    /* styles */
+    
+    
+    /* header */
+    
+    .site-title {
+    text-align: center;
+    }
+    
+    .subtitle {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    text-align: center;
+    color: #666;
+    }
+    
+    .navigation {
+    margin-top: 40px;
+    background-color: #333;
+    text-align: center;
+    }
+    
+    .navigation-link {
+    display: block;
+    padding: 20px;
+    text-decoration: none;
+    color: #fff;
+    }
+    
+    .navigation-link:hover {
+    opacity: .5;
+    }
+    
+    
+    /* main */
+    
+    .main {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    }
+    
+    .content {
+    float: left;
+    width: 425px;
+    padding: 20px;
+    border: 1px solid;
+    margin-right: 20px;
+    }
+    
+    .jtaSidebar-cont {
+    float: left;
+    width: 195px;
+    height: 100%;
+    }
+    
+    .jtaSidebar-inner {
+    padding: 20px;
+    background-color: #009688;
+    text-align: center;
+    font-size: 2em;
+    color: #fff;
+    }
+    
+    
+    /* footer */
+    
+    .footer {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #eee;
+    }
+    
+    .footer-col {
+    float: left;
+    width: 33.33333%;
+    font-size: .875em;
+    }
+    
+    .footer-col-inner {
+    padding-right: 20px;
+    }
+    
+    .footer-col-heading {
+    margin-top: 0;
+    font-size: 1em;
+    color: #666;
+    }
+    
+    .footer-navigation-link {
+    display: block;
+    margin-top: 5px;
+    text-decoration: none;
+    color: #999;
+    }
+    
+    .footer-navigation-link:hover {
+    opacity: .5;
+    }
+    
+    
+    /* jQuery classes for jtaFixedSidebarElement */
+    
+    .pos-rel {
+    position: relative;
+    }
+    
+    .pos-abs {
+    position: absolute;
+    bottom: 0;
+    }
+    
+    .pos-fix {
+    position: fixed;
+    top: 0;
+    z-index: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    }

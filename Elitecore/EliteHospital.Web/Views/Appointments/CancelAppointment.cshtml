@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "CancelAppointment";
+    Layout = "~/Views/Shared/_BookingLayout.cshtml";
+}
+
+@*<h2>@ViewData["Response"]</h2>*@
+<div class="row mt-3">
+    <div class="col-md-4 col-xl-3">
+        <div class="dr-dtls text-center mt-2">
+            <img src="~/Content/Site/Booking/images/doctors/dummy-f.png" class="img-fluid" alt="">
+            <h4>@ViewBag.AppointmentDtls.DoctorName</h4>
+            <p><span>Designation </span><strong>: @ViewBag.AppointmentDtls.Designation</strong></p>
+            <p><span>Specialty </span><strong>: @ViewBag.AppointmentDtls.Designation</strong></p>
+        </div>
+
+    </div>
+    <div class="col-md-8 col-xl-6">
+        <div class="succ-wrap">
+            <div class="suc_img"><img src="~/Content/Site/Booking/images/sucsess.png" class="img-fluid" alt=""></div>
+            <h3>Your Booking has been cancelled!</h3>
+            <p>Your appointment with @ViewBag.AppointmentDtls.DoctorName @ViewBag.AppointmentDtls.AppointmentDate at @ViewBag.AppointmentDtls.AppointmentTime has been cancelled</p>
+            @*<a class="btn btn-primary" href="#">View My Appoinment</a>*@
+            <a class="btn btn-primary" href='@Url.Action("AppointmentDetails", "Appointments", new { Id = @ViewBag.AppointmentDtls.AppointmentId  })'>View My Appoinment</a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidenav ul li").removeClass("active");
+        $("#menuAppointment").addClass("active");
+    });
+</script>
+

@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0 header-table">
+                <h6>Users List</h6>
+                <a href='@Url.Action("EditTermsAndConditions", "TermsAndConditions", new { })' class="btn-bkapmnt">Add New</a>
+
+            </div>
+            <div class="card-body px-0 pt-0 pb-2 main-table">
+                <div class="table-responsive p-0">
+                    <table class="table align-items-center mb-0">
+                        <thead>
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder ">SL.NO</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder ">Description</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Description_Arabic</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">EDIT</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">DELETE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in (List<EliteHospital.Core.tbl_TermsAndConditions_Admin>)ViewData["TermsAndConditionsList"])
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+                                            <p class="text-xs font-weight-bold mb-0">@( ((Int32) 1) + ((List<EliteHospital.Core.tbl_TermsAndConditions_Admin>)ViewData["TermsAndConditionsList"]).IndexOf(item) )</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-sm"> @Html.Raw(@item.TC_Description)</h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-sm">@Html.Raw(@item.TC_Description_Arabic)</h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle">
+                                        @Html.ActionLink("Edit", "EditTermsAndConditions", "TermsAndConditions", new { Id = @item.TC_Id }, new { @class = "text-secondary font-weight-bold text-xs link-tab" })
+                                    </td>
+                                    <td class="align-middle">
+                                        @Html.ActionLink("Delete", "DeleteTermsAndConditions", "TermsAndConditions", new { Id = @item.TC_Id }, new { @class = "text-secondary font-weight-bold text-xs link-tab" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        debugger;
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+        $("#menuTermsAndConditions").addClass("active");
+
+        $("#pageHeader").text("TermsAndConditions");
+        $("#pageHeader1").text("TermsAndConditions");
+    });
+</script>

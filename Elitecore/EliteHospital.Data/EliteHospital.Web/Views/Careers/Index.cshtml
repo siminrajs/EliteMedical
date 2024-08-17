@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="inr-cnct inr-hd">
+    <div class="cus-container">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="cnt_inr">
+                    <h3>
+                        Careers
+                        <span>
+                            Careers
+                        </span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="careers">
+    <div class="container">
+        <div class="outer-careers branch-main-box">
+            @foreach (var item in (List<EliteHospital.Core.Career>)ViewData["Careers"])
+            {
+                <div class="bx-opening aos-init aos-animate" data-aos="fade-up">
+                    <h3>
+                        @item.Vacancy
+                    </h3>
+                    <div class="loc">
+                        <h4>@item.PositionDescription </h4>
+                    </div>
+                    <div class="contact">
+                        <h5>Please send your CVs to:</h5>
+                        <a href="mailto:@item.Email">@item.Email</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+

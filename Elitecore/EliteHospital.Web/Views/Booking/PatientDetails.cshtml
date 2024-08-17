@@ -1,0 +1,47 @@
+﻿<div class="consult_dtls">
+    <div class="dr-card">
+        <small id="dateDifference"></small>
+        <h4 id="doctorName">
+        </h4>
+        <div class="dtt"><span class="dt"></span><span class="tm"></span> <a class="resecdlue" href='@Url.Action("BookYourConsultation", "Booking", new { doctorId = @ViewBag.DoctorId })'>Reschedule</a></div>
+    </div>
+    <div class="fild-set">
+        <form id="patientdtls">
+            <div class="form-group cus-chkbx">
+                <label class="container">
+                    Book for another person
+                    <input id="chkBookForAnother" type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" id="txtPatientName" placeholder="Patient name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Gender</label>
+                <select id="selGender" class="form-control">
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Select Relation</label>
+                <select id="selRelation" class="form-control">
+                    <option>For Child</option>
+                    <option>For Mother</option>
+                </select>
+            </div>
+            <button type="button" id="confirmBooking" class="btn btn-Wicon">Continue</button>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#patientdtls #txtPatientName").attr("disabled", "disabled");
+        $("#patientdtls #selGender").attr("disabled", "disabled");
+        $("#patientdtls #selRelation").attr("disabled", "disabled");
+        debugger;
+    });
+</script>

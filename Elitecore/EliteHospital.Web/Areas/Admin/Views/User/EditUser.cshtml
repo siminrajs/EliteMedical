@@ -1,0 +1,61 @@
+﻿@model EliteHospital.Web.Areas.Admin.ViewModel.UserViewModel
+@{
+    ViewBag.Title = "EditUser";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+       
+        $("#menuUser").addClass("active");
+        
+
+       
+    });
+</script>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0 header-table form-header">
+                <h6>Users Edit</h6>
+                @Html.ActionLink("View All", "Index", "User", null, new { })
+            </div>
+            <div class="card-body px-0 pt-0 pb-2 main-form">
+                @using (Html.BeginForm("EditUser", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="first">UserName</label>
+                                @*@Html.HiddenFor(p => p.Id)*@
+                                @Html.TextBoxFor(p => p.UserName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(p => p.UserName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                      
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="first">Password</label>
+                                @Html.TextBoxFor(p => p.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(p => p.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                       
+                    </div>
+                
+
+                 
+                    <div class="row">
+                        <div class="col-md-12 btn-save-outer">
+                            <button  type="submit" class="btn-save">Save</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    </div>
+

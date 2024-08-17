@@ -1,0 +1,13 @@
+﻿@if (ViewData["Slots"] != null)
+{
+    foreach (var item in (List<EliteHospital.Data.APIRequestResponseModels.Response.DoctorSlot>)ViewData["Slots"])
+    {
+        DateTime dateTime = item.StartTime;
+        string time = dateTime.ToString("hh:mm tt");
+        <li class="timeslot">@time</li>
+    }
+}
+else
+{
+    <li>No slots are available for this doctor</li>
+}

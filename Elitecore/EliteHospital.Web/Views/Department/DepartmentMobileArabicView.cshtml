@@ -1,0 +1,51 @@
+﻿
+@{ ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_ViewPage1.cshtml"; }
+<style>
+    .dep-cpat p span {
+        color: #fff !important;
+        font-weight: 300 !important;
+        text-transform: capitalize !important;
+    }
+</style>
+
+
+
+<section class="depts">
+    <div class="cus-container">
+        <div class="row">
+            @foreach (var item in (List<EliteHospital.Core.Department>)ViewData["Departments"])
+            {
+                if(item.Status=="Y" && item.Department_Type != "Other")
+                {
+<div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+    <div class="dpt-lst">
+        @{var imgSrc = "";
+            if (item.Department_Image != null)
+            {
+                //var base64 = Convert.ToBase64String(item.DepartmentImage);
+                //imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+<img src="@item.Department_Image" class="img-fluid" alt=""> }
+else
+{
+<img src="#" class="img-fluid" alt=""> } }
+    <div class="dep-cpat">
+        @{ if (@item.DepartmentNameArabic != null)
+            {
+    <h4>@item.DepartmentNameArabic.ToLower()</h4> }
+            }
+
+    <p>@Html.Raw(item.DescriptionArabic)</p>
+    <a href="@Url.Action("DepartmentdtlsMobileArabicView", "Department", new { dept = item.DepartmentName })">اقرأ أكثر</a>
+                                </div>
+    </div>
+</div>    
+                }
+            }
+
+
+        </div>
+    </div>
+</section>
+
+

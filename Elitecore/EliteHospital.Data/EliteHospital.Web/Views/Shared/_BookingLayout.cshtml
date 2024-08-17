@@ -1,0 +1,169 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="~/Content/Admin/img/brand/favicon.png" />
+    <title>Elite Medical Center</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/3dee8755de.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link href="~/Content/Site/Booking/scss/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/Site/Booking/scss/stylec.css">
+    <link rel="stylesheet" href="~/Content/Site/Booking/scss/theme.css">
+    @RenderSection("stylesheet", required: false)
+</head>
+<body>
+    <div class="left-main">
+        <div id="header-lt" class="hdr-lft">
+            <span class="burger-menu" onclick="openNav()"></span> <a class="m-logo" href="#"><img src="~/Content/Site/Booking/images/logo-black.png" class="img-fluid" alt="Elite Medical Center"></a>
+        </div>
+        <div id="sidenav" class="mn-nav sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <ul>
+                <li id="menuHome" class="active">
+                    @*<a class="mn-1" href="home.html">Home</a>*@
+                    @Html.ActionLink("Home", "Index", "Booking", new { }, new { @class = "mn-1" })
+                </li>
+                <li id="menuAppointment">
+                    @Html.ActionLink("Appointments", "Index", "Appointments", new { }, new { @class = "mn-2" })
+                </li>
+                @*<li><a class="mn-2" href="appointments.html">Appointments</a></li>*@
+                @*<li id="menuReports"><a class="mn-3" href="reports.html">Reports</a></li>*@
+                @*<li id="menuReports">
+                @Html.ActionLink("Reports", "Index", "Reports", new { }, new { @class = "mn-3" })
+            </li>*@
+                @*<li id="menuLoyalty">
+                @Html.ActionLink("Loyalty", "Index", "Loyalty", new { }, new { @class = "mn-4" })
+            </li>*@
+                <li id="menuMyProfile">
+                    @Html.ActionLink("My Profile", "MyProfile", "Booking", new { }, new { @class = "mn-5" })
+                </li>
+                @*<li id="menuRewards">
+                @Html.ActionLink("Rewards", "Index", "Rewards", new { }, new { @class = "mn-6" })
+            </li>*@
+                <li>
+                    @*<a class="mn-7" href="index.html">Log Out</a>*@
+                    @Html.ActionLink("LOGOUT", "LogOut", "Booking", new { }, new { @class = "mn-7" })
+                </li>
+            </ul>
+
+
+            @*<a href="home.html" class="fnd-dr">Find a doctor</a>*@
+            @Html.ActionLink("Find a doctor", "Index", "Booking", new { }, new { @class = "fnd-dr" })
+        </div>
+
+
+    </div>
+    <div id="cont-box" class="content_area">
+        <div class="hdr-top">
+            <button class="mob-serch"></button>
+            <div class="hdr-search">
+                <input type="text" placeholder="Search Doctor, Speciality" class="form-control serch_bx">
+                <span class="cl-action"></span>
+            </div>
+            <div class="hdr-account">
+                <a class="visit_main" href="">Visit Main Website</a>
+                <div class="my-acc">
+                    <div class="dropdown">
+                        <button class="btn acc-avtar dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-cog"></i>
+                            <span class="img-avtr"><img src="images/avatar.png" class="img-fluid" alt=""></span>
+                            <span class="usr-name">@Session["PatientFullName"]</span>
+                            <small>QID - @Session["QatarId"]</small>
+                            <i class="i-down">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#C4C4C4" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                                </svg>
+                            </i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li>
+                                @*<a class="dropdown-item" href="#">Profile</a>*@
+                                @Html.ActionLink("Profile", "MyProfile", "Booking", new { }, new { @class = "dropdown-item" })
+                            </li>
+                            <li>
+                                @*<a class="dropdown-item" href="#">Log Out</a>*@
+                                @Html.ActionLink("Log Out", "LogOut", "Booking", new { }, new { @class = "dropdown-item" })
+                            </li>
+                        </ul>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        @RenderBody()
+
+    </div>
+    @*</div>*@
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <!-- slider -->
+    <script src="~/Content/Site/Booking/slider/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="~/Content/Site/Booking/slider/owl.carousel.min.css">
+    <script src="~/Content/Site/Booking/js/custom.js"></script>
+    <script src="~/Content/Site/Booking/js/calendar.min.js"></script>
+    <script src="~/Scripts/Common/common.js"></script>
+    <script src="~/Scripts/BookAppointment/Appointment.js"></script>
+
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.serch_bx').bind('input', function (evt) {
+                var value = this.value;
+                if ($("#sidenav .active").length == 1) {
+                    var selectedmenu = $($("#sidenav .active")[0]).attr("id");
+                    switch (selectedmenu) {
+                        case "menuHome":
+                            var deptId = $(".dpt-active").attr("id");
+                            var filteredDoctors = null;
+                            if (deptId == "ALL") {
+                                filteredDoctors = $(".doctorslist .doctorprofile").filter(function () {
+                                    return $(this).attr("searchstring").toUpperCase().indexOf(value.toUpperCase()) != -1;
+                                });
+                            }
+                            else {
+                                filteredDoctors = $(".doctorslist .doctorprofile").filter(function () {
+                                    return $(this).attr("deartmentId") == deptId &&
+                                        $(this).attr("searchstring").toUpperCase().indexOf(value.toUpperCase()) != -1;
+                                });
+                            }
+                            $(".doctorslist .doctorprofile").css("display", "none");
+                            $(filteredDoctors).each(function (index) {
+                                $(this).css("display", "block");
+                            });
+                            break;
+                        case "menuAppointment":
+                            debugger;
+                            var appointmentFilter = $(".nav-item a.active").attr("id");
+                            filterAppointmentClick(appointmentFilter);
+                            var filteredAppointments = $(".apomnts:visible");
+                            filteredAppointments = filteredAppointments.filter(function () {
+                                return $(this).attr("searchstring").toUpperCase().indexOf(value.toUpperCase()) != -1;
+                            });
+                            $(".appointments .apomnts").css("display", "none");
+                            $(filteredAppointments).each(function (index) {
+                                $(this).css("display", "block");
+                            });
+                            break;
+
+
+                        default:
+                    }
+
+                }
+
+                
+            });
+        });
+    </script>
+</body>
+
+</html>

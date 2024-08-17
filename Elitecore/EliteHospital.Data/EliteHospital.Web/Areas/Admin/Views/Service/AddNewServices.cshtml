@@ -1,0 +1,228 @@
+﻿
+
+@{
+    ViewBag.Title = "AddNewServices";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+
+    string name = ViewBag.Name;
+    Int64 smid = Convert.ToInt64(ViewBag.Id);
+    string point = ViewBag.point;
+}
+
+<style>
+    .close-btn {
+        border: none;
+        background: #fff0;
+    }
+
+    .heading-area {
+        padding: 30px 0 0 35px;
+    }
+
+    .detail-area {
+        padding: 5px 35px 35px 35px;
+    }
+
+    .add-heading {
+        /*font-family: "poppins", sans;*/
+        font-weight: 800;
+        font-size: 1.7vw;
+        color: #000;
+        margin: 2px;
+    }
+
+    .user-name {
+        color: #a8a4ab;
+        /*font-family: "poppins", sans;*/
+        font-weight: 500;
+        font-size: 1vw;
+    }
+
+    .input-heading {
+        color: #6f6f6f;
+        /*font-family: "poppins", sans;*/
+        font-weight: 400;
+        font-size: 1vw;
+    }
+
+    .input-style {
+        position: relative;
+        display: block;
+    }
+
+    .clean-slide {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        padding: 15px 0 15px 15px;
+        /*font-family: "poppins", sans;*/
+        font-weight: 400;
+        color: #000;
+        background: none;
+        border: 1px solid #b9b9b9;
+        border-radius: 10px;
+        outline: 0;
+        text-indent: 60px;
+        transition: all .3s ease-in-out;
+    }
+
+        .clean-slide + label {
+            display: inline-block;
+            position: absolute;
+            transform: translateX(0);
+            top: 0;
+            left: 0;
+            bottom: 0;
+            padding: 15px 20px;
+            font-size: 1.2vw;
+            font-weight: 400;
+            text-transform: uppercase;
+            color: #c2c8d4;
+            text-align: left;
+            text-shadow: 0 1px 0 rgb(255 255 255 / 40%);
+            transition: all .3s ease-in-out, color .3s ease-out;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .clean-slide + i {
+            display: inline-block;
+            position: absolute;
+            transform: translateX(0);
+            top: 0;
+            left: 0;
+            bottom: 0;
+            padding: 15px 20px;
+            font-size: 2vw;
+            font-weight: 400;
+            text-transform: uppercase;
+            color: #c2c8d4;
+            text-align: left;
+            text-shadow: 0 1px 0 rgb(255 255 255 / 40%);
+            transition: all .3s ease-in-out, color .3s ease-out;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+            overflow: hidden;
+            margin: 0;
+        }
+
+    .points {
+        display: block;
+        position: absolute;
+        transform: translateX(0);
+        margin: 10px 10px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        padding: 10px 20px;
+        font-size: 1vw;
+        font-weight: 400;
+        text-transform: uppercase;
+        color: #74ab53;
+        text-align: left;
+        text-shadow: 0 1px 0 rgb(255 255 255 / 40%);
+        transition: all .3s ease-in-out, color .3s ease-out;
+        overflow: hidden;
+        border: none;
+        border-left: 1px solid #c3c3c3;
+        width: 100px;
+    }
+
+    textarea {
+        width: 100%;
+        /*font-family: "poppins", sans;*/
+        font-weight: 400;
+        color: #000;
+        background: none;
+        border: 1px solid #b9b9b9;
+        border-radius: 10px;
+        padding: 15px;
+        height: 60px;
+    }
+
+    .submit-btn {
+        color: #fff;
+        border: none;
+        padding: 18px;
+        width: 100%;
+        margin-bottom: 7px;
+        border-radius: 12px;
+        font-size: 1.1vw;
+        background-color: #c40c20;
+        box-shadow: rgb(196 12 32 / 20%) 0px 8px 24px;
+        /*font-family: "poppins", sans;*/
+        font-weight: 400;
+    }
+</style>
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <form id="form" name="addpoints" class="" action="/admin/Service/AddNewServices" method="post" enctype="multipart/form-data">
+                <div class="heading-area">
+                    <h6 class="add-heading">Add New Service</h6>
+                </div>
+                <input name="smid" id="smid" value="@smid" type="hidden">
+
+                <div class="detail-area">
+                    <div class="row">
+                        <div class="col-7">
+                            <h6 class="input-heading">Services Name</h6>
+                            <input style="text-indent: 0px;" name="servicename" id="servicename" value="@name" class="clean-slide" type="text" placeholder="Enter service name" required>
+                        </div>
+                        <div class="col-5">
+                            <h6 class="input-heading">Points for service</h6>
+                            <span class="input-style">
+                                <input style="text-indent: 0px;" class="clean-slide" id="servicepoint" value="@point" name="servicepoint" type="number" placeholder="00" required />
+                            </span>
+                        </div>
+                        <div class="col-2 mt-2" style="display: flex; justify-content: center; align-items: end;">
+                            <h6 class="input-heading"></h6>
+                            <button type="submit" class="submit-btn">SUBMIT</button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </form>
+
+        </div>
+    </div>
+</div>
+<script src="~/js/jquery.validate.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        debugger;
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+        $("#menuServices").addClass("active");
+
+        $("#pageHeader").text("Loyalty Points/Categories");
+        $("#pageHeader1").text("Categories");
+
+        $("#form").validate({
+            rules:
+            {
+                servicename: "required",
+                servicepoint: "required",
+            },
+            messages:
+            {
+                servicename: "*Enter Name",
+                servicepoint: "*Enter Point",
+
+            },
+            errorClass: "error",
+            validClass: "valid_class",
+            submitHandler: function (form) {
+                form.submit();
+            }
+
+        });
+
+
+
+    });
+</script>
+
+

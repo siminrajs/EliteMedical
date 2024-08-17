@@ -1,0 +1,60 @@
+﻿@model EliteHospital.Web.Areas.Admin.ViewModel.CovidBannerViewModel
+@{
+    ViewBag.Title = "EditCovidBanner";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+        $("#menuCovidBanner").addClass("active");
+
+        $("#covidbannerimage").change(function () {
+            $("#covidbannerfilename").val($(this).val());
+        });
+    });
+</script>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0 header-table form-header">
+                <h6>Sub Banner Edit</h6>
+                @Html.ActionLink("View All", "Index", "CovidBanner", null, new { })
+            </div>
+            <div class="card-body px-0 pt-0 pb-2 main-form">
+                @using (Html.BeginForm("EditCovidBanner", "CovidBanner", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="first">Sub Banner Title</label>
+                            @Html.HiddenFor(p => p.Id)
+                            @Html.TextBoxFor(p => p.Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(p => p.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="email">Sub Banner Image (1150x370 px)</label>
+                            <label for="file" class="input input-file">
+                                <div class="button">
+                                    @Html.TextBox("covidbannerimage", "", new { @class = "form-control", type = "file", id = "covidbannerimage", accept = "image/png, image/gif, image/jpeg" })
+                                    Browse
+                                </div>
+                                @Html.TextBoxFor(p => p.ImagePath, new { id = "covidbannerfilename", @class = "form-control", placeholder = "Include some files" })
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                    <div class="row">
+                        <div class="col-md-12 btn-save-outer">
+                            <button type="submit" class="btn-save">Save</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

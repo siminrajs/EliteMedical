@@ -1,0 +1,268 @@
+﻿@model EliteHospital.Web.Areas.Admin.ViewModel.EventViewModel
+@{ ViewBag.Title = "EditEvent";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int Id = Convert.ToInt32(ViewBag.Id);}
+
+<script>
+    $(document).ready(function () {
+
+        $("#textTodate").click(function (e) {
+            $("#textTodate").prop('type', 'date');
+        });
+
+    });
+
+</script>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0 header-table form-header">
+                <a href='@Url.Action("Index", "Events", new { FromMob = ViewBag.FromMob })' class="btn-bkapmnt">View All</a>
+            </div>
+            <div class="card-body px-0 pt-0 pb-2 main-form">
+                @using (Html.BeginForm("EditEvent", "Events", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+    @Html.AntiForgeryToken()
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="email">Type</label>
+                            <label for="Name" class="input input-file">
+                                @Html.HiddenFor(p => p.Id)
+                                @Html.DropDownListFor(p => p.Type, new SelectList(ViewData["StatusList"] as List<EliteHospital.Web.Areas.Admin.ViewModel.DropdownViewModel>, "Status", "Name"), new { @class = "form-control" })
+                                @Html.ValidationMessageFor(p => p.Type, "", new { @class = "text-danger" })
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="email">Heading</label>
+                            <label for="Name" class="input input-file">
+                                @Html.TextBoxFor(p => p.Title, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(p => p.Title, "", new { @class = "text-danger" })
+
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="email">Heading(Arabic)</label>
+                            <label for="Name" class="input input-file">
+                                @Html.TextBoxFor(p => p.Title_Arabic, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(p => p.Title_Arabic, "", new { @class = "text-danger" })
+
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="email">Event Date</label>
+                            <label for="Name" class="input input-file">
+                                @Html.TextBoxFor(model => model.CreatedDate, "{0:d/M/yyyy}", new { id = "textTodate", @class = "form-control", @placeholder="dd/mm/yyyy",  type = "text" })
+
+                                @*@Html.TextBoxFor(p => p.CreatedDate, new
+        {
+            @class = "form-control",
+            type = "date"
+        })*@
+       
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="email">Image</label>
+                            <label for="file" class="input input-file">
+                                @*<div class="button">
+            @Html.TextBox("covidbannerimage", "", new { @class = "form-control", type = "file", id = "covidbannerimage", accept = "image/png, image/gif, image/jpeg" })
+            Browse
+        </div>
+        @Html.TextBoxFor(p => p.ImagePath, new { id = "covidbannerfilename", @class = "form-control" })*@
+                                <input name="singleimage" type="file"  class="form-control" accept=".jpg, .png, .gif">
+
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label for="email">Images</label>
+                            <label for="file" class="input input-file">
+                               
+                                <div id="header" class="cont-img d-flex"></div>
+                                <div id="cont" class="cont-img d-flex"></div>
+                                <input name="images" type="file" multiple class="form-control" accept=".jpg, .png, .gif" onchange="loadFile(event)">
+
+
+                            </label>
+                        </div>
+
+                    </div>
+                    @*<div class="col-md-6">
+            <div class="form-group">
+                <label for="email">Event Images</label>
+                <label for="file" class="input input-file">
+                    <input multiple type="file" name="images" value="Browse" class="form-control" accept=".jpg, .png, .gif" />
+
+                </label>
+            </div>
+        </div>*@
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="file" class="input input-file">
+                                <label for="company">Description</label>
+                                @Html.TextAreaFor(p => p.Description, new { @class = "form-control", @cols = 30, @rows = 10 })
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="file" class="input input-file">
+                                <label for="company">Description(Arabic)</label>
+                                @Html.TextAreaFor(p => p.Description_Arabic, new { @class = "form-control", @cols = 30, @rows = 10 })
+                            </label>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-12 btn-save-outer">
+                                            <button type="submit" class="btn-save">Save</button>
+                                        </div>
+                                    </div>}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .cont-img img {
+        margin-right: 15px;
+        height: 150px;
+        object-fit: fill;
+    }
+</style>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+        $("#menuEvents").addClass("active");
+        $('#Description').jqte();
+        $('#Description_Arabic').jqte();
+        //$("#covidbannerimage").change(function () {
+        //    $("#covidbannerfilename").val($(this).val());
+        //});
+        //$("#image").change(function () {
+        //    $("#imagename").val($(this).val());
+        //});
+            $(function () {
+               var Id ='@Id';
+                if (Id != 0) {
+                GetImages();
+            }
+            });
+            function GetImages() {
+                var deleteurl = '@Url.Action("getEvents", "Events")';
+                var Id ='@Id';
+                var data = { Id: Id };
+                $.ajax({
+                    type: "GET",
+                    url: deleteurl,
+                    data: data,
+                    dataType: "json",
+                    success: function (response) {
+                        var data = response.result;
+                        var src = document.getElementById("header");
+                        for (let i = 0; i < data.length; i++) {
+                            var divElm = document.createElement('div');
+                            divElm.id = "rowdiv" + i;
+                            var spanElm = document.createElement('span');
+                            var img = document.createElement("img");
+                            img.src = data[i].Event_Image;
+                            img.id = data[i].Id;
+                            img.width = "200";
+                            spanElm.appendChild(img);
+                            var deleteImg = document.createElement('p');
+                            deleteImg.innerHTML = "x";
+                            deleteImg.onclick = function getdata() {
+                                var ids = img.id
+                                this.parentNode.remove()
+                                getlist(ids);
+                            };
+                            divElm.appendChild(spanElm);
+                            divElm.appendChild(deleteImg);
+                            src.appendChild(divElm);
+                        }
+                    }
+
+                });
+            }
+
+            @*function GetImages() {
+            debugger
+            var deleteurl = '@Url.Action("getEvents", "Events")';
+            var Id =@Id;
+            var data = { Id: Id };
+            $.ajax({
+                type: "POST",
+                url: deleteurl,
+                data: data,
+                dataType: "json",
+                success: function (response) {
+                    var aaa = response.success;
+                    var img = document.createElement("img");
+                    img.src = aaa
+                    img.id = response.success1;
+                    var src = document.getElementById("header");
+                    var deleteImg = document.createElement('p');
+                    deleteImg.innerHTML = "x";
+                    deleteImg.onclick = function () {
+                        this.parentNode.remove()
+                        imageid = response.success1;
+                        getlist(imageid);
+                    };
+                    src.appendChild(deleteImg);
+                    src.appendChild(img);
+                }
+
+            });
+    }*@
+        });
+
+     function getlist(imageid) {
+        var deleteurl = '@Url.Action("DeleteImage", "Events")';
+        var data = { Id: imageid };
+        $.ajax({
+            type: "POST",
+            url: deleteurl,
+            data: data,
+            dataType: "json",
+            success: function (response) {
+            }
+        });
+     }
+
+    var loadFile = function (event) {
+        var imgCont = document.getElementById("cont");
+        for (let i = 0; i < event.target.files.length; i++) {
+            var divElm = document.createElement('div');
+            divElm.id = "rowdiv" + i;
+            var spanElm = document.createElement('span');
+            var image = document.createElement('img');
+            image.src = URL.createObjectURL(event.target.files[i]);
+            image.id = "output" + i;
+            image.width = "200";
+            spanElm.appendChild(image);
+            var deleteImg = document.createElement('p');
+            deleteImg.innerHTML = "x";
+            deleteImg.onclick = function () { this.parentNode.remove() };
+            divElm.appendChild(spanElm);
+            divElm.appendChild(deleteImg);
+            imgCont.appendChild(divElm);
+        }
+    };</script>

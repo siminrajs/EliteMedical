@@ -1,0 +1,153 @@
+﻿
+@{
+    ViewBag.Title = "ViewDoctorBio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string Description1 = ViewBag.Description1;
+    string Description2 = ViewBag.Description2;
+    string Description3 = ViewBag.Description3;
+    string DoctorBioStatus = ViewBag.DoctorBioStatus;
+    string Doctorname = ViewBag.Doctorname;
+    string Departmet=ViewBag.Departmet;
+    string speciality=ViewBag.speciality;
+    string DoctorImage = ViewBag.DoctorImage;
+    //var imgSrc = "";
+    //if (ViewBag.DoctorImage != null)
+    //{
+    //    var base64 = Convert.ToBase64String(ViewBag.DocterImage);
+    //    imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+    //}
+
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12 p-3">
+            <div class="doc-img">
+                @if (@DoctorImage != null)
+                {
+            <img src="@DoctorImage" alt=""> }
+                        else
+                        {
+            <img src="~/Content/MainSite/images/doctor-avatar-icon.png" alt="">}
+                
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-6 col-sm-12 doc-details">
+            <h1>@Doctorname</h1>
+            <h3>@Departmet</h3>
+            <h6>@speciality</h6>
+            <hr>
+            <div class="detail-btn-div">
+                <p>
+                    @Html.Raw(@Description1)
+                </p>
+                @*<h5>Highlight Treatment</h5>
+        <p>
+            @Description2
+        </p>
+        <h5>Language Spoken</h5>
+        <p>
+            @Description3
+        </p>*@
+                @if (@DoctorBioStatus == "ACTIVE")
+                {
+                    <button class="book-btn bookappointment" href="#">BOOK APPOINTMENT</button>
+                }   
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .doc-img {
+        padding: 10px;
+        border: 1px solid #fdb620;
+    }
+
+        .doc-img img {
+            width: 100%;
+            object-fit: cover;
+            height: 420px;
+        }
+
+    .doc-details {
+        padding: 50px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+        .doc-details h1 {
+            color: #000;
+            font-size: 2.5em;
+            margin-bottom: 2px;
+            font-weight: 600;
+        }
+
+        .doc-details h3 {
+            color: #ae2d2d;
+            font-size: 1.3em;
+            margin-bottom: 2px;
+            font-weight: 600;
+        }
+
+        .doc-details h6 {
+            color: #b6b6b6;
+            margin-bottom: 0px;
+        }
+
+        .doc-details hr {
+            margin-top: 10px;
+        }
+
+    .detail-btn-div {
+        width: 80%;
+    }
+
+        .detail-btn-div p {
+            font-size: 1em;
+            color: #b6b6b6;
+            font-weight: 500;
+            margin-bottom: 25px;
+        }
+
+        .detail-btn-div h5 {
+            color: #feb721;
+            font-size: 1em;
+            margin-bottom: 3px;
+        }
+
+    .book-btn {
+        margin-top: 10px;
+        background-color: #feb721;
+        border: none;
+        padding: 15px 60px;
+        letter-spacing: 3px;
+        font-weight: 500;
+        color: #fff;
+    }
+    @@media only screen and (max-width: 768px) {
+        .doc-details {
+            padding: 30px;
+            font-family: 'Poppins', sans-serif;
+        }
+    }
+    @@media only screen and (max-width: 425px) {
+        .detail-btn-div {
+            width: 100%;
+        }
+        .book-btn {
+            width: 100%;
+        }
+        .doc-details {
+            padding: 10px 30px;
+            font-family: 'Poppins', sans-serif;
+        }
+    }
+</style>
+
+<script type="text/javascript">
+    $(".bookappointment").click(function () {
+            document.location = '@Url.Action("Index","Account")';
+    });
+
+
+</script>
+

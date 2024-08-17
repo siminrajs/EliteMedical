@@ -1,0 +1,152 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_BookingLayout.cshtml";
+}
+
+<style>
+    .app-btn {
+        display: flex;
+        float: left;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .app-btn span {
+        font-size: 14px;
+        color: #d6172c;
+    }
+</style>
+<script src="~/Scripts/BookAppointment/Appointment.js"></script>
+
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="mn-hd">My Appointments</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs dt-tbs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="active" id="all-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true">All </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a id="upcoming-tab" data-toggle="tab" href="#upcoming" role="tab" aria-controls="upcoming" aria-selected="false">Upcoming</a>
+                </li>
+                @*<li class="nav-item" role="presentation">
+                    <a id="recent-tab" data-toggle="tab" href="#recent" role="tab" aria-controls="recent" aria-selected="false">recent</a>
+                </li>*@
+                <li class="nav-item" role="presentation">
+                    <a id="cancelled-tab" data-toggle="tab" href="#cancelled" role="tab" aria-controls="cancelled" aria-selected="false">cancelled</a>
+                </li>
+            </ul>
+            <div class="tab-content mt-3 tbcnt" id="myTabContent">
+                <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+                    <div class="row appointments">
+                        @if (ViewData["Appointments"] != null)
+                        {
+                            foreach (var item in (List<EliteHospital.Data.APIRequestResponseModels.Response.AppointmentDtlsResponse>)ViewData["Appointments"])
+                            {
+                                <div status ="@item.Status" searchstring="@item.DoctorName@item.Designation" class="col-md-6 col-xl-4 dr-list apomnts">
+                                    <div class="media">
+                                        <img class="align-self-center mr-4" src="Content/Site/Booking/images/doctors/dummy-f.png" alt="Generic placeholder image">
+                                        <div class="media-body">
+                                            <div class="apmnt-top">
+                                                <div class="apt-tpLt">
+                                                    <h5 class="mt-0 mb-0">@item.DoctorName</h5>
+                                                    <strong>@item.Designation</strong>
+                                                </div>
+                                                <div class="apt-tpRt">
+                                                    <span>Request ID </span>
+                                                    <span><strong>#ELH @item.AppointmentId</strong></span>
+                                                </div>
+                                            </div>
+                                            
+                                            
+                                            <p>Appointment Date & time</p>
+
+                                            <div class="dtt">
+                                                <span class="dt">@item.AppointmentDate </span><span class="tm">@item.AppointmentTime </span>
+                                            </div>
+                                            <div class="app-btn">
+                                                <a href='@Url.Action("AppointmentDetails", "Appointments", new { Id = item.AppointmentId })' class="btn-bkapmnt">View Details</a>
+                                                @if (item.IsCancelled == 1)
+                                                {
+                                                    <span>Cancelled</span>
+                                                }
+                                                </div>
+                                            
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                        @*<div class="col-md-6 col-xl-4 dr-list apomnts">
+            <div class="media">
+                <img class="align-self-center mr-4" src="images/doctors/dummy-m.png" alt="Generic placeholder image">
+                <div class="media-body">
+                    <div class="apmnt-top">
+                        <div class="apt-tpLt">
+                            <h5 class="mt-0 mb-0">Dr. Doctor Name</h5>
+                            <strong>Dentist</strong>
+                        </div>
+                        <div class="apt-tpRt">
+                            <span>Request ID </span>
+                            <span><strong>#ELH 1221</strong></span>
+                        </div>
+                    </div>
+                    <p>Appointment Date & time </p>
+                    <div class="dtt"><span class="dt">NOV 24 2020 </span><span class="tm">11:00 AM </span></div>
+                    <a href="appointment-details.html" class="btn-bkapmnt">View Details</a>
+                </div>
+            </div>
+        </div>*@
+                        @*<div class="col-md-6 col-xl-4 dr-list apomnts">
+            <div class="media">
+                <img class="align-self-center mr-4" src="images/doctors/dummy-f.png" alt="Generic placeholder image">
+                <div class="media-body">
+                    <div class="apmnt-top">
+                        <div class="apt-tpLt">
+                            <h5 class="mt-0 mb-0">Dr. Doctor Name</h5>
+                            <strong>Dentist</strong>
+                        </div>
+                        <div class="apt-tpRt">
+                            <span>Request ID </span>
+                            <span><strong>#ELH 1221</strong></span>
+                        </div>
+                    </div>
+                    <p>Appointment Date & time </p>
+                    <div class="dtt"><span class="dt">NOV 24 2020 </span><span class="tm">11:00 AM </span></div>
+                    <a href="appointment-details.html" class="btn-bkapmnt">View Details</a>
+                </div>
+            </div>
+        </div>*@
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidenav ul li").removeClass("active");
+        $("#menuAppointment").addClass("active");
+
+        $(".nav-item a").click(function () {
+            $('.serch_bx').val("");
+            var id = this.id;
+            filterAppointmentClick(id);
+        });
+    });
+</script>
+

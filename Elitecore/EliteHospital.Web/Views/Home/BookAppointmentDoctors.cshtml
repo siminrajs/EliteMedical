@@ -1,0 +1,32 @@
+﻿<script>
+    AOS.init();
+</script>
+<div class="bk-fileds" data-aos="fade-up" data-aos-delay="350">
+    <div class="form-group">
+        <select id="doctordropdown" class="form-control">
+            <option selected>Choose Your Doctor</option>
+            @foreach (var item in (List<EliteHospital.Data.APIRequestResponseModels.Response.Doctor>)ViewData["DoctorsList"])
+            {
+                <option id="@item.DoctorId">@item.DoctorName</option>
+            }
+        </select>
+    </div>
+</div>
+@foreach (var item in (List<EliteHospital.Data.APIRequestResponseModels.Response.Doctor>)ViewData["DoctorsList"])
+{
+    var imgSrc = "";
+    if (item.Photo != null)
+    {
+        var base64 = Convert.ToBase64String(item.Photo);
+        imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+    }
+    <div class="doctordetails">
+        <div id="@item.DoctorId" style="display: none;" class="media dr-lst-bk" data-aos="fade-up" data-aos-delay="400">
+            <img src="@imgSrc" style="max-width: 155px;" class="mr-3" alt="...">
+            <div class="media-body pl-2">
+                <h5 class="mt-0">@item.DoctorName<br>Salha</h5>
+                <small>@item.Designation & @item.Speciaity</small>
+            </div>
+        </div>
+    </div>
+}

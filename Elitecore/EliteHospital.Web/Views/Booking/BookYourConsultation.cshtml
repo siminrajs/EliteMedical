@@ -1,0 +1,253 @@
+﻿
+@{
+    ViewBag.Title = "BookYourConsultation";
+    Layout = "~/Views/Shared/_BookingLayout.cshtml";
+    string image= ViewBag.Image;
+    string deptname=ViewBag.DepartmentName;
+}
+
+<div class="main-content bok-consultn">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="mn-hd">Book Your Consultation</h2>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-4 col-xl-3">
+            <div doctorId="@ViewBag.Doctor.DoctorId" class="dr-dtls text-center">
+                <img src="@image" class="img-fluid" alt="">
+
+                @*<img src="Content/Site/Booking/images/doctors/dummy-f.png" class="img-fluid" alt="">*@
+                <h4 id="doctorName">@ViewBag.Doctor.DoctorName</h4>
+                @*<p><span>Designation : </span><strong id="doctorDesignation">@ViewBag.Doctor.DepartmentName</strong></p>*@
+                <p><span>Specialty : </span><strong id="speciality">@deptname</strong></p>
+            </div>
+
+        </div>
+        <div class="col-md-8 col-xl-6">
+            <div id="booking-cntr">
+                @{Html.RenderPartial("DoctorSlots");}
+            </div>
+        </div>
+        <div class="col-md-12 col-xl-3">
+            <div class="process-status">
+                <ul>
+                    <li id="li-dept" class="active">
+                        <small>Department</small>
+                        <h4 id="departmentName">@ViewBag.Doctor.DepartmentName</h4>
+                        <a class="change_btn" href='@Url.Action("Index", "Booking")'>CHANGE</a>
+                    </li>
+                    <li id="li-doctor" class="active">
+                        <small>Doctor</small>
+                        <h4>@ViewBag.Doctor.DoctorName</h4>
+                        <a class="change_btn" href='@Url.Action("Index", "Booking")'>CHANGE</a>
+                    </li>
+                    <li id="li-datetime" class="inactive">
+                        <small>Date & Time</small>
+                        <h4 id="datetimepicked"></h4>
+                        <a class="change_btn" style="display:none;" href='@Url.Action("BookYourConsultation", "Booking", new { doctorId = @ViewBag.Doctor.DoctorId })'>CHANGE</a>
+                    </li>
+                    <li id="li-patientdtls" class="inactive">
+                        <small>Patient Details</small>
+                        <h4 id="patientname"></h4>
+                        <small id="relation"></small>
+                    </li>
+                    <li id="li-bookingdone" class="inactive">
+                        <h4>Booking Done</h4>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var BookingInfo = {
+            AppointmentId: 0,
+            DoctorId: '',
+            DoctorName: '',
+            Designation: '',
+            Speciality: '',
+            Department: '',
+            Date: '',
+            Time: '',
+            BookForAnother: {
+                Name: '',
+                Gender: '',
+                Relation : ''
+            }
+        };
+        BookingInfo.DoctorId = $(".dr-dtls").attr("doctorid");
+        BookingInfo.DoctorName = $("#doctorName").text();
+        BookingInfo.Designation = $("#doctorDesignation").text();
+        BookingInfo.Speciality = $("#speciality").text();
+        BookingInfo.Department = $("#departmentName").text();
+
+        var aaday = new Date();
+        var sss = new Date(aaday.getDate() - 1);
+       /* d.setDate(d.getDate() - 1);*/
+        var today = new Date();
+        var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000));
+        var defaultConfig = {
+            weekDayLength: 1,
+            date: today,
+            dates: aaday,
+            ////disable: function (date) {
+            ////    return date < new Date();
+            ////},
+
+            disable: function (date) {
+                return date < new Date();
+            },
+
+            showYearDropdown: true,
+            startOnMonday: true,
+            onClickDate: function (date) {
+                selecteddate = date;
+                $('.calendar-wrapper').updateCalendarOptions({
+                    date: date
+                });
+                updateslots(date);
+            }
+        };
+
+        var url = '@Url.Action("GetSlotsView", "Booking")';
+        function updateslots(date) {
+            var doctorId = $(".dr-dtls").attr("doctorid");
+            var datestring = new Date(date).toLocaleDateString("en-US");
+            $.ajax({
+                type: "POST",
+                data: { doctorId: doctorId, date: datestring },
+                url: url,
+                dataType: "html",
+                success: function (result) {
+                    $('.time-list').html(result);
+                }
+            });
+        }
+
+        $('.calendar-wrapper').calendar(defaultConfig);
+
+        $(document).off('click', '.timeslot');
+        $(document).on('click', '.timeslot', function () {
+            $(".timeslot").removeClass("active");
+            $(this).addClass("active");
+        });
+
+        $(document).off('click', '#patientdtls #confirmBooking');
+        $(document).on('click', '#patientdtls #confirmBooking', function () {
+            if ($("#patientdtls #chkBookForAnother").is(':checked') &&
+                $("#patientdtls #txtPatientName").val().trim().length == 0) {
+                alert("Patient name should not be empty");
+                return;
+            }
+            saveAppointment();
+        });
+
+        $(document).off('change', '#patientdtls #chkBookForAnother');
+        $(document).on('change', '#patientdtls #chkBookForAnother', function () {
+            var checked = $(this).is(':checked');
+            if (checked) {
+                $("#patientdtls #txtPatientName").removeAttr("disabled");
+                $("#patientdtls #selGender").removeAttr("disabled");
+                $("#patientdtls #selRelation").removeAttr("disabled");
+            }
+            else {
+                $("#patientdtls #txtPatientName").attr("disabled", "disabled");
+                $("#patientdtls #selGender").attr("disabled", "disabled");
+                $("#patientdtls #selRelation").attr("disabled", "disabled");
+            }
+        });
+
+        var appointmentSuccessURL = '@Url.Action("ShowAppointmentSuccess", "Booking")';
+        function showAppointmentSuccess() {
+            $.ajax({
+                type: "POST",
+                data: { AppointmentId : BookingInfo.AppointmentId},
+                url: appointmentSuccessURL,
+                dataType: "html",
+                success: function (result) {
+                    $('#booking-cntr').html(result);
+                    $("#li-patientdtls").removeClass("inactive").addClass("active");
+                    $("#li-bookingdone").removeClass("inactive").addClass("active"); 
+                    if (BookingInfo.BookForAnother.Name != null) {
+                        $("#li-patientdtls #patientname").text(BookingInfo.BookForAnother.Name);
+                    }
+                    if (BookingInfo.BookForAnother.Relation != null) {
+                        $("#li-patientdtls #relation").text("(" + BookingInfo.BookForAnother.Relation + ")");
+                    }
+                }
+            });
+        }
+
+        var selecteddate = tomorrow;
+        $(document).off('click', '#confirmTime');
+        $(document).on('click', '#confirmTime', function () {
+            if ($(".time-list li.timeslot.active").length == 0) {
+                alert("Please select a slot");
+                return false;
+            }
+            BookingInfo.Date = getFormattedDate(selecteddate);
+            BookingInfo.Time = $(".time-list li.timeslot.active").text();
+            $("#datetimepicked").text(BookingInfo.Date + ', ' + BookingInfo.Time);
+            showPatientDetails();
+        });
+
+        var patientDtlsURL = '@Url.Action("GetPatientDtls", "Booking")';
+        function showPatientDetails() {
+            $.ajax({
+                type: "POST",
+                url: patientDtlsURL,
+                data: { DoctorId: BookingInfo.DoctorId},
+                dataType: "html",
+                success: function (result) {
+                    $('#booking-cntr').html(result);
+
+                    $("#li-datetime").removeClass("inactive").addClass("active");
+                    $("#li-datetime .change_btn").show();
+                    var datediff = getDateDiffInDays(new Date(), BookingInfo.Date);
+                    $(".consult_dtls #dateDifference").text("In " + datediff + " days");
+                    var obj = $(".consult_dtls #doctorName").text("Consultation with \n " + BookingInfo.DoctorName);
+                    obj.html(obj.html().replace(/\n/g, '<br/>'));
+                    $(".consult_dtls .dt").text(BookingInfo.Date);
+                    $(".consult_dtls .tm").text(BookingInfo.Time); $("#patientdtls #chkBookForAnother").is(':checked')
+                }
+            });
+        }
+
+        var saveappointmentURL = '@Url.Action("SaveAppointment", "Booking")';
+        function saveAppointment() {
+            var bookforanother = $("#patientdtls #chkBookForAnother").is(':checked') == true ? 1 : 0;
+            BookingInfo.BookForAnother.Name = $("#patientdtls #txtPatientName").val().trim();
+            BookingInfo.BookForAnother.Gender = $("#patientdtls #selGender").val();
+            BookingInfo.BookForAnother.Relation = $("#patientdtls #selRelation").val();
+            $.ajax({
+                type: "POST",
+                url: saveappointmentURL,
+                data: {
+                    DoctorId: BookingInfo.DoctorId,
+                    IsBookForAnotherPerson: bookforanother,
+                    BookingForName: BookingInfo.BookForAnother.Name,
+                    BookingForGender: BookingInfo.BookForAnother.Gender,
+                    BookingForRelation: BookingInfo.BookForAnother.Relation,
+                    Date: BookingInfo.Date,
+                    Time: BookingInfo.Time
+                },
+                dataType: "json",
+                success: function (result) {
+                    debugger;
+                    if (result.success && result.AppointmentId > 0) {
+                        BookingInfo.AppointmentId = result.AppointmentId;
+                        showAppointmentSuccess();
+                    }
+                    else {
+                        alert(result.Message);
+                    }
+                }
+            });
+        }
+
+        updateslots(tomorrow);
+    });
+</script>

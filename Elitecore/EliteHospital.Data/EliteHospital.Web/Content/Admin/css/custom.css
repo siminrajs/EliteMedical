@@ -1,0 +1,67 @@
+.login .btn-primary {
+    border-color: #d6172c;
+    background-color: #d6172c;
+}
+
+.login {
+    background: url(../img/brand/login-bg.png) no-repeat 0 bottom;
+    background-size: 370px;
+}
+
+    .login .header {
+        background: url(../img/brand/login-bg-top.png) no-repeat right top;
+        background-size: 230px;
+    }
+
+.has-submenu {
+    position: relative;
+}
+
+    .has-submenu .sub-menu li {
+        list-style: none;
+    }
+
+    .has-submenu i.ni.ni-bold-down {
+        position: absolute;
+        right: 22px;
+        z-index: 9;
+        top: 16px;
+        font-size: 12px;
+        color: #ccc;
+        pointer-events: none;
+    }
+
+    .has-submenu .sub-menu .nav-link {
+        padding: 3px 5px 5px 15px !important;
+    }
+
+.spinner-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    z-index: 9;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 48%;
+    left: 48%;
+}
+
+.field-validation-error {
+    font-size: .75rem;
+}
+
+.validation-summary-errors {
+    font-size: .75rem;
+}
+
+    .validation-summary-errors ul {
+        list-style: none;
+        margin-left: -40px
+    }

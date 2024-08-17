@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewBag.Title = "AppointmentDetails";
+    Layout = "~/Views/Shared/_BookingLayout.cshtml";
+}
+<style>
+    .modal-body a {
+        background-color: #fff;
+        padding: 9px 30px;
+        border-radius: 43px;
+        border-color: #d6172c;
+        color: #9f0d1d;
+        transition: .5s ease-out;
+        border : 2px solid;
+    }
+
+    .modal-body a {
+        background-color: #fff;
+        padding: 9px 30px;
+        border-radius: 43px;
+        border-color: #d6172c;
+        color: #9f0d1d;
+        transition: .5s ease-out;
+    }
+</style>
+<link href="~/Content/Site/Booking/scss/new-style.css" rel="stylesheet" />
+
+@model EliteHospital.Data.APIRequestResponseModels.Response.AppointmentDtlsResponse
+
+<div class="main-content bok-consultn">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="mn-hd">Appointment Details</h2>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-11 col-xl-9  apomnts-dtls">
+            <div class="media">
+                <img class="mr-5" src="../../Content/Site/Booking/images/doctors/dummy-f.png" alt="Generic placeholder image">
+                <div class="media-body">
+                    <div class="apmnt-top">
+                        <div class="apt-tpLt">
+                            <h5 class="mt-0 mb-0">@Model.DoctorName</h5>
+                            <strong>@Model.Designation</strong>
+                        </div>
+                        <div class="apt-tpRt">
+                            <span>Request ID </span>
+                            <span><strong>#ELH @Model.AppointmentId</strong></span>
+                        </div>
+                    </div>
+                    <p>Appointment Date & time </p>
+                    <div class="dtt"><span class="dt">@Model.AppointmentDate </span><span class="tm">@Model.AppointmentTime </span></div>
+                    <ul class="apt-list">
+                        <li>Booking for</li>
+                        <li>@Model.PatientName_Relation</li>
+                        <li>Session</li>
+                        <li>@Model.Session</li>
+                        <li>Appointment ID</li>
+                        <li>ELH @Model.AppointmentId</li>
+                        @if (Model.IsCancelled == 1)
+                        {
+                            <li>Appointment Status</li>
+                            <li>Cancelled</li>
+                        }
+                    </ul>
+                    @if (Model.IsCancelled == 0)
+                    {
+                        @*<a href='@Url.Action("CancelAppointment", "Appointments", new { Id = Model.AppointmentId })' class="btn-dtls">CANCEL</a>*@
+                        <a id="btnCancelConfirmation" href="#" class="btn-dtls">CANCEL</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade otp-pop pop-c" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+            <div class="modal-body  ">
+
+                <h2>Do You want to cancel this appointment?</h2>
+                <hr>
+                <h6>@Model.DoctorName</h6>
+                <h5>@Model.Designation</h5>
+                <h4>Appointment</h4>
+                <h3>@Model.AppointmentDate, @Model.AppointmentTime</h3>
+                <hr>
+                @*<button>Yes, I need to cancel</button>*@
+            <a href='@Url.Action("CancelAppointment", "Appointments", new { Id = Model.AppointmentId })' class="btn-dtls">Yes, I need to cancel</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidenav ul li").removeClass("active");
+        $("#menuAppointment").addClass("active");
+
+        $("#btnCancelConfirmation").click(function () {
+            $('#myModal').modal('show');
+        });
+
+        $(".close").click(function () {
+            $('#myModal').modal('hide');
+        });
+
+    });
+</script>
+

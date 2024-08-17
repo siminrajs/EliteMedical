@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6dd21df7035e47ccb52cc5abbe48b826" Name="Diagram1" ZoomLevel="60">
+        <EntityTypeShape EntityType="EliteHospitalModel.PatientVerification" Width="2.125" PointX="4" PointY="2.25" />
+        <EntityTypeShape EntityType="EliteHospitalModel.User" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EliteHospitalModel.CovidBanner" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="EliteHospitalModel.Career" Width="1.5" PointX="9.375" PointY="3.75" />
+        <EntityTypeShape EntityType="EliteHospitalModel.HomeBanner" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="EliteHospitalModel.AboutU" Width="1.5" PointX="5.375" PointY="5.75" />
+        <EntityTypeShape EntityType="EliteHospitalModel.DailyOffer" Width="1.5" PointX="5.375" PointY="9.75" />
+        <EntityTypeShape EntityType="EliteHospitalModel.Insurance" Width="1.5" PointX="7.375" PointY="10.75" />
+        <EntityTypeShape EntityType="EliteHospitalModel.SpecialOffer" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="EliteHospitalModel.OnlineConsultation" Width="1.5" PointX="7.375" PointY="7" />
+        <EntityTypeShape EntityType="EliteHospitalModel.VideoUrl" Width="1.5" PointX="9.625" PointY="7.125" />
+        <AssociationConnector Association="EliteHospitalModel.FK_VideoUrls_OnlineConsultation" />
+        <EntityTypeShape EntityType="EliteHospitalModel.ContactU" Width="1.5" PointX="9.375" PointY="10.75" />
+        <EntityTypeShape EntityType="EliteHospitalModel.tbl_CommonParameter" Width="1.5" PointX="11.375" PointY="4.75" />
+        <EntityTypeShape EntityType="EliteHospitalModel.tbl_PatientMaster" Width="1.5" PointX="3.375" PointY="12.75" />
+        <EntityTypeShape EntityType="EliteHospitalModel.tbl_TermsAndConditions" Width="1.5" PointX="5.375" PointY="13.75" />
+        <EntityTypeShape EntityType="EliteHospitalModel.tbl_TransactionHistory" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="EliteHospitalModel.tbl_Machines" Width="1.5" PointX="13.375" PointY="14.75" />
+        <EntityTypeShape EntityType="EliteHospitalModel.tbl_ServiceMaster" Width="1.5" PointX="9.375" PointY="14.75" />
+        <EntityTypeShape EntityType="EliteHospitalModel.tbl_Media" Width="1.5" PointX="13.375" PointY="10.75" />
+        <EntityTypeShape EntityType="EliteHospitalModel.tbl_MediaImagesList" Width="1.5" PointX="15.375" PointY="10.75" />
+        <EntityTypeShape EntityType="EliteHospitalModel.EventImagesList" Width="1.5" PointX="15.375" PointY="13.75" />
+        <EntityTypeShape EntityType="EliteHospitalModel.EventImage" Width="1.5" PointX="17.625" PointY="1.875" />
+        <EntityTypeShape EntityType="EliteHospitalModel.tbl_Contact" Width="1.5" PointX="0.75" PointY="16.75" />
+        <EntityTypeShape EntityType="EliteHospitalModel.Event" Width="1.5" PointX="15.375" PointY="18.25" />
+        <AssociationConnector Association="EliteHospitalModel.FK_EventImages_Event" />
+        <EntityTypeShape EntityType="EliteHospitalModel.Doctor" Width="1.5" PointX="15.375" PointY="4.75" />
+        <EntityTypeShape EntityType="EliteHospitalModel.Banner" Width="1.5" PointX="5.625" PointY="18.375" />
+        <EntityTypeShape EntityType="EliteHospitalModel.Department" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="EliteHospitalModel.ConfigPasswords" Width="1.5" PointX="2.625" PointY="5.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

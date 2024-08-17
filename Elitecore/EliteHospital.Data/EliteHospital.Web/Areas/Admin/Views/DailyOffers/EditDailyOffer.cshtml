@@ -1,0 +1,88 @@
+﻿@model EliteHospital.Web.Areas.Admin.ViewModel.DailyOfferViewModel
+@{
+    ViewBag.Title = "EditDailyOffer";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+
+        if ( '@Model.FromMob' == 'True') {
+            $("#menuDailyOfferMob").addClass("active");
+        }
+        else {
+            $("#menuDailyOffer").addClass("active");
+        }
+
+        $("#image").change(function () {
+            $("#filename").val( $(this).val() );
+        });
+
+        $("#imagemob").change(function () {
+            $("#imagemobile").val($(this).val());
+        });
+    });
+</script>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0 header-table form-header">
+                <h6>Insurance Edit</h6>
+                @Html.ActionLink("View All", "Index", "DailyOffers", null, new { })
+            </div>
+            <div class="card-body px-0 pt-0 pb-2 main-form">
+                @using (Html.BeginForm("EditDailyOffer", "DailyOffers", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.HiddenFor(p => p.Id)
+                                @Html.HiddenFor(p => p.FromMob)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        @if (Model.FromMob == false)
+                        {
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email">Daily Offer Image (596x1024 px)</label>
+                                    <label for="file" class="input input-file">
+                                        <div class="button">
+                                            @Html.TextBox("image", "", new { @class = "form-control", type = "file", id = "image", accept = "image/png, image/gif, image/jpeg" })
+                                            Browse
+                                        </div>
+                                        @Html.TextBoxFor(p => p.ImagePath, new { id = "filename", @class = "form-control", placeholder = "Include some files" })
+                                    </label>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email">Daily Offer Image For Mobile (596x1024 px)</label>
+                                    <label for="file" class="input input-file">
+                                        <div class="button">
+                                            @Html.TextBox("imagemob", "", new { @class = "form-control", type = "file", id = "imagemob", accept = "image/png, image/gif, image/jpeg" })
+                                            Browse
+                                        </div>
+                                        @Html.TextBoxFor(p => p.ImageMobPath, new { id = "imagemobile", @class = "form-control", placeholder = "Include some files" })
+                                    </label>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 btn-save-outer">
+                            <button type="submit" class="btn-save">Save</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,276 @@
+﻿
+@{
+    ViewBag.Title = "AddPoint";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutNew.cshtml";
+    string Name = ViewBag.name;
+    int patientId = Convert.ToInt32(ViewBag.patientId);
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <form id="form" name="addpoints" class="" action="/admin/LoyaltyWithUser/savepoints" method="post" enctype="multipart/form-data">
+                <div class="heading-area">
+                    <h6 class="add-heading">Add Points</h6>
+                    <h6 class="user-name">@Name</h6>
+                    <input name="patientid" id="patientid" class="form-control" type="hidden" value="@patientId">
+                </div>
+                <hr />
+                <div class="detail-area">
+                    <div class="row">
+                        <div class="col-7">
+                            <h6 class="input-heading">Purchased Amount</h6>
+                            <span class="input-style">
+                                <span style="z-index:10; font-size: 14px; position: absolute;margin-left: 20px; margin-top: 3%;">QAR</span>
+                                <input name="points" id="points" class="points" type="text" value="">
+                                <input name="purchasedamount" id="purchasedamount" class="clean-slide" type="text" onchange="getpoint()">
+
+                            </span>
+                        </div>
+                        <div class="col-5">
+                            <h6 class="input-heading">Choose Date</h6>
+                            <span class="input-style">
+                                <input class="clean-slide" id="invoicedate" name="invoicedate" type="date" placeholder="Choose Date" /><i class="fas fa-calendar-alt"></i>
+                            </span>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <h6 class="input-heading">Procedure</h6>
+                        </div>
+                        <div class="col-10">
+                            <textarea placeholder="Type here" name="narrations" id="narrations"></textarea>
+                        </div>
+                        <div class="col-2" style="display: flex; justify-content: center; align-items:start;">
+                            <h6 class="input-heading"></h6>
+                            <button type="submit" class="submit-btn">SUBMIT</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<style>
+    .fa-calendar-alt {
+        display: inline-block;
+        position: absolute;
+        transform: translateX(0);
+        top: 0;
+        left: 0;
+        bottom: 0;
+        padding: 15px 20px;
+        font-size: 2vw;
+        font-weight: 400;
+        text-transform: uppercase;
+        color: #c2c8d4;
+        text-align: left;
+        text-shadow: 0 1px 0 rgb(255 255 255 / 40%);
+        transition: all .3s ease-in-out, color .3s ease-out;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+        overflow: hidden;
+        margin: 0;
+    }
+
+    #purchasedamount-error, #addeddate-error, #narrations-error {
+        position: inherit !important;
+        padding: 0 !important;
+        color: #c40c20 !important;
+        font-size: 12px !important;
+        font-weight: 600 !important;
+        text-transform: uppercase;
+    }
+
+    .heading-area {
+        padding: 30px 0 0 35px;
+    }
+
+    .detail-area {
+        padding: 5px 35px 35px 35px;
+    }
+
+    .add-heading {
+        /*font-family: "poppins", sans;*/
+        font-weight: 800;
+        font-size: 1.7vw;
+        color: #000;
+        margin: 2px;
+    }
+
+    .user-name {
+        color: #a8a4ab;
+        /*font-family: "poppins", sans;*/
+        font-weight: 500;
+        font-size: 1vw;
+    }
+
+    .input-heading {
+        color: #6f6f6f;
+        /*font-family: "poppins", sans;*/
+        font-weight: 400;
+        font-size: 1vw;
+    }
+
+    .input-style {
+        position: relative;
+        display: block;
+    }
+
+    .clean-slide {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        padding: 15px 0 15px 15px;
+        /*font-family: "poppins", sans;*/
+        font-weight: 400;
+        color: #000;
+        background: none;
+        border: 1px solid #b9b9b9;
+        border-radius: 10px;
+        outline: 0;
+        text-indent: 60px;
+        transition: all .3s ease-in-out;
+    }
+
+        .clean-slide + label {
+            display: inline-block;
+            position: absolute;
+            transform: translateX(0);
+            top: 0;
+            left: 0;
+            bottom: 0;
+            padding: 15px 20px;
+            font-size: 1.2vw;
+            font-weight: 400;
+            text-transform: uppercase;
+            color: #c2c8d4;
+            text-align: left;
+            text-shadow: 0 1px 0 rgb(255 255 255 / 40%);
+            transition: all .3s ease-in-out, color .3s ease-out;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .clean-slide + i {
+            display: inline-block;
+            position: absolute;
+            transform: translateX(0);
+            top: 0;
+            left: 0;
+            bottom: 0;
+            padding: 15px 20px;
+            font-size: 2vw;
+            font-weight: 400;
+            text-transform: uppercase;
+            color: #c2c8d4;
+            text-align: left;
+            text-shadow: 0 1px 0 rgb(255 255 255 / 40%);
+            transition: all .3s ease-in-out, color .3s ease-out;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+            overflow: hidden;
+            margin: 0;
+        }
+
+    .points {
+        display: block;
+        position: absolute;
+        transform: translateX(0);
+        margin: 10px 10px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        padding: 10px 20px;
+        font-size: 1vw;
+        font-weight: 400;
+        text-transform: uppercase;
+        color: #74ab53;
+        text-align: left;
+        text-shadow: 0 1px 0 rgb(255 255 255 / 40%);
+        transition: all .3s ease-in-out, color .3s ease-out;
+        overflow: hidden;
+        border: none;
+        border-left: 1px solid #c3c3c3;
+        width: 100px;
+        height: 36px;
+        z-index:10;
+    }
+
+    textarea {
+        width: 100%;
+        /*font-family: "poppins", sans;*/
+        font-weight: 400;
+        color: #000;
+        background: none;
+        border: 1px solid #b9b9b9;
+        border-radius: 10px;
+        padding: 15px;
+        height: 60px;
+    }
+
+    .submit-btn {
+        color: #fff;
+        border: none;
+        padding: 18px;
+        width: 100%;
+        margin-bottom: 7px;
+        border-radius: 12px;
+        font-size: 1.1vw;
+        background-color: #c40c20;
+        box-shadow: rgb(196 12 32 / 20%) 0px 8px 24px;
+        /*font-family: "poppins", sans;*/
+        font-weight: 400;
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px white inset !important;
+    }
+</style>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script type="text/javascript">
+
+    function getpoint() {
+        var pramount = parseFloat($("#purchasedamount").val());
+        var patientid = parseFloat($("#patientid").val());
+        $.get("/admin/LoyaltyWithUser/getperamount", { pramount: pramount, patientid: patientid }, function (data) {
+            $('#points').val(data);
+
+        });
+    }
+
+    $(document).ready(function () {
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+        $("#menuLoyaltyPoint").addClass("active");
+
+        $("#pageHeader").text("Loyalty Points");
+        $("#pageHeader1").text("Loyalty Points");
+    });
+
+    $("#form").validate({
+        rules:
+        {
+            purchasedamount: "required",
+            addeddate: "required",
+            narrations: "required"
+
+        },
+        messages:
+        {
+            purchasedamount: "*Enter Amount",
+            addeddate: "*Enter Date",
+            narrations: "*Enter Narrations",
+
+
+        },
+        errorClass: "error",
+        validClass: "valid_class",
+        submitHandler: function (form) {
+            form.submit();
+        }
+    });
+
+</script>

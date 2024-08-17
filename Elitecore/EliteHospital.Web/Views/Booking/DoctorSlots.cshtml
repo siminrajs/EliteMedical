@@ -1,0 +1,38 @@
+﻿<div class="choose_dt-wraper">
+    <div class="calendar-wrapper"></div>
+    <div class="time-wrper">
+        <small>Pick a Time</small>
+        <div id="doctorSlots">
+            <ul class="time-list">
+                @{Html.RenderPartial("Slots");}
+            </ul>
+        </div>
+        <a href="#" id="confirmTime" class="btn-Wicon">CONTNUE</a>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".time-list li").first().addClass("active");
+
+        @*var selecteddate = null;
+        $("#confirmTime").click(function () {
+
+            showPatientDetails();
+        });
+
+        var url = '@Url.Action("GetPatientDtls", "Booking")';
+        function showPatientDetails() {
+            debugger;
+            $.ajax({
+                type: "POST",
+                //data: { doctorId: doctorId, date: datestring },
+                url: url,
+                dataType: "html",
+                success: function (result) {
+                    $('#booking-cntr').html(result);
+                }
+            });
+        }*@
+
+    });
+</script>

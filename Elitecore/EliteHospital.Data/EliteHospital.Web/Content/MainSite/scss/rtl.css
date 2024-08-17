@@ -1,0 +1,368 @@
+body{
+    direction: rtl;
+}
+
+header .top-loc {
+    border-left: 0;
+    border-right: 2px solid #fff;
+    padding-right: 20px;   
+    margin-top: 3px;
+    float: left;
+}
+header .top-mail {
+    margin-right: 0;
+    margin-left: 15px;
+    float: right;
+    margin-top: 5px;
+}
+.banner-sec button.owl-prev
+{
+    left: 0;
+    position: absolute;
+}
+.banner-sec .bnr-caption {
+    right: auto;
+    left: 15%; 
+}
+.banner-sec .bnr-caption a {
+    float: right;
+}
+.bnr-fnd-dr .dr-dept {
+    padding-right: 0;
+    padding-left: 30px;
+}
+.bnr-fnd-dr .dr-date {
+    padding-left: 0;
+    padding-right: 110px;
+}
+.bnr-fnd-dr .dr-date::before {   
+    left: auto;
+    right: 25px;
+    top: 23px;;
+}
+.bnr-fnd-dr .fnd_btn::before {
+    transform: rotate(180deg); 
+    left: 40px;
+    right: auto;
+}
+.bnr-fnd-dr .fnd_btn {
+    padding: 25px 75px 25px 15px;
+    text-align: right;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 0;
+    left: 0;
+    right: auto;
+}
+.bnr-fnd-dr {
+    right: auto;
+    left: 0;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 50px;
+}
+.hm-specialization .dept-tabs .owl-nav {
+    right: auto;
+    left: 0;
+}
+.hm-specialization .dept-otr {
+    padding-left: 0;
+    padding-right: 6%;
+}
+.hm-specialization .dept-tabs .owl-prev {    
+    right: auto;
+    left: 0;  
+    margin: 0;
+}
+.hm-specialization .dept-tabs .owl-next {   
+    right: auto !important;
+    left: 0;   
+    margin: 0;
+}
+.hm-specialization .dept-tabs .next-slide {
+
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+
+}
+.hm-specialization .dept-tabs .prev-slide {
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+}
+.hm-abt::before {
+    bottom: 0;
+    left: auto;
+    right: 0;
+    background: url(../images/abt-bg-ar.png) right bottom no-repeat;
+    width: 100%;
+}
+.hm-abt .abt_bx2 a {
+    float: right;
+}
+.hm-abt .abt_bx2 a::before {
+    right: auto;
+    left: -40px;
+    transform: rotate(180deg); 
+    top: -2px;
+}
+.bk-apointment .bk-lft {
+    float: right;
+    padding-left: 10%;
+    padding-right: 6%;
+}
+.bk-apointment .bk-rgt::before {
+    right: auto;
+    left: 0;
+}
+
+.bk-apointment .bk-lft .dr-lst-bk .media-body {
+    padding-left: 0;
+    padding-right: 25px;
+}
+.bk-apointment .bk-lft .dr-lst-bk p strong {
+    margin-right: 0;
+    margin-left: 15px;
+    float: right;
+}
+.bk-apointment .bk-rgt {
+    padding-right: 0;
+    padding-left: 5%;
+    z-index: -1;
+}
+.bk-apointment .bk-lft .mn-ttl h3 span {
+    z-index: 2;
+    left: auto;
+    right: 0;
+}
+footer .ftr-col-4 .ftr-social {
+    float: right;
+}
+footer .ftr_lnk {
+    float: right;
+}
+footer .ftr_lnk {
+    float: right !important;
+}
+footer .ftr_lnk::before {
+    right: auto !important;
+    left: -51px !important;   
+    transform: rotate(180deg); 
+}
+
+.dr-list .dr-dtls-wraper .pro-dtls .view-pro {
+    margin-right: 0 !important;
+    margin-left: 10px !important;
+}
+.abtIm::after {
+    right: auto;
+    left: -15px;
+}
+.onlne-consult .con-vdo-bx .vdo-bx-caption a {
+    float: right;
+}
+.depts .dpt-lst a {
+    float: right;
+}
+.depts .dpt-lst a::before {
+    right: auto !important;
+    left: -51px !important;   
+    transform: rotate(180deg); 
+}
+.demo-gallery > ul > li {
+    float: right;
+}
+.lg-outer .lg-inner {
+    direction: ltr;
+}
+.mdScn .sgvds li {
+    float: right;
+}
+.ctFrm form li.lft {
+    padding-right: 0;
+    padding-left: 15px;
+}
+.ctFrm form li.hfFt {
+    float: right;
+}
+.ctFrm form li.rgt {
+    padding-left: 0;
+}
+.ctFrm form input, .ctFrm form textarea {
+    text-align: right;
+}
+.ctFrm form ul {
+    padding-right: 0;
+}
+.prmIm::after {
+    right: auto;
+    left: -15px;
+}
+.dpt-accordian i.fas.fa-chevron-down {   
+    position: absolute;
+    left: 30px;
+}
+.find-drs .dr-lizt {
+    padding-left: 0;
+    padding-right: 80px;
+}
+header .lang-sw {
+    margin-right: 0;
+    margin-left: 15px;
+}
+.bnr-fnd-dr .dpt-nav .owl-item {
+    padding-left: 0;
+    margin: 7px !important;
+}
+.bnr-fnd-dr::before {
+    left: auto;
+    right: 33px;
+    top: 20px;
+}
+.bnr-fnd-dr{
+    padding-right: 135px;
+    padding-left: 275px;
+}
+.bnr-fnd-dr .dpt-nav {
+    padding-right:0px;
+    padding-left: 0px;
+}
+.hm-drs-slidr .dr-slct {
+    float: left;
+}
+.hm-drs-slidr .bk-apmt {
+    max-width: 113px;
+}
+.derm-cont .cont-derm .derm-list li {
+    padding-right: 20px;
+    padding-left: 0px;
+}
+.derm-cont .cont-derm .derm-list li::before {
+    left: auto;
+    right: 0;
+}
+
+element.style {
+}
+.value-ltr li strong {
+    float: right;
+    margin-right: 0;
+    margin-left: 10px;
+}
+.value-ltr li span {
+    float: right;
+}
+@media only screen and (min-width: 1025px)
+{
+    header .header-main .main-menu ul {
+        align-items: center;
+        display: flex;
+    }
+    .banner-sec .owl-dots {
+        left: auto;
+        right: 5%;
+    }
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 768px)
+{
+    .open-nav {
+        position: absolute;
+        right: auto;
+        left: 60px;
+        top: 13px;
+    }
+    .hm-abt .abt_bx2 h3 span {
+        font-size: 50px;
+    }
+}
+@media only screen and (max-width: 900px)
+{
+    .hm-drs-slidr h2 {
+        font-size: 75px;
+    }
+    .hm-specialization .dept-otr {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .bnr-fnd-dr .dr-date {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .bnr-fnd-dr .dr-dept {
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-bottom: 25px;
+    }
+    .bnr-fnd-dr {
+        margin-top: 0;
+        margin-bottom: 0px;
+    }
+    .hm-specialization {
+        margin-top: 0;
+    }
+    header .header-main .main-menu ul li {
+        text-align: right;
+    }
+    header .header-main .main-menu ul li {
+        float: right;
+    }
+    a.closebtn-mnu {
+        right: auto;
+        left: 20px;
+    }
+    .banner-sec .owl-dots {
+        position: relative;
+        left: auto;
+        right: auto;
+        width: auto;
+        margin: 0 auto;
+        display: table !important;
+    }
+    .find-drs .dr-lizt {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+ 
+}
+@media only screen and (max-width: 767px)
+{
+    .bnr-fnd-dr {
+        padding-right: 0px;
+        padding-left: 0px;
+        margin-bottom: 0;
+        border-top-right-radius: 0;
+    }
+    .bnr-fnd-dr .fnd_btn {
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    .hm-abt-updte {
+        padding: 60px 0 60px;
+    }
+    .open-nav {
+        margin-left: 0px;
+        margin-right: 40px;
+    }
+    .header-top .text-right {
+        text-align: right !important;
+    }
+    .hm-specialization .dept-tabs .owl-nav {
+        right: auto;
+        left: -15px;
+    }
+    .enqBtn {
+        float: right;
+    }
+}
+@media only screen and (max-width: 370px)
+{
+    header .top-loc {
+        width: 100%;
+    }
+}

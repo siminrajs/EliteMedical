@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0 header-table">
+                <h6>Config Values</h6>
+            </div>
+            <div class="card-body px-0 pt-0 pb-2 main-table">
+                <div class="table-responsive p-0">
+                    <table class="table align-items-center mb-0">
+                        <thead>
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder ">SL.NO</th>
+                                @*<th class="text-uppercase text-secondary text-xxs font-weight-bolder ">ADDRESS</th>*@
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">Config Value Name</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">Config Values</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">EDIT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in (List<EliteHospital.Core.ConfigPasswords>)ViewData["ConfigtList"])
+                            {
+                            <tr>
+                                <td>
+                                    <div class="d-flex px-2 py-1">
+                                        <p class="text-xs font-weight-bold mb-0">@( ((Int32) 1) + ((List<EliteHospital.Core.ConfigPasswords>)ViewData["ConfigtList"]).IndexOf(item) )</p>
+                                    </div>
+                                </td>
+                                @*<td>
+                                    <div class="d-flex px-2 py-1">
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <h6 class="mb-0 text-sm">@item.Address</h6>
+                                        </div>
+                                    </div>
+                                </td>*@
+                                <td>
+                                    <div class="d-flex px-2 py-1">
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <h6 class="mb-0 text-sm">@item.ConfigPasswordName</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex px-2 py-1">
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <h6 class="mb-0 text-sm">@item.ConfigPassValues</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="align-middle">
+                                    @Html.ActionLink("Edit", "EditConfigpassvalues", "ConfigPasswords", new { ID = @item.ID }, new { @class = "text-secondary font-weight-bold text-xs link-tab" })
+                                    </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+        $("#menuContactus").addClass("active");
+
+        $("#pageHeader").text("Config Values");
+        $("#pageHeader1").text("Config Values");
+    });
+</script>
+

@@ -1,0 +1,182 @@
+﻿@model EliteHospital.Web.Areas.Admin.ViewModel.OnlineConsultationViewModel
+@{
+    ViewBag.Title = "EditCovidBanner";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidenav-collapse-main ul li a").removeClass("active");
+        $("#menuOnlineConsultation").addClass("active");
+
+        $("#image").change(function () {
+            $("#onlineconsultationfilename").val($(this).val());
+        });
+
+        var AddVideoUrl= '@Url.Action("AddVideoUrl", "OnlineConsultation")';
+        $("#btnAddUrls").click(function () {
+            var value = $("#youtubeurl").val();
+            if (value.trim().length == 0) {
+                alert("Please enter URL");
+                return;
+            }
+            var desc = $("#youtubeurldesc").val();
+            if (desc.trim().length == 0) {
+                alert("Please enter Description");
+                return;
+            }
+            var data = {
+                "OnlineConsultationId": $("#Id").val(),
+                "VideoUrls": value,
+                "Description": desc
+            }
+            $.ajax({
+                type: "POST",
+                data: { videoUrl: data },
+                url: AddVideoUrl,
+                dataType: "json",
+                success: function (result) {
+                    if (result.success == true) {
+                        $('#tableUrls').append('<tr><td style="text-align: left;">' + value + '</td>   <td style="text-align: left;">' + desc + '</td>   <td class="align-middle"><a id="' + result.Id + '" class="urlDelete text-secondary font-weight-bold text-xs link-tab" href="#">Delete</a></td> </tr>');
+                        $("#youtubeurl").val("");
+                        $("#youtubeurldesc").val("");
+                        alert(result.Message);
+                    }
+                }
+            });
+        });
+
+        var DeleteVideoUrl= '@Url.Action("DeleteVideoUrl", "OnlineConsultation")';
+        $("body").off("click", ".urlDelete")
+        $("body").on("click", ".urlDelete", function () {
+            var data = {
+                "Id": parseInt( this.id)
+            }
+            var selectedRow = $(this).closest("tr");
+            $.ajax({
+                type: "POST",
+                data: data,
+                url: DeleteVideoUrl,
+                dataType: "json",
+                success: function (result) {
+                    if (result.success == true) {
+                        selectedRow.remove();
+                        alert(result.Message);
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0 header-table form-header">
+                <h6>Online Consultation Edit</h6>
+                @Html.ActionLink("View All", "Index", "OnlineConsultation", null, new { })
+            </div>
+            <div class="card-body px-0 pt-0 pb-2 main-form">
+                @using (Html.BeginForm("EditOnlineConsultation", "OnlineConsultation", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="first">Title</label>
+                                @Html.HiddenFor(p => p.Id)
+                                @Html.TextBoxFor(p => p.Title, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(p => p.Title, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email">Image (1920x750 px)</label>
+                                <label for="file" class="input input-file">
+                                    <div class="button">
+                                        @Html.TextBox("image", "", new { @class = "form-control", type = "file", id = "image", accept = "image/png, image/gif, image/jpeg" })
+                                        Browse
+                                    </div>
+                                    @Html.TextBoxFor(p => p.ImagePath, new { id = "onlineconsultationfilename", @class = "form-control", placeholder = "Include some files" })
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="first">Description</label>
+                                @Html.TextBoxFor(p => p.Description, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(p => p.Description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        @*<div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="first">Youtube Url</label>
+                                    @Html.TextBoxFor(p => p.Urls, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(p => p.Urls, "", new { @class = "text-danger" })
+                                </div>
+                            </div>*@
+                    </div>
+                    <div style="border: 1px solid grey; padding: 15px;">
+                        <p style="font-weight: bold;"> Youtube Urls</p>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input type="text" id="youtubeurl" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input type="text" id="youtubeurldesc" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <button type="button" id="btnAddUrls" class="btn-save">Add</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div style="margin: 15px;" class="card-body px-0 pt-0 pb-2 main-table">
+                                <div class="table-responsive p-0">
+                                    <table id="tableUrls" class="table align-items-center mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder ">URL</th>
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder ">Description</th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">DELETE</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in (List<EliteHospital.Core.VideoUrl>)ViewData["VideoUrlList"])
+                                            {
+                                            <tr>
+                                                <td style="text-align: left;">
+                                                    @item.VideoUrls
+                                                </td>
+                                                <td style="text-align: left;">
+                                                    @item.Description
+                                                </td>
+                                                <td class="align-middle">
+                                                    <a id="@item.Id" class="urlDelete text-secondary font-weight-bold text-xs link-tab" href="#">Delete</a>
+                                                </td>
+                                            </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 btn-save-outer">
+                            <button id="saveonlineconsulation" type="submit" class="btn-save">Save</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
