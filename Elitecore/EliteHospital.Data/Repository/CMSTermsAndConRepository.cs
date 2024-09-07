@@ -17,11 +17,11 @@ namespace EliteHospital.Data.Repository
             context = new EliteHospitalEntities();
         }
 
-        public List<tbl_TermsAndConditions_Admin> GetAll()
+        public List<tbl_TermsAndConditions> GetAll()
         {
             try
             {
-                return context.tbl_TermsAndConditions_Admin.ToList();
+                return context.tbl_TermsAndConditions.ToList();
             }
             catch (Exception ex)
             {
@@ -30,11 +30,11 @@ namespace EliteHospital.Data.Repository
         }
 
       
-        public tbl_TermsAndConditions_Admin GetById(int Id)
+        public tbl_TermsAndConditions GetById(int Id)
         {
             try
             {
-                return context.tbl_TermsAndConditions_Admin.Where(p => p.TC_Id == Id).FirstOrDefault();
+                return context.tbl_TermsAndConditions.Where(p => p.TC_Id == Id).FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -42,11 +42,11 @@ namespace EliteHospital.Data.Repository
             }
         }
 
-        public void Save(tbl_TermsAndConditions_Admin termsAndCon)
+        public void Save(tbl_TermsAndConditions termsAndCon)
         {
             try
             {
-                context.tbl_TermsAndConditions_Admin.Add(termsAndCon);
+                context.tbl_TermsAndConditions.Add(termsAndCon);
                 context.SaveChanges();
             }
             catch (Exception ex)
@@ -55,15 +55,15 @@ namespace EliteHospital.Data.Repository
             }
         }
 
-        public void Update(tbl_TermsAndConditions_Admin career)
+        public void Update(tbl_TermsAndConditions career)
         {
             try
             {
-                tbl_TermsAndConditions_Admin careerToUpdate = context.tbl_TermsAndConditions_Admin.Where(p => p.TC_Id == career.TC_Id).FirstOrDefault();
+                tbl_TermsAndConditions careerToUpdate = context.tbl_TermsAndConditions.Where(p => p.TC_Id == career.TC_Id).FirstOrDefault();
                 if (careerToUpdate != null)
                 {
-                    careerToUpdate.TC_Description = career.TC_Description;
-                    careerToUpdate.TC_Description_Arabic = career.TC_Description_Arabic;
+                    careerToUpdate.TH_Description = career.TH_Description;
+                    careerToUpdate.TH_Arabic = career.TH_Arabic;
                 }
                 context.SaveChanges();
             }
@@ -98,10 +98,10 @@ namespace EliteHospital.Data.Repository
         {
             try
             {
-                tbl_TermsAndConditions_Admin termsAndCon = context.tbl_TermsAndConditions_Admin.Where(p => p.TC_Id == Id).FirstOrDefault();
+                tbl_TermsAndConditions termsAndCon = context.tbl_TermsAndConditions.Where(p => p.TC_Id == Id).FirstOrDefault();
                 if (termsAndCon != null)
                 {
-                    context.tbl_TermsAndConditions_Admin.Remove(termsAndCon);
+                    context.tbl_TermsAndConditions.Remove(termsAndCon);
                     context.SaveChanges();
                 }
             }

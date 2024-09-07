@@ -155,6 +155,8 @@
     <Compile Include="Areas\Admin\Controllers\OtherDepartmentController.cs" />
     <Compile Include="Areas\Admin\Controllers\ServiceController.cs" />
     <Compile Include="Areas\Admin\Controllers\SpecialOfferController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TermsAndConditionsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\ViewModel\AboutusViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModel\BannerViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModel\CareerViewModel.cs" />
@@ -175,6 +177,8 @@
     <Compile Include="Areas\Admin\ViewModel\OnlineConsultationViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModel\PatientViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModel\SpecialOfferViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModel\TermsAndConditionsViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModel\UserViewModel.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -4069,6 +4073,10 @@
     <Content Include="Areas\Admin\Views\LoyaltyWithUser\viewuserlistpartial.cshtml" />
     <Content Include="Areas\Admin\Views\ConfigPasswords\EditConfigpassvalues.cshtml" />
     <Content Include="Areas\Admin\Views\ConfigPasswords\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TermsAndConditions\EditTermsAndConditions.cshtml" />
+    <Content Include="Areas\Admin\Views\TermsAndConditions\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\EditUser.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Common\common.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

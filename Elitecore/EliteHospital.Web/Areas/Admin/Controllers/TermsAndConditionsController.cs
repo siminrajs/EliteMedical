@@ -19,7 +19,7 @@ namespace EliteHospital.Web.Areas.Admin.Controllers
         CMSTermsAndConRepository repository = new CMSTermsAndConRepository();
         public ActionResult Index()
         {
-            List<tbl_TermsAndConditions_Admin> termsAndcondilist = repository.GetAll();
+            List<tbl_TermsAndConditions> termsAndcondilist = repository.GetAll();
             ViewData["TermsAndConditionsList"] = termsAndcondilist;
             return View();
         }
@@ -36,14 +36,14 @@ namespace EliteHospital.Web.Areas.Admin.Controllers
             TermsAndConditionsViewModel viewModel = new TermsAndConditionsViewModel();
             if (Id > 0)
             {
-                tbl_TermsAndConditions_Admin termsAndCon = repository.GetById(Id);
+                tbl_TermsAndConditions termsAndCon = repository.GetById(Id);
                 if (termsAndCon != null)
                 {
                     viewModel = new TermsAndConditionsViewModel()
                     {
                         TC_Id = termsAndCon.TC_Id,
-                        TC_Description = termsAndCon.TC_Description,
-                        TC_Description_Arabic = termsAndCon.TC_Description_Arabic,
+                        TC_Description = termsAndCon.TH_Description ,
+                        TC_Description_Arabic = termsAndCon.TH_Arabic ,
                     };
                 }
             }
@@ -57,11 +57,11 @@ namespace EliteHospital.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                tbl_TermsAndConditions_Admin termsAndCon = new tbl_TermsAndConditions_Admin()
+                tbl_TermsAndConditions termsAndCon = new tbl_TermsAndConditions()
                 {
                     TC_Id = model.TC_Id,
-                    TC_Description = model.TC_Description,
-                    TC_Description_Arabic = model.TC_Description_Arabic,
+                    TH_Description  = model.TC_Description,
+                    TH_Arabic  = model.TC_Description_Arabic,
 
                 };
 
